@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Planet
+  - Player1
+  - Player2
+  - PlayerOneWrapper
+  - PlayerTwoWrapper
+  - OpeningScene
+  - win
+  - lose
+  - Piece
   layers:
   - Default
   - TransparentFX
@@ -14,14 +23,14 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Trail
+  - PlayerOne
+  - PlayerTwo
+  - P1Planet
+  - P2Planet
+  - P1Cam
+  - P2Cam
+  - StartCam
   - 
   - 
   - 
