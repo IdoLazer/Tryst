@@ -8,7 +8,6 @@ public class Instantiating : MonoBehaviour
     public GameObject player2;
 
     public int numObjects = 2;
-    public float startTime;
 
     public void loadPlayers()
     {
@@ -29,7 +28,6 @@ public class Instantiating : MonoBehaviour
         player1.SetActive(true);
         player2.SetActive(true);
 
-        startTime = Time.deltaTime;
     }
 
 }

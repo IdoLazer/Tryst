@@ -24,10 +24,6 @@ public class GameManager : MonoBehaviour
     //private GameGui myGui;
     private DisplayScript display;
 
-    private bool playerOneReady = false;
-    private bool playerTwoReady = false;
-
-
 
     void Start()
     {
@@ -103,22 +99,11 @@ public class GameManager : MonoBehaviour
 
     public void PressToStartGame()
     {
-        if (Input.GetKey(KeyCode.R))
-        {
-            playerOneReady = true;
-        }
 
-        if (Input.GetKey(KeyCode.T))
-        {
-            playerTwoReady = true;
-        }
-
-        if ((playerOneReady & playerTwoReady))
-        {
-            state = State.Game;
-            //myGui.guiSetUp();
-            StartGame();
-        }
+        state = State.Game;
+        //myGui.guiSetUp();
+        StartGame();
+        
     }
 
     void shouldPaue()
