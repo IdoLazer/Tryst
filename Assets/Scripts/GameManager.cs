@@ -18,8 +18,8 @@ public class GameManager : MonoBehaviour
     public Instantiating init;
     private State state;
     private static bool IsPaused = false;
-    private GameObject player1;
-    private GameObject player2;
+    public GameObject player1;
+    public GameObject player2;
     private float distanceBetween;
     //private GameGui myGui;
     private DisplayScript display;
@@ -30,8 +30,11 @@ public class GameManager : MonoBehaviour
         state = State.Start;
         
         display = GetComponent<DisplayScript>();
-        display.StartDisplay();
-        
+        //display.StartDisplay();
+
+        init.loadPlayers();
+
+
         //myGui = GetComponent<GameGui>();
         //myGui.showStart();
     }
@@ -88,21 +91,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void StartGame()
-    {
-        // SceneManager.LoadScene("signaling sandbox 2");
-        init.loadPlayers();
-        player1 = GameObject.FindGameObjectWithTag("Player1");
-        player2 = GameObject.FindGameObjectWithTag("Player2");
-
-    }
 
     public void PressToStartGame()
     {
-
+        //init.loadPlayers();
+        //player1 = GameObject.FindGameObjectWithTag("Player1");
+        //player2 = GameObject.FindGameObjectWithTag("Player2");
         state = State.Game;
         //myGui.guiSetUp();
-        StartGame();
+        
         
     }
 

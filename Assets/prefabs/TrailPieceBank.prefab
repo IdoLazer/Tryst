@@ -43,4 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 381e283b96c43984991f913f0a2bd9f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trailPiecePrefab: {fileID: 0}
+  trailPiecePrefab: {fileID: 70585142610015124, guid: 5ad90e690d898924fbf97fe76ae07777,
+    type: 3}
