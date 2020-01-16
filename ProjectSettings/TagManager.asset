@@ -13,6 +13,8 @@ TagManager:
   - win
   - lose
   - Piece
+  - DisplayCamera1
+  - DisplayCamera2
   layers:
   - Default
   - TransparentFX

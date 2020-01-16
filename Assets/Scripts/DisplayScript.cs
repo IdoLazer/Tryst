@@ -26,8 +26,8 @@ public class DisplayScript : MonoBehaviour
         }
 
         //Get Players Camera
-        myCams[0] = GameObject.Find("Camera1").GetComponent<Camera>();
-        myCams[1] = GameObject.Find("Camera2").GetComponent<Camera>();
+        myCams[0] = GameObject.FindWithTag("DisplayCamera1").GetComponent<Camera>();
+        myCams[1] = GameObject.FindWithTag("DisplayCamera2").GetComponent<Camera>();
 
         //Call function when new display is connected
         Display.onDisplaysUpdated += OnDisplaysUpdated;

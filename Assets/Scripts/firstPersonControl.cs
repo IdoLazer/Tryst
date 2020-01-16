@@ -53,7 +53,7 @@ public class firstPersonControl : MonoBehaviour
         }
         if (tag == "Player2")
         {
-            Debug.Log(Input.GetAxis("Player2X"));
+            // Debug.Log(Input.GetAxis("Player2X"));
             transform.Rotate(rotatSpeen * Vector3.up * Input.GetAxis("Player2X"));
             // if we want the camera to move
             //verLookRotation += Input.GetAxis("Mouse Y") * Time.deltaTime * mouseSenY;

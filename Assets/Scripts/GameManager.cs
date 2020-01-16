@@ -30,9 +30,8 @@ public class GameManager : MonoBehaviour
         state = State.Start;
         
         display = GetComponent<DisplayScript>();
-        //display.StartDisplay();
-
         init.loadPlayers();
+        display.StartDisplay();
 
 
         //myGui = GetComponent<GameGui>();
