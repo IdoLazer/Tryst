@@ -23,8 +23,14 @@ public class ShaderScript : MonoBehaviour
     private float curWobbleFreq;
     private float curWobbleDist;
     private Vector3 curWobbleTime;
+    private float maxWobbleFreqAchieved;
+    private float maxWobbleDistAchieved;
+    private Vector3 maxWobbleTimeAchieved;
+    private float minWobbleFreqAchieved;
+    private float minWobbleDistAchieved;
+    private Vector3 minWobbleTimeAchieved;
     private float startAccelerationOrDeccelerationTime = 0;
-    private bool moving;
+    private bool moving = false;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +43,10 @@ public class ShaderScript : MonoBehaviour
         meshRender.material.SetFloat("_wobbleFreq", curWobbleFreq);
         meshRender.material.SetFloat("_wobbleDistance", curWobbleDist);
         meshRender.material.SetVector("_wobTime", curWobbleTime);
-    }
+        minWobbleFreqAchieved = curWobbleFreq;
+        minWobbleDistAchieved = curWobbleDist;
+        minWobbleTimeAchieved = curWobbleTime;
+}
 
     // Update is called once per frame
     void Update()
@@ -63,9 +72,11 @@ public class ShaderScript : MonoBehaviour
 
     public void StartMoving()
     {
-        Debug.Log("Start Moving!!!");
         if (!moving)
         {
+            minWobbleFreqAchieved = curWobbleFreq;
+            minWobbleDistAchieved = curWobbleDist;
+            minWobbleTimeAchieved = curWobbleTime;
             startAccelerationOrDeccelerationTime = Time.time;
             moving = true;
         }
@@ -75,6 +86,9 @@ public class ShaderScript : MonoBehaviour
     {
         if (moving)
         {
+            maxWobbleDistAchieved = curWobbleDist;
+            maxWobbleFreqAchieved = curWobbleFreq;
+            maxWobbleTimeAchieved = curWobbleTime;
             moving = false;
             startAccelerationOrDeccelerationTime = Time.time;
         }
@@ -85,15 +99,15 @@ public class ShaderScript : MonoBehaviour
         float t = (Time.time - startAccelerationOrDeccelerationTime) / accelerationTime;
         if (accelerating)
         {
-            curWobbleTime = Vector3.Lerp(baseWobbleTime, movingWobbleTime, t);
-            curWobbleDist = Mathf.Lerp(baseWobbleDistance, movingWobbleDistance, t);
-            curWobbleFreq = Mathf.Lerp(baseWobbleFreq, movingWobbleFreq, t);
+            curWobbleTime = Vector3.Lerp(minWobbleTimeAchieved, movingWobbleTime, t);
+            curWobbleDist = Mathf.Lerp(minWobbleDistAchieved, movingWobbleDistance, t);
+            curWobbleFreq = Mathf.Lerp(minWobbleFreqAchieved, movingWobbleFreq, t);
         }
         else
         {
-            curWobbleTime = Vector3.Lerp(movingWobbleTime, baseWobbleTime, t);
-            curWobbleDist = Mathf.Lerp(movingWobbleDistance, baseWobbleDistance, t);
-            curWobbleFreq = Mathf.Lerp(movingWobbleFreq, baseWobbleFreq, t);
+            curWobbleTime = Vector3.Lerp(maxWobbleTimeAchieved, baseWobbleTime, t);
+            curWobbleDist = Mathf.Lerp(maxWobbleDistAchieved, baseWobbleDistance, t);
+            curWobbleFreq = Mathf.Lerp(maxWobbleFreqAchieved, baseWobbleFreq, t);
         }
 
     }
