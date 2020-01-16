@@ -59,19 +59,11 @@ public class ShaderScript : MonoBehaviour
         {
             Accelerate(false);
         }
-
-        if (Input.GetButtonDown("Up"))
-        {
-            StartMoving();
-        }
-        if (Input.GetButtonUp("Up"))
-        {
-            StopMoving();
-        }
     }
 
     public void StartMoving()
     {
+        Debug.Log("Start Moving!!!");
         if (!moving)
         {
             startAccelerationOrDeccelerationTime = Time.time;
