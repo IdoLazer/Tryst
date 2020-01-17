@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -954,6 +954,11 @@ PrefabInstance:
       propertyPath: walkSpeed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: -3303067111856926225, guid: 176c3e11dc31569429e02c260169860f,
+        type: 3}
+      propertyPath: controllerSensitivity
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 176c3e11dc31569429e02c260169860f, type: 3}
 --- !u!4 &1157016134 stripped
@@ -1196,6 +1201,7 @@ MonoBehaviour:
   mouseSenY: 250
   rotatSpeen: 5
   walkSpeed: 10
+  controllerSensitivity: 0.3
 --- !u!114 &1737751297
 MonoBehaviour:
   m_ObjectHideFlags: 0
