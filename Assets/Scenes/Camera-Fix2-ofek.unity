@@ -959,6 +959,11 @@ PrefabInstance:
       propertyPath: controllerSensitivity
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: -3303067111856926225, guid: 176c3e11dc31569429e02c260169860f,
+        type: 3}
+      propertyPath: controllerSensitivityX
+      value: 0.802
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 176c3e11dc31569429e02c260169860f, type: 3}
 --- !u!4 &1157016134 stripped
@@ -1201,7 +1206,8 @@ MonoBehaviour:
   mouseSenY: 250
   rotatSpeen: 5
   walkSpeed: 10
-  controllerSensitivity: 0.3
+  controllerSensitivityY: 0.2
+  controllerSensitivityX: 0.422
 --- !u!114 &1737751297
 MonoBehaviour:
   m_ObjectHideFlags: 0

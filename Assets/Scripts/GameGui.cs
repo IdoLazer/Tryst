@@ -15,20 +15,19 @@ public class GameGui : MonoBehaviour
     public GameObject Win;
     public GameObject Lose;
 
-    public GameObject VCOpening;
+    public GameObject StartMenu;
 
     public void showStart()
     {
-        VCOpening.SetActive(true);
+        StartMenu.SetActive(true);
        
-
     }
 
     public void guiSetUp()
         // this function should be called once we start the game 
     {
 
-        VCOpening.SetActive(false);
+        StartMenu.SetActive(false);
         Win.SetActive(false);
         Lose.SetActive(false);
 

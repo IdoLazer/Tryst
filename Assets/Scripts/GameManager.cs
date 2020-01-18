@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject player1;
     public GameObject player2;
     private float distanceBetween;
-    //private GameGui myGui;
+    private GameGui myGui;
     private DisplayScript display;
 
 
@@ -34,8 +34,8 @@ public class GameManager : MonoBehaviour
         display.StartDisplay();
 
 
-        //myGui = GetComponent<GameGui>();
-        //myGui.showStart();
+        myGui = GetComponent<GameGui>();
+        myGui.showStart();
     }
 
     // Update is called once per frame
@@ -64,25 +64,25 @@ public class GameManager : MonoBehaviour
                 distanceBetween = Vector3.Distance(player1.transform.position, player2.transform.position);
                 if (distanceBetween < 7)
                 {
-                    //myGui.win();   
+                    myGui.win();   
                     state = State.Win;
                 }
 
                 break;
             case State.Win:
-                //myGui.win();
+                myGui.win();
                 clearPieces();
                 player1.GetComponent<PlayerScript>().restart();
-                //myGui.showStart();
+                myGui.showStart();
                 state = State.Start;
 
                 break;
 
             case State.Lose:
-                //myGui.lose();
+                myGui.lose();
                 clearPieces();
                 player1.GetComponent<PlayerScript>().restart();
-                //myGui.showStart();
+                myGui.showStart();
 
                 state = State.Start;
                 break;
@@ -93,11 +93,14 @@ public class GameManager : MonoBehaviour
 
     public void PressToStartGame()
     {
-        //init.loadPlayers();
-        //player1 = GameObject.FindGameObjectWithTag("Player1");
-        //player2 = GameObject.FindGameObjectWithTag("Player2");
-        state = State.Game;
-        //myGui.guiSetUp();
+        if (Input.anyKey)
+        {
+            init.loadPlayers();
+            player1 = GameObject.FindGameObjectWithTag("Player1");
+            player2 = GameObject.FindGameObjectWithTag("Player2");
+            state = State.Game; 
+            myGui.guiSetUp();
+        }
         
         
     }
@@ -118,14 +121,14 @@ public class GameManager : MonoBehaviour
     void Resume()
     {
 
-        //myGui.resume()
+        //myGui.resume();
         Time.timeScale = 1f;
         IsPaused = false;
     }
 
     void Pause()
     {
-        //myGui.pause()
+        //myGui.pause();
         Time.timeScale = 0.0f;
         IsPaused = true;
 
