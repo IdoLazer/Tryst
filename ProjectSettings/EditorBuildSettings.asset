@@ -14,7 +14,13 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Camera-Fix2-ofek.unity
     guid: 4d9b122d2f3a811419e800411c16803b
+  - enabled: 0
+    path: Assets/Scenes/GameOverUI.unity
+    guid: 9a7336f7893d2b04995a7281c79d7116
+  - enabled: 1
+    path: Assets/Scenes/GameUI.unity
+    guid: b486e7f0298109f4c8bd5f5bfa25ad06
   m_configObjects: {}
