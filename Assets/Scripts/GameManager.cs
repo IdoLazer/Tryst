@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -30,10 +31,7 @@ public class GameManager : MonoBehaviour
         state = State.Start;
         
         display = GetComponent<DisplayScript>();
-        init.loadPlayers();
         display.StartDisplay();
-
-
         myGui = GetComponent<GameGui>();
         myGui.showStart();
     }
@@ -96,13 +94,21 @@ public class GameManager : MonoBehaviour
         if (Input.anyKey)
         {
             init.loadPlayers();
+            StartCoroutine(FindPlayersAndStartGame());
+
+        }
+    }
+
+    private IEnumerator FindPlayersAndStartGame()
+    {
+        while (player1 == null || player2 == null)
+        {
             player1 = GameObject.FindGameObjectWithTag("Player1");
             player2 = GameObject.FindGameObjectWithTag("Player2");
-            state = State.Game; 
-            myGui.guiSetUp();
+            yield return new WaitForSeconds(0.01f);
         }
-        
-        
+        state = State.Game;
+        myGui.guiSetUp();
     }
 
     void shouldPaue()

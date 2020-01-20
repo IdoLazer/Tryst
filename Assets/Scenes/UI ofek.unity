@@ -629,11 +629,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: -6860895033569716450, guid: 7ace645f2d7784cffb60d1f21cf6eff1,
-        type: 3}
-      propertyPath: m_Convex
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7ace645f2d7784cffb60d1f21cf6eff1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -709,6 +704,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d8e1bc12d82b4455fadde8ea051bf331, type: 2}
+    - target: {fileID: -6860895033569716450, guid: 7ace645f2d7784cffb60d1f21cf6eff1,
+        type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ace645f2d7784cffb60d1f21cf6eff1, type: 3}
 --- !u!1 &618361232
@@ -1343,7 +1343,6 @@ GameObject:
   - component: {fileID: 859454408}
   - component: {fileID: 859454411}
   - component: {fileID: 859454410}
-  - component: {fileID: 859454409}
   m_Layer: 0
   m_Name: InnerSpace
   m_TagString: Untagged
@@ -1365,19 +1364,6 @@ Transform:
   m_Father: {fileID: 192787385}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &859454409
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 859454407}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &859454410
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1584,7 +1570,7 @@ PrefabInstance:
     - target: {fileID: 8750496076804574221, guid: 0d9a1b36c1a3d1741bca3fed1997fc66,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8750496076804574225, guid: 0d9a1b36c1a3d1741bca3fed1997fc66,
         type: 3}
@@ -1671,6 +1657,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 646774a047d8047bd81e7347aab90aec, type: 2}
+    - target: {fileID: 8750496076804574230, guid: 0d9a1b36c1a3d1741bca3fed1997fc66,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d9a1b36c1a3d1741bca3fed1997fc66, type: 3}
 --- !u!1 &1138823156
@@ -1781,7 +1772,7 @@ PrefabInstance:
     - target: {fileID: 828245915756244536, guid: 176c3e11dc31569429e02c260169860f,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 828245915756244535, guid: 176c3e11dc31569429e02c260169860f,
         type: 3}
@@ -1872,6 +1863,11 @@ PrefabInstance:
         type: 3}
       propertyPath: controllerSensitivityX
       value: 0.211
+      objectReference: {fileID: 0}
+    - target: {fileID: 4663078520945060563, guid: 176c3e11dc31569429e02c260169860f,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 176c3e11dc31569429e02c260169860f, type: 3}
@@ -2267,7 +2263,7 @@ MonoBehaviour:
   m_WorldUpOverride: {fileID: 0}
   m_UpdateMethod: 2
   m_DefaultBlend:
-    m_Style: 1
+    m_Style: 0
     m_Time: 2
   m_CustomBlends: {fileID: 0}
   m_CameraCutEvent:
@@ -2680,7 +2676,7 @@ MonoBehaviour:
   mouseSenY: 250
   rotatSpeen: 5
   walkSpeed: 10
-  controllerSensitivityY: 0.1
+  controllerSensitivityY: 0
   controllerSensitivityX: 0.203
 --- !u!114 &1737751297
 MonoBehaviour:
@@ -2706,7 +2702,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -2899,7 +2895,6 @@ GameObject:
   - component: {fileID: 1765284601}
   - component: {fileID: 1765284604}
   - component: {fileID: 1765284603}
-  - component: {fileID: 1765284602}
   m_Layer: 0
   m_Name: OutterSpace
   m_TagString: Untagged
@@ -2921,19 +2916,6 @@ Transform:
   m_Father: {fileID: 192787385}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1765284602
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1765284600}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1765284603
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3915,7 +3897,7 @@ MonoBehaviour:
   m_WorldUpOverride: {fileID: 0}
   m_UpdateMethod: 2
   m_DefaultBlend:
-    m_Style: 1
+    m_Style: 0
     m_Time: 2
   m_CustomBlends: {fileID: 0}
   m_CameraCutEvent:
@@ -4170,8 +4152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e45b2d6017a4904d97afc36ef10d668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 986657136}
-  player2: {fileID: 618361232}
+  player1: {fileID: 1737751290}
+  player2: {fileID: 2016438539}
   numObjects: 2
 --- !u!114 &2084529537
 MonoBehaviour:
@@ -4208,11 +4190,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: -6860895033569716450, guid: 7ace645f2d7784cffb60d1f21cf6eff1,
-        type: 3}
-      propertyPath: m_Convex
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7ace645f2d7784cffb60d1f21cf6eff1,
         type: 3}
@@ -4289,6 +4266,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d8e1bc12d82b4455fadde8ea051bf331, type: 2}
+    - target: {fileID: -6860895033569716450, guid: 7ace645f2d7784cffb60d1f21cf6eff1,
+        type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ace645f2d7784cffb60d1f21cf6eff1, type: 3}
 --- !u!1001 &2978759613655017470

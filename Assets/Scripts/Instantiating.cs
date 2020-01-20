@@ -11,6 +11,8 @@ public class Instantiating : MonoBehaviour
 
     public void loadPlayers()
     {
+        player1.SetActive(true);
+        player2.SetActive(true);
         Vector3 where1 = Random.onUnitSphere;
         Vector3 where2 = Random.onUnitSphere;
 
