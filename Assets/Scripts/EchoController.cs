@@ -8,6 +8,7 @@ public class EchoController : MonoBehaviour
     public const string ECHO_PULSE_PARENT_NAME = "Echoes";
 
     [SerializeField] GameObject echoPulsePrefab;
+    [SerializeField] GameObject pulseContainerPrefab;
     [SerializeField] float timeBetweenPulses = 0.5f;
 
     private GameObject echoPulsesParent;
@@ -39,9 +40,8 @@ public class EchoController : MonoBehaviour
 
     private IEnumerator SendPulse()
     {
-        canSendPulse = false;
-        GameObject pulse = Instantiate(echoPulsePrefab, transform.position, Quaternion.identity, echoPulsesParent.transform) as GameObject;
-        pulse.GetComponent<EchoPulse>().ActivatePulse();
+        GameObject pulseContainer = Instantiate(pulseContainerPrefab, transform.position, transform.rotation, echoPulsesParent.transform);
+        GameObject pulse = Instantiate(echoPulsePrefab, transform.position, transform.rotation, pulseContainer.transform) as GameObject;
         yield return new WaitForSeconds(timeBetweenPulses);
         canSendPulse = true;
     }
