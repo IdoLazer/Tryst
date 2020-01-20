@@ -2048,6 +2048,21 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7652109072398903514, guid: 176c3e11dc31569429e02c260169860f,
+        type: 3}
+      propertyPath: playerLife
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7652109072398903514, guid: 176c3e11dc31569429e02c260169860f,
+        type: 3}
+      propertyPath: playerLose
+      value: 
+      objectReference: {fileID: 1919045160}
+    - target: {fileID: -7652109072398903514, guid: 176c3e11dc31569429e02c260169860f,
+        type: 3}
+      propertyPath: pressToReplay
+      value: 
+      objectReference: {fileID: 1919045160}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 176c3e11dc31569429e02c260169860f, type: 3}
 --- !u!4 &1157016134 stripped
@@ -3071,6 +3086,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerLife: 100
+  playerLose: {fileID: 1549582757}
+  pressToReplay: {fileID: 1549582757}
 --- !u!54 &1737751298
 Rigidbody:
   m_ObjectHideFlags: 0
