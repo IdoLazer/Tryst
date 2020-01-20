@@ -7,7 +7,7 @@ public class GameGui : MonoBehaviour
 {  
 
     public GameObject Win;
-    //public GameObject Lose;
+    public GameObject Lose;
     public GameObject StartMenu;
     
 
