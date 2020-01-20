@@ -83,7 +83,7 @@ public class firstPersonControl : MonoBehaviour
 
             if (axis <= 1)
             {
-                Vector3 moveDir = new Vector3(0, 0, axis).normalized;
+                Vector3 moveDir = new Vector3(0, 0, -axis).normalized;
                 Vector3 targetMoveAmount = moveDir * walkSpeed;
                 moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVel, .15f);
 

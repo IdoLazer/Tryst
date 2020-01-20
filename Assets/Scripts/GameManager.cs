@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
                
                 distanceBetween = Vector3.Distance(player1.transform.position, player2.transform.position);
                 //Debug.Log(distanceBetween);
-                if (distanceBetween < 7)
+                if (distanceBetween < 0.01f)
                 {
                     state = State.Win;
                 }
