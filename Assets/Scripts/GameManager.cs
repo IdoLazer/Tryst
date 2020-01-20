@@ -47,12 +47,13 @@ public class GameManager : MonoBehaviour
                 break;
 
             case State.Game:
+
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     shouldPaue();
 
                 }
-                
+
                 if (player1.GetComponent<PlayerScript>().playerLife < 0)
                 {
 
@@ -60,6 +61,7 @@ public class GameManager : MonoBehaviour
                 }
                
                 distanceBetween = Vector3.Distance(player1.transform.position, player2.transform.position);
+                //Debug.Log(distanceBetween);
                 if (distanceBetween < 7)
                 {
                     myGui.win();   
