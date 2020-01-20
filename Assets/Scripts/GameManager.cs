@@ -32,8 +32,6 @@ public class GameManager : MonoBehaviour
         display = GetComponent<DisplayScript>();
         init.loadPlayers();
         display.StartDisplay();
-
-
         myGui = GetComponent<GameGui>();
         myGui.showStart();
     }
@@ -49,12 +47,25 @@ public class GameManager : MonoBehaviour
                 break;
 
             case State.Game:
+
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     shouldPaue();
 
                 }
-                
+
+                if (Input.GetKeyDown(KeyCode.G))
+                {
+                    SoundManger.PlaySound("walk");
+
+                }
+
+                if (Input.GetKeyDown(KeyCode.J))
+                {
+                    SoundManger.StopPlaying();
+
+                }
+
                 if (player1.GetComponent<PlayerScript>().playerLife < 0)
                 {
 
@@ -62,6 +73,7 @@ public class GameManager : MonoBehaviour
                 }
                
                 distanceBetween = Vector3.Distance(player1.transform.position, player2.transform.position);
+                //Debug.Log(distanceBetween);
                 if (distanceBetween < 7)
                 {
                     myGui.win();   

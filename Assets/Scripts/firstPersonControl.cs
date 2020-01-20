@@ -38,15 +38,12 @@ public class firstPersonControl : MonoBehaviour
             }
 
             transform.Rotate(rotatSpeen * Vector3.up * axis);
-            // if we want the camera to move
-            //verLookRotation += Input.GetAxis("Mouse Y") * Time.deltaTime * mouseSenY;
-            //verLookRotation = Mathf.Clamp(verLookRotation, -30, 30);
-            //cameraT.localEulerAngles = Vector3.left * verLookRotation;
             axis = Input.GetAxis("Player1Y");
             
             if (Mathf.Abs(axis) <= controllerSensitivityY)
             {
                 axis = 0f;
+
             }
 
             if (axis <= 1)
@@ -77,10 +74,6 @@ public class firstPersonControl : MonoBehaviour
             }
 
             transform.Rotate(rotatSpeen * Vector3.up *axis);
-            // if we want the camera to move
-            //verLookRotation += Input.GetAxis("Mouse Y") * Time.deltaTime * mouseSenY;
-            //verLookRotation = Mathf.Clamp(verLookRotation, -30, 30);
-            //cameraT.localEulerAngles = Vector3.left * verLookRotation;
             axis = Input.GetAxis("Player2Y");
 
             if (Mathf.Abs(axis) <= controllerSensitivityY)
@@ -93,6 +86,7 @@ public class firstPersonControl : MonoBehaviour
                 Vector3 moveDir = new Vector3(0, 0, axis).normalized;
                 Vector3 targetMoveAmount = moveDir * walkSpeed;
                 moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVel, .15f);
+
                 if (shaderScript != null)
                 {
                     if (Mathf.Abs(axis) > Mathf.Epsilon)
@@ -108,10 +102,34 @@ public class firstPersonControl : MonoBehaviour
 
         }
 
-
+        playWhenMove("Player2X");
+        playWhenMove("Player1X");
+        playWhenMove("Player2Y");
+        playWhenMove("Player1Y");
     }
+
+
     void FixedUpdate()
     {
         GetComponent<Rigidbody>().MovePosition(GetComponent<Rigidbody>().position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
+
+    }
+
+    private void playWhenMove(string axsisName)
+    {
+        if (Input.GetButtonDown(axsisName))
+        {
+            Debug.Log("pressses");
+
+            SoundManger.PlaySound("walk");
+        }
+
+        if (Input.GetButtonUp(axsisName))
+        {
+            Debug.Log("done");
+
+            SoundManger.StopPlaying();
+        }
+
     }
 }

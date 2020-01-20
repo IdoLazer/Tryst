@@ -5,22 +5,17 @@ using UnityEngine.UI;
 
 public class GameGui : MonoBehaviour
 {  
-    private Camera player1Cam;
-    private Camera player2Cam;
-
-    private float startTime;
-    private float pulseTime;
-    private float TrailTime;
 
     public GameObject Win;
     public GameObject Lose;
-
     public GameObject StartMenu;
+    
+
+
 
     public void showStart()
     {
-        StartMenu.SetActive(true);
-       
+        StartMenu.SetActive(true);      
     }
 
     public void guiSetUp()
@@ -30,15 +25,6 @@ public class GameGui : MonoBehaviour
         StartMenu.SetActive(false);
         Win.SetActive(false);
         Lose.SetActive(false);
-
-
-
-        //Text text1 = GameObject.FindGameObjectWithTag("playerOneWrapper").GetComponentInChildren<Text>();
-        //Text text2 = GameObject.FindGameObjectWithTag("playerTwoWrapper").GetComponentInChildren<Text>();
-
-        //text1.text = "What are you looking for?";
-        //text2.text = "What are you looking for?";
-
     }
 
     public void win()
