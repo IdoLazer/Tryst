@@ -17,9 +17,6 @@ public class Instantiating : MonoBehaviour
         Vector3 onPlanet1 = where1 * GetComponent<SphereCollider>().radius * transform.localScale.x;
         Vector3 onPlanet2 = where2 * GetComponent<SphereCollider>().radius * transform.localScale.x;
 
-        // Debug.Log(onPlanet1);
-        // Debug.Log(onPlanet2);
-
         if (Vector3.Distance(onPlanet1, onPlanet2) < GetComponent<SphereCollider>().radius * transform.localScale.x)
         {
             onPlanet2 *= -1;

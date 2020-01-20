@@ -35,6 +35,5 @@ public class PlayerScript : MonoBehaviour
     public void restart()
     {
         playerLife = 100f;
-
     }
 }

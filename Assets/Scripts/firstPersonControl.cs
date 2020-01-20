@@ -119,14 +119,12 @@ public class firstPersonControl : MonoBehaviour
     {
         if (Input.GetButtonDown(axsisName))
         {
-            Debug.Log("pressses");
 
             SoundManger.PlaySound("walk");
         }
 
         if (Input.GetButtonUp(axsisName))
         {
-            Debug.Log("done");
 
             SoundManger.StopPlaying();
         }

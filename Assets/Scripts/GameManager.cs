@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
         state = State.Start;
         
         display = GetComponent<DisplayScript>();
-        init.loadPlayers();
         display.StartDisplay();
         myGui = GetComponent<GameGui>();
         myGui.showStart();
@@ -51,18 +50,6 @@ public class GameManager : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     shouldPaue();
-
-                }
-
-                if (Input.GetKeyDown(KeyCode.G))
-                {
-                    SoundManger.PlaySound("walk");
-
-                }
-
-                if (Input.GetKeyDown(KeyCode.J))
-                {
-                    SoundManger.StopPlaying();
 
                 }
 
