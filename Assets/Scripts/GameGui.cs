@@ -7,7 +7,7 @@ public class GameGui : MonoBehaviour
 {  
 
     public GameObject Win;
-    public GameObject Lose;
+    //public GameObject Lose;
     public GameObject StartMenu;
     
 
@@ -33,9 +33,9 @@ public class GameGui : MonoBehaviour
         Debug.Log("win");
     }
 
-    public void lose()
-    {
-        Lose.SetActive(true);
-        Debug.Log("Lose");
-    }
+    // public void lose()
+    // {
+    //     Lose.SetActive(true);
+    //     Debug.Log("Lose");
+    // }
 }
