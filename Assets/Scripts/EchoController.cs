@@ -9,6 +9,7 @@ public class EchoController : MonoBehaviour
 
     [SerializeField] GameObject echoPulsePrefab;
     [SerializeField] GameObject pulseContainerPrefab;
+    [SerializeField] Transform pulseCreatorLocation;
     [SerializeField] float timeBetweenPulses = 0.5f;
 
     private GameObject echoPulsesParent;
@@ -40,8 +41,8 @@ public class EchoController : MonoBehaviour
 
     private IEnumerator SendPulse()
     {
-        GameObject pulseContainer = Instantiate(pulseContainerPrefab, transform.position, transform.rotation, echoPulsesParent.transform);
-        GameObject pulse = Instantiate(echoPulsePrefab, transform.position, transform.rotation, pulseContainer.transform) as GameObject;
+        GameObject pulseContainer = Instantiate(pulseContainerPrefab, pulseCreatorLocation.position, transform.rotation, echoPulsesParent.transform);
+        GameObject pulse = Instantiate(echoPulsePrefab, pulseCreatorLocation.position, transform.rotation, pulseContainer.transform) as GameObject;
         yield return new WaitForSeconds(timeBetweenPulses);
         canSendPulse = true;
     }

@@ -23,9 +23,9 @@ Material:
     m_Floats:
     - Vector1_A72CB29F: 46178
     - Vector1_DFC6F18E: 0.92
-    - _PulseAlphaClipThresh: 0.18
-    - _PulseNoiseScale: 42149
-    - _PulseOffset: 0.58
+    - _PulseAlphaClipThresh: 0.44
+    - _PulseNoiseScale: 45980
+    - _PulseOffset: 0.19
     m_Colors:
     - Color_C5025CD7: {r: 28.51895, g: 28.51895, b: 28.51895, a: 0}
-    - _PulseColor: {r: 5.340313, g: 5.340313, b: 5.340313, a: 0}
+    - _PulseColor: {r: 1, g: 1, b: 1, a: 0}
