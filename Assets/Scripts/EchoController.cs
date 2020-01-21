@@ -39,7 +39,7 @@ public class EchoController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.M) || Input.GetButton("Fire1"))
         {
             if (canSendPulse)
             {

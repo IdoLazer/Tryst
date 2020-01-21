@@ -114,11 +114,19 @@ public class GameManager : MonoBehaviour
                 player1.GetComponent<PlayerScript>().pressToPlayAgain();
                 player2.GetComponent<PlayerScript>().pressToPlayAgain();
                 // todo change the M botton
-                if(Input.GetKeyDown(KeyCode.M) && Input.GetKeyDown(KeyCode.Space))
+                bool keyBoardPress = Input.GetKeyDown(KeyCode.M) || Input.GetKeyDown(KeyCode.Space);
+                bool joyStickPress = Input.GetButton("Fire1") || Input.GetButton("Fire2");
+
+                if (keyBoardPress || joyStickPress)
                 {
                     clearPieces();
                     player1.GetComponent<PlayerScript>().restart();
                     player2.GetComponent<PlayerScript>().restart();
+                    player1.SetActive(false);
+                    player2.SetActive(false);
+                    PlayerOneDead = false;
+                    PlayerTwoDead = false;
+
                     state = State.Start;
 
                 }
@@ -131,7 +139,10 @@ public class GameManager : MonoBehaviour
 
     public void PressToStartGame()
     {
-        if (Input.GetKeyDown(KeyCode.X))
+        bool keyBoardPress = Input.GetKeyDown(KeyCode.M) && Input.GetKeyDown(KeyCode.Space);
+        bool joyStickPress = Input.GetButton("Fire1") && Input.GetButton("Fire2");
+
+        if (keyBoardPress || joyStickPress)
         {
             init.loadPlayers();
             StartCoroutine(FindPlayersAndStartGame());
