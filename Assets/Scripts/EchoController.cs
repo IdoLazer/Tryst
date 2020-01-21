@@ -13,9 +13,16 @@ public class EchoController : MonoBehaviour
     private GameObject echoPulsesParent;
     private bool canSendPulse = true;
 
+    //removing life when using pulse
+    public float removeLife = 10;
+    private PlayerScript player;
+
+
+
     void Start()
     {
         CreateEchoesParent();
+        player = GameObject.FindObjectOfType<PlayerScript>();
     }
 
     private void CreateEchoesParent()
@@ -33,7 +40,10 @@ public class EchoController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.M))
         {
             if (canSendPulse)
+            {
+                player.playerLife -= removeLife;
                 StartCoroutine(SendPulse());
+            }
         }
     }
 

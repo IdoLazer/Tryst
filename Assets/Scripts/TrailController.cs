@@ -9,7 +9,7 @@ public class TrailController : MonoBehaviour
     public float waitingTimeBetweenTrailPieces = 0.3f;
     Coroutine leaveTrailCoroutine;
     public PlayerScript player;
-    public float removeLife = 1.5f;
+    public float removeLife = 10f;
 
     private bool startedTrail = false;
 
@@ -43,8 +43,7 @@ public class TrailController : MonoBehaviour
         while (true)
         {
             bank.InstantiateTrailPiece(transform.position);
-            //player.playerLife -= removeLife;
-            Debug.Log("bloop");
+            player.playerLife -= removeLife;
             yield return new WaitForSeconds(waitingTimeBetweenTrailPieces);
         }
     }

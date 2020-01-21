@@ -21,15 +21,20 @@ public class firstPersonControl : MonoBehaviour
     Vector3 smoothMoveVel;
     ShaderScript shaderScript;
 
+    //needed to check if the player is dead
+    private GameManager Gm;
+
     void Start()
     {
         shaderScript = GetComponent<ShaderScript>();
+        Gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     void Update()
     {
-        if (tag == "Player1")
+        if (tag == "Player1" && !(Gm.playerOneLose))
         {
+            Debug.Log(Gm.playerOneLose);
             float axis = Input.GetAxis("Player1X");
 
             if (Mathf.Abs(axis) <= controllerSensitivityX)
@@ -65,7 +70,7 @@ public class firstPersonControl : MonoBehaviour
             }
 
         }
-        if (tag == "Player2")
+        if (tag == "Player2" && !(Gm.playerTwoLose))
         {
             float axis = Input.GetAxis("Player2X");
             if (Mathf.Abs(axis) <= controllerSensitivityX)
