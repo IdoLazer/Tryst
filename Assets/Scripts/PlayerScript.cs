@@ -40,6 +40,7 @@ public class PlayerScript : MonoBehaviour
     }
     public void pressToPlayAgain(){
         pressToReplay.SetActive(true);
+
     }
     public void restart()
     {
