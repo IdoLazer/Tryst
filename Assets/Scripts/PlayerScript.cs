@@ -33,7 +33,6 @@ public class PlayerScript : MonoBehaviour
         {
             attractorPlanet.Attract(playerTransform);
         }
-        //GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
     }
     public void die()
     {
@@ -48,4 +47,12 @@ public class PlayerScript : MonoBehaviour
         playerLose.SetActive(false);
         playerLife = 100f;
     }
+    public void loseLife(float amount)
+    {
+        playerLife -= amount;
+    }
+
+
+
+
 }

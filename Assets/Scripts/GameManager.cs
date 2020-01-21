@@ -25,6 +25,13 @@ public class GameManager : MonoBehaviour
     private GameGui myGui;
     private DisplayScript display;
 
+    //all things to do when we are dead
+    private bool PlayerOneDead = false;
+    private bool PlayerTwoDead = false;
+    private float disease = 1f;
+    public float diseaseTime = 10; // how often to remove one life
+    private float TimeToDo = 0f;
+
 
     void Start()
     {
@@ -47,7 +54,7 @@ public class GameManager : MonoBehaviour
 
             case State.Game:
 
-                if (Input.GetKeyDown(KeyCode.Escape))
+                if (Input.GetKeyDown(KeyCode.P))
                 {
                     shouldPaue();
 
@@ -55,10 +62,32 @@ public class GameManager : MonoBehaviour
 
                 if (player1.GetComponent<PlayerScript>().playerLife < 0)
                 {
+                    if (!PlayerOneDead)
+                    {
+                        TimeToDo = Time.time;
+                    }
                     player1.GetComponent<PlayerScript>().die();
+                    PlayerOneDead = true;
+                    if (Time.time - TimeToDo >= diseaseTime)
+                    {
+                        player2.GetComponent<PlayerScript>().loseLife(disease);
+                    }
+
+                }
+
+                if (player2.GetComponent<PlayerScript>().playerLife < 0)
+                {
+                    player2.GetComponent<PlayerScript>().die();
+                    PlayerTwoDead = true;
+                    player1.GetComponent<PlayerScript>().loseLife(disease);
+
+
+                }
+                if (PlayerOneDead && PlayerTwoDead)
+                {
                     state = State.Lose;
                 }
-               
+
                 distanceBetween = Vector3.Distance(player1.transform.position, player2.transform.position);
                 //Debug.Log(distanceBetween);
 
@@ -74,17 +103,13 @@ public class GameManager : MonoBehaviour
                 player1.GetComponent<PlayerScript>().restart();
                 myGui.showStart();
                 state = State.Start;
-
                 break;
 
             case State.Lose:
-                //myGui.lose();
                 player1.GetComponent<PlayerScript>().pressToPlayAgain();
                 player2.GetComponent<PlayerScript>().pressToPlayAgain();
                 clearPieces();
                 player1.GetComponent<PlayerScript>().restart();
-                myGui.showStart();
-
                 state = State.Start;
                 break;
 
@@ -130,7 +155,6 @@ public class GameManager : MonoBehaviour
     void Resume()
     {
 
-        //myGui.resume();
         Time.timeScale = 1f;
         IsPaused = false;
     }
@@ -157,6 +181,17 @@ public class GameManager : MonoBehaviour
             Destroy(gameObjects[i]);
         }
     }
+    
+    public bool getIsPlayer1Dead()
+    {
+        return PlayerOneDead;
+    }
+
+    public bool getIsPlayer2Dead()
+    {
+        return PlayerTwoDead;
+    }
+
 
 
 }
