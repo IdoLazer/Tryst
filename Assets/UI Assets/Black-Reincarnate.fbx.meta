@@ -1,17 +1,12 @@
 fileFormatVersion: 2
-guid: bc0cea8bb3addf64bb3f31e0671ee69f
+guid: d3bf5f135410b4d44bc1c9ae97a58a01
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable:
   - first:
       74: -1498010087492872569
     second: CINEMA_4D_Main
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Mat.1
-    second: {fileID: 2100000, guid: 6f3faa6b4e0a7dc4e82d548bf6c931e3, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
@@ -35,7 +30,7 @@ ModelImporter:
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
-    animationWrapMode: 0
+    animationWrapMode: 2
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
@@ -95,7 +90,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 1
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

@@ -41,7 +41,7 @@ public class EchoController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.M) || Input.GetButton("Fire1"))
         {
-            if (canSendPulse)
+            if (canSendPulse && player.playerLife > 0)
             {
                 player.playerLife -= removeLife;
                 StartCoroutine(SendPulse());

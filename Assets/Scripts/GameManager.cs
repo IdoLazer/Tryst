@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     private static bool IsPaused = false;
     public GameObject player1;
     public GameObject player2;
+    public float delayUntilReplayAvailable = 2;
     private float distanceBetween;
     private GameGui myGui;
     private DisplayScript display;
@@ -64,7 +65,7 @@ public class GameManager : MonoBehaviour
 
                 }
 
-                if (player1.GetComponent<PlayerScript>().playerLife < 0)
+                if (player1.GetComponent<PlayerScript>().playerLife <= 0)
                 {
                     if (!PlayerOneDead)
                     {
@@ -74,28 +75,36 @@ public class GameManager : MonoBehaviour
                     PlayerOneDead = true;
                     if (Time.time - TimeToDo >= diseaseTime)
                     {
+                        TimeToDo = Time.time;
                         player2.GetComponent<PlayerScript>().loseLife(disease);
                     }
 
                 }
 
-                if (player2.GetComponent<PlayerScript>().playerLife < 0)
+                if (player2.GetComponent<PlayerScript>().playerLife <= 0)
                 {
+                    if (!PlayerTwoDead)
+                    {
+                        TimeToDo = Time.time;
+                    }
                     player2.GetComponent<PlayerScript>().die();
                     PlayerTwoDead = true;
-                    player1.GetComponent<PlayerScript>().loseLife(disease);
-
+                    if (Time.time - TimeToDo >= diseaseTime)
+                    {
+                        TimeToDo = Time.time;
+                        player1.GetComponent<PlayerScript>().loseLife(disease);
+                    }
 
                 }
                 if (PlayerOneDead && PlayerTwoDead)
                 {
-                    state = State.Lose;
+                    StartCoroutine(LoseGame());
                 }
 
                 distanceBetween = Vector3.Distance(player1.transform.position, player2.transform.position);
                 //Debug.Log(distanceBetween);
 
-                if (distanceBetween < 3f)
+                if (distanceBetween < 0.01f)
                 {
                     state = State.Win;
                 }
@@ -136,6 +145,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private IEnumerator LoseGame()
+    {
+        yield return new WaitForSeconds(delayUntilReplayAvailable);
+        state = State.Lose;
+    }
 
     public void PressToStartGame()
     {
