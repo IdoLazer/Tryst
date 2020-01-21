@@ -6,6 +6,7 @@ using UnityEngine;
 public class TrailController : MonoBehaviour
 {
     public TrailPieceBank bank;
+    [SerializeField] Transform trailCreatorLocation;
     public float waitingTimeBetweenTrailPieces = 0.3f;
     Coroutine leaveTrailCoroutine;
     public PlayerScript player;
@@ -42,7 +43,7 @@ public class TrailController : MonoBehaviour
     {
         while (true)
         {
-            bank.InstantiateTrailPiece(transform.position);
+            bank.InstantiateTrailPiece(trailCreatorLocation.position);
             player.playerLife -= removeLife;
             yield return new WaitForSeconds(waitingTimeBetweenTrailPieces);
         }

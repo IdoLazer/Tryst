@@ -104,7 +104,17 @@ public class GameManager : MonoBehaviour
                 distanceBetween = Vector3.Distance(player1.transform.position, player2.transform.position);
                 //Debug.Log(distanceBetween);
 
-                if (distanceBetween < 0.01f)
+                if (distanceBetween < 3f)
+                {
+                    player1.layer = 0;
+                    player2.layer = 0;
+                }
+                else
+                {
+                    player1.layer = 14; //P1CAM
+                    player2.layer = 15; //P2CAM
+                }
+                if (distanceBetween < 1f)
                 {
                     state = State.Win;
                 }
@@ -153,7 +163,7 @@ public class GameManager : MonoBehaviour
 
     public void PressToStartGame()
     {
-        bool keyBoardPress = Input.GetKeyDown(KeyCode.M) && Input.GetKeyDown(KeyCode.Space);
+        bool keyBoardPress = Input.GetKey(KeyCode.M) && Input.GetKey(KeyCode.Space);
         bool joyStickPress = Input.GetButton("Fire1") && Input.GetButton("Fire2");
 
         if (keyBoardPress || joyStickPress)

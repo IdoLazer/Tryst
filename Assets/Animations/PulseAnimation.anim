@@ -47,8 +47,8 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.0971246, z: 0.33333334}
       - serializedVersion: 3
         time: 10.016666
-        value: {x: 0, y: -70, z: 0}
-        inSlope: {x: 0, y: -7.15847, z: 0}
+        value: {x: 0, y: -100, z: 0}
+        inSlope: {x: 0, y: -10.437159, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
         weightedMode: 0
@@ -120,8 +120,8 @@ AnimationClip:
         outWeight: 0.0971246
       - serializedVersion: 3
         time: 10.016666
-        value: -70
-        inSlope: -7.15847
+        value: -100
+        inSlope: -10.437159
         outSlope: 0
         tangentMode: 69
         weightedMode: 0
@@ -155,6 +155,15 @@ AnimationClip:
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 10.016666
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -183,6 +192,15 @@ AnimationClip:
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 10.016666
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 1
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -193,4 +211,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 10.016666
+    functionName: KillMe
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

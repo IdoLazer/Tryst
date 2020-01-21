@@ -8,12 +8,13 @@ public class PlayerScript : MonoBehaviour
     private GameObject planet;
     private Transform playerTransform;
     public float playerLife;
+    private float initialLife;
     public GameObject playerLose;
     public GameObject pressToReplay;
 
     void Start()
     {
-        playerLife = 100f;
+        initialLife = playerLife;
         GetComponent<Rigidbody>().useGravity = false;
         planet = GameObject.FindGameObjectWithTag("Planet");
         if (planet == null)
@@ -46,7 +47,7 @@ public class PlayerScript : MonoBehaviour
     {
         pressToReplay.SetActive(false);
         playerLose.SetActive(false);
-        playerLife = 100f;
+        playerLife = initialLife;
     }
     public void loseLife(float amount)
     {

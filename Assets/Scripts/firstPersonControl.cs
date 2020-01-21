@@ -85,6 +85,7 @@ public class firstPersonControl : MonoBehaviour
             if (!Gm.getIsPlayer2Dead())
             {
                 float axis = Input.GetAxis("Player2X");
+                Debug.Log(axis);
                 if (Mathf.Abs(axis) <= controllerSensitivityX)
                 {
                     axis = 0f;

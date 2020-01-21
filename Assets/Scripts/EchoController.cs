@@ -7,7 +7,8 @@ public class EchoController : MonoBehaviour
 {
     public const string ECHO_PULSE_PARENT_NAME = "Echoes";
 
-    [SerializeField] GameObject echoPulsePrefab;
+    [SerializeField] GameObject echoPulseBlackPrefab;
+    [SerializeField] GameObject echoPulseWhitePrefab;
     [SerializeField] GameObject pulseContainerPrefab;
     [SerializeField] Transform pulseCreatorLocation;
     [SerializeField] float timeBetweenPulses = 0.5f;
@@ -39,7 +40,7 @@ public class EchoController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M) || Input.GetButton("Fire1"))
+        if (Input.GetKeyDown(KeyCode.M) || Input.GetButtonDown("Fire1"))
         {
             if (canSendPulse && player.playerLife > 0)
             {
@@ -52,7 +53,9 @@ public class EchoController : MonoBehaviour
     private IEnumerator SendPulse()
     {
         GameObject pulseContainer = Instantiate(pulseContainerPrefab, pulseCreatorLocation.position, transform.rotation, echoPulsesParent.transform);
-        GameObject pulse = Instantiate(echoPulsePrefab, pulseCreatorLocation.position, transform.rotation, pulseContainer.transform) as GameObject;
+        Instantiate(echoPulseBlackPrefab, pulseCreatorLocation.position, transform.rotation, pulseContainer.transform);
+        yield return new WaitForSeconds(0.2f);
+        Instantiate(echoPulseWhitePrefab, pulseCreatorLocation.position, transform.rotation, pulseContainer.transform);
         yield return new WaitForSeconds(timeBetweenPulses);
         canSendPulse = true;
     }
