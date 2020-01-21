@@ -39,7 +39,6 @@ public class GameManager : MonoBehaviour
         display = GetComponent<DisplayScript>();
         display.StartDisplay();
         myGui = GetComponent<GameGui>();
-        myGui.showStart();
     }
 
     // Update is called once per frame
@@ -49,6 +48,9 @@ public class GameManager : MonoBehaviour
         {
             case State.Start:
 
+                // this function shows the start menue:
+                myGui.showStart();
+                // when pressed will load the actual game 
                 PressToStartGame();
                 break;
 
@@ -91,7 +93,7 @@ public class GameManager : MonoBehaviour
                 distanceBetween = Vector3.Distance(player1.transform.position, player2.transform.position);
                 //Debug.Log(distanceBetween);
 
-                if (distanceBetween < 0.01f)
+                if (distanceBetween < 3f)
                 {
                     state = State.Win;
                 }
@@ -106,11 +108,19 @@ public class GameManager : MonoBehaviour
                 break;
 
             case State.Lose:
+                // playes the animation for the press to restart
                 player1.GetComponent<PlayerScript>().pressToPlayAgain();
                 player2.GetComponent<PlayerScript>().pressToPlayAgain();
-                clearPieces();
-                player1.GetComponent<PlayerScript>().restart();
-                state = State.Start;
+                // todo change the M botton
+                if(Input.GetKeyDown(KeyCode.M) && Input.GetKeyDown(KeyCode.Space))
+                {
+                    clearPieces();
+                    player1.GetComponent<PlayerScript>().restart();
+                    player2.GetComponent<PlayerScript>().restart();
+                    state = State.Start;
+
+                }
+
                 break;
 
         }
@@ -136,7 +146,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         state = State.Game;
-        myGui.guiSetUp();
+        myGui.GamePlayCloseGui();
     }
 
     void shouldPaue()
@@ -191,7 +201,5 @@ public class GameManager : MonoBehaviour
     {
         return PlayerTwoDead;
     }
-
-
-
+  
 }

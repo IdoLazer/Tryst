@@ -122,7 +122,6 @@ public class firstPersonControl : MonoBehaviour
                 moveAmount = new Vector3(0, 0, 0);
                 shaderScript.StopMoving();
 
-
             }
 
         }
