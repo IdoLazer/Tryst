@@ -37,8 +37,9 @@ public class GameManager : MonoBehaviour
     {
         state = State.Start;
         display = GetComponent<DisplayScript>();
-        display.StartDisplay();
+        display.StartDisplay(); //this is camera
         myGui = GetComponent<GameGui>();
+        myGui.showStart();
     }
 
     // Update is called once per frame
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
 
                 // this function shows the start menue:
                 myGui.showStart();
+
                 // when pressed will load the actual game 
                 PressToStartGame();
                 break;
@@ -129,7 +131,7 @@ public class GameManager : MonoBehaviour
 
     public void PressToStartGame()
     {
-        if (Input.anyKey)
+        if (Input.GetKeyDown(KeyCode.X))
         {
             init.loadPlayers();
             StartCoroutine(FindPlayersAndStartGame());
@@ -201,5 +203,7 @@ public class GameManager : MonoBehaviour
     {
         return PlayerTwoDead;
     }
+    public void ShowStartMenu()
+    { }
   
 }

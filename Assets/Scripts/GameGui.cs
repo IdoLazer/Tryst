@@ -16,7 +16,7 @@ public class GameGui : MonoBehaviour
     public void showStart()
     {
 
-        StartMenu.SetActive(true);      
+        StartMenu.SetActive(true);
     }
 
     public void GamePlayCloseGui()
