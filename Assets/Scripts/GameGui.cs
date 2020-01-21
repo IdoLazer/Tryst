@@ -33,9 +33,9 @@ public class GameGui : MonoBehaviour
         Debug.Log("win");
     }
 
-    public void lose()
-    {
-        Lose.SetActive(true);
-        Debug.Log("Lose");
-    }
+    // public void lose()
+    // {
+    //     Lose.SetActive(true);
+    //     Debug.Log("Lose");
+    // }
 }

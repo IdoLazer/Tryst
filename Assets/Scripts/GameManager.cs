@@ -55,15 +55,15 @@ public class GameManager : MonoBehaviour
 
                 if (player1.GetComponent<PlayerScript>().playerLife < 0)
                 {
-
+                    player1.GetComponent<PlayerScript>().die();
                     state = State.Lose;
                 }
                
                 distanceBetween = Vector3.Distance(player1.transform.position, player2.transform.position);
                 //Debug.Log(distanceBetween);
-                if (distanceBetween < 3)
-                {
 
+                if (distanceBetween < 0.01f)
+                {
                     state = State.Win;
                 }
                 break;
@@ -78,7 +78,9 @@ public class GameManager : MonoBehaviour
                 break;
 
             case State.Lose:
-                myGui.lose();
+                //myGui.lose();
+                player1.GetComponent<PlayerScript>().pressToPlayAgain();
+                player2.GetComponent<PlayerScript>().pressToPlayAgain();
                 clearPieces();
                 player1.GetComponent<PlayerScript>().restart();
                 myGui.showStart();
