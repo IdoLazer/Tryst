@@ -25,13 +25,19 @@ public class GameManager : MonoBehaviour
     private GameGui myGui;
     private DisplayScript display;
 
+    //all things to do when we are dead
+    private bool PlayerOneDead = false;
+    private bool PlayerTwoDead = false;
+    private float disease = 1f;
+    public float diseaseTime = 10; // how often to remove one life
+    private float TimeToDo = 0f;
+
 
     void Start()
     {
         state = State.Start;
-        
         display = GetComponent<DisplayScript>();
-        display.StartDisplay();
+        display.StartDisplay(); //this is camera
         myGui = GetComponent<GameGui>();
         myGui.showStart();
     }
@@ -43,12 +49,16 @@ public class GameManager : MonoBehaviour
         {
             case State.Start:
 
+                // this function shows the start menue:
+                myGui.showStart();
+
+                // when pressed will load the actual game 
                 PressToStartGame();
                 break;
 
             case State.Game:
 
-                if (Input.GetKeyDown(KeyCode.Escape))
+                if (Input.GetKeyDown(KeyCode.P))
                 {
                     shouldPaue();
 
@@ -56,35 +66,71 @@ public class GameManager : MonoBehaviour
 
                 if (player1.GetComponent<PlayerScript>().playerLife < 0)
                 {
+                    if (!PlayerOneDead)
+                    {
+                        TimeToDo = Time.time;
+                    }
+                    player1.GetComponent<PlayerScript>().die();
+                    PlayerOneDead = true;
+                    if (Time.time - TimeToDo >= diseaseTime)
+                    {
+                        player2.GetComponent<PlayerScript>().loseLife(disease);
+                    }
 
+                }
+
+                if (player2.GetComponent<PlayerScript>().playerLife < 0)
+                {
+                    player2.GetComponent<PlayerScript>().die();
+                    PlayerTwoDead = true;
+                    player1.GetComponent<PlayerScript>().loseLife(disease);
+
+
+                }
+                if (PlayerOneDead && PlayerTwoDead)
+                {
                     state = State.Lose;
                 }
-               
+
                 distanceBetween = Vector3.Distance(player1.transform.position, player2.transform.position);
                 //Debug.Log(distanceBetween);
-                if (distanceBetween < 0.01f)
+
+                if (distanceBetween < 3f)
                 {
-                    myGui.win();   
                     state = State.Win;
                 }
-
                 break;
+
             case State.Win:
                 myGui.win();
                 clearPieces();
                 player1.GetComponent<PlayerScript>().restart();
                 myGui.showStart();
                 state = State.Start;
-
                 break;
 
             case State.Lose:
-                myGui.lose();
-                clearPieces();
-                player1.GetComponent<PlayerScript>().restart();
-                myGui.showStart();
+                // playes the animation for the press to restart
+                player1.GetComponent<PlayerScript>().pressToPlayAgain();
+                player2.GetComponent<PlayerScript>().pressToPlayAgain();
+                // todo change the M botton
+                bool keyBoardPress = Input.GetKeyDown(KeyCode.M) || Input.GetKeyDown(KeyCode.Space);
+                bool joyStickPress = Input.GetButton("Fire1") || Input.GetButton("Fire2");
 
-                state = State.Start;
+                if (keyBoardPress || joyStickPress)
+                {
+                    clearPieces();
+                    player1.GetComponent<PlayerScript>().restart();
+                    player2.GetComponent<PlayerScript>().restart();
+                    player1.SetActive(false);
+                    player2.SetActive(false);
+                    PlayerOneDead = false;
+                    PlayerTwoDead = false;
+
+                    state = State.Start;
+
+                }
+
                 break;
 
         }
@@ -93,7 +139,10 @@ public class GameManager : MonoBehaviour
 
     public void PressToStartGame()
     {
-        if (Input.anyKey)
+        bool keyBoardPress = Input.GetKeyDown(KeyCode.M) && Input.GetKeyDown(KeyCode.Space);
+        bool joyStickPress = Input.GetButton("Fire1") && Input.GetButton("Fire2");
+
+        if (keyBoardPress || joyStickPress)
         {
             init.loadPlayers();
             StartCoroutine(FindPlayersAndStartGame());
@@ -110,7 +159,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         state = State.Game;
-        myGui.guiSetUp();
+        myGui.GamePlayCloseGui();
     }
 
     void shouldPaue()
@@ -129,7 +178,6 @@ public class GameManager : MonoBehaviour
     void Resume()
     {
 
-        //myGui.resume();
         Time.timeScale = 1f;
         IsPaused = false;
     }
@@ -156,6 +204,17 @@ public class GameManager : MonoBehaviour
             Destroy(gameObjects[i]);
         }
     }
+    
+    public bool getIsPlayer1Dead()
+    {
+        return PlayerOneDead;
+    }
 
-
+    public bool getIsPlayer2Dead()
+    {
+        return PlayerTwoDead;
+    }
+    public void ShowStartMenu()
+    { }
+  
 }

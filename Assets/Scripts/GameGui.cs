@@ -15,13 +15,13 @@ public class GameGui : MonoBehaviour
 
     public void showStart()
     {
-        StartMenu.SetActive(true);      
+
+        StartMenu.SetActive(true);
     }
 
-    public void guiSetUp()
+    public void GamePlayCloseGui()
         // this function should be called once we start the game 
     {
-
         StartMenu.SetActive(false);
         Win.SetActive(false);
         Lose.SetActive(false);
@@ -33,9 +33,9 @@ public class GameGui : MonoBehaviour
         Debug.Log("win");
     }
 
-    public void lose()
-    {
-        Lose.SetActive(true);
-        Debug.Log("Lose");
-    }
+    // public void lose()
+    // {
+    //     Lose.SetActive(true);
+    //     Debug.Log("Lose");
+    // }
 }

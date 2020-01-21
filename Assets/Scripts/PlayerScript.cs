@@ -8,6 +8,8 @@ public class PlayerScript : MonoBehaviour
     private GameObject planet;
     private Transform playerTransform;
     public float playerLife;
+    public GameObject playerLose;
+    public GameObject pressToReplay;
 
     void Start()
     {
@@ -21,6 +23,8 @@ public class PlayerScript : MonoBehaviour
         attractorPlanet = planet.GetComponent<PlanetScript>();
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
         playerTransform = transform;
+        playerLose.SetActive(false);
+        pressToReplay.SetActive(false);
     }
 
     void FixedUpdate()
@@ -29,11 +33,27 @@ public class PlayerScript : MonoBehaviour
         {
             attractorPlanet.Attract(playerTransform);
         }
-        //GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
     }
+    public void die()
+    {
+        playerLose.SetActive(true);
+    }
+    public void pressToPlayAgain(){
+        pressToReplay.SetActive(true);
 
+    }
     public void restart()
     {
+        pressToReplay.SetActive(false);
+        playerLose.SetActive(false);
         playerLife = 100f;
     }
+    public void loseLife(float amount)
+    {
+        playerLife -= amount;
+    }
+
+
+
+
 }

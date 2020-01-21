@@ -21,83 +21,108 @@ public class firstPersonControl : MonoBehaviour
     Vector3 smoothMoveVel;
     ShaderScript shaderScript;
 
+    //needed to check if the player is dead
+    private GameManager Gm;
+
     void Start()
     {
         shaderScript = GetComponent<ShaderScript>();
+        Gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     void Update()
     {
         if (tag == "Player1")
         {
-            float axis = Input.GetAxis("Player1X");
-
-            if (Mathf.Abs(axis) <= controllerSensitivityX)
+            if (!Gm.getIsPlayer1Dead())
             {
-                axis = 0f;
-            }
+                float axis = Input.GetAxis("Player1X");
 
-            transform.Rotate(rotatSpeen * Vector3.up * axis);
-            axis = Input.GetAxis("Player1Y");
-            
-            if (Mathf.Abs(axis) <= controllerSensitivityY)
-            {
-                axis = 0f;
-
-            }
-
-            if (axis <= 1)
-            {
-                Vector3 moveDir = new Vector3(0, 0, -axis).normalized;
-                Vector3 targetMoveAmount = moveDir * walkSpeed;
-                moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVel, .15f);
-                if (shaderScript != null)
+                if (Mathf.Abs(axis) <= controllerSensitivityX)
                 {
-                    if (Mathf.Abs(axis) > Mathf.Epsilon)
+                    axis = 0f;
+                }
+
+                transform.Rotate(rotatSpeen * Vector3.up * axis);
+                axis = Input.GetAxis("Player1Y");
+
+                if (Mathf.Abs(axis) <= controllerSensitivityY)
+                {
+                    axis = 0f;
+
+                }
+
+                if (axis <= 1)
+                {
+                    Vector3 moveDir = new Vector3(0, 0, -axis).normalized;
+                    Vector3 targetMoveAmount = moveDir * walkSpeed;
+                    moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVel, .15f);
+                    if (shaderScript != null)
                     {
-                        shaderScript.StartMoving();
-                    }
-                    else
-                    {
-                        shaderScript.StopMoving();
+                        if (Mathf.Abs(axis) > Mathf.Epsilon)
+                        {
+                            shaderScript.StartMoving();
+                        }
+                        else
+                        {
+                            shaderScript.StopMoving();
+
+                        }
                     }
                 }
+            }
+            else
+            {
+                moveAmount = new Vector3(0, 0, 0);
+                shaderScript.StopMoving();
+
             }
 
         }
+
         if (tag == "Player2")
         {
-            float axis = Input.GetAxis("Player2X");
-            if (Mathf.Abs(axis) <= controllerSensitivityX)
+            if (!Gm.getIsPlayer2Dead())
             {
-                axis = 0f;
-            }
-
-            transform.Rotate(rotatSpeen * Vector3.up *axis);
-            axis = Input.GetAxis("Player2Y");
-
-            if (Mathf.Abs(axis) <= controllerSensitivityY)
-            {
-                axis = 0f;
-            }
-
-            if (axis <= 1)
-            {
-                Vector3 moveDir = new Vector3(0, 0, axis).normalized;
-                Vector3 targetMoveAmount = moveDir * walkSpeed;
-                moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVel, .15f);
-
-                if (shaderScript != null)
+                float axis = Input.GetAxis("Player2X");
+                if (Mathf.Abs(axis) <= controllerSensitivityX)
                 {
-                    if (Mathf.Abs(axis) > Mathf.Epsilon)
+                    axis = 0f;
+                }
+
+                transform.Rotate(rotatSpeen * Vector3.up * axis);
+                axis = Input.GetAxis("Player2Y");
+
+
+                if (axis <= 1)
+                {
+                    Vector3 moveDir = new Vector3(0, 0, -axis).normalized;
+                    Vector3 targetMoveAmount = moveDir * walkSpeed;
+                    moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVel, .15f);
+
+                    if (Mathf.Abs(axis) <= controllerSensitivityY)
                     {
-                        shaderScript.StartMoving();
+                        axis = 0f;
                     }
-                    else
+
+                    if (shaderScript != null)
                     {
-                        shaderScript.StopMoving();
+                        if (Mathf.Abs(axis) > Mathf.Epsilon)
+                        {
+                            shaderScript.StartMoving();
+                        }
+                        else
+                        {
+                            shaderScript.StopMoving();
+                        }
                     }
                 }
+            }
+            else
+            {
+                moveAmount = new Vector3(0, 0, 0);
+                shaderScript.StopMoving();
+
             }
 
         }
