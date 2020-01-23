@@ -11,6 +11,10 @@ public class PlayerScript : MonoBehaviour
     private float initialLife;
     public GameObject playerLose;
     public GameObject pressToReplay;
+    private bool DidHit = false;
+
+    //how long to wait b4get life
+    private float Waiting4Pulse = 2.5f;
 
     void Start()
     {
