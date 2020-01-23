@@ -5,31 +5,21 @@ using UnityEngine;
 
 public class ShaderScript : MonoBehaviour
 {
-    public bool isWobbling = true;
-    public float curWobbleWaveTime = 0;
 
-    [Header("Default Settings")]
     public Vector3 baseWobbleTime = new Vector3(1f, 1f, 0f);
+    public Vector3 movingWobbleTime = new Vector3(3f, 1f, 0f);
     public float wobbleSpeed = 2f;
     public float baseWobbleFreq = 3f;
-    public float baseWobbleDistance = 0.2f;
-
-    [Header("Forward/Backward Movement Settings")]
-    public Vector3 movingWobbleTime = new Vector3(3f, 1f, 0f);
     public float movingWobbleFreq = 5f;
+    public float baseWobbleDistance = 0.2f;
     public float movingWobbleDistance = 0.5f;
     public float accelerationTime = 1f;
-
-    [Header("Rotation Settings")]
-    public float rotationSpeed = 2f;
-    [Range(0, 2 * Mathf.PI)] public float leftTurnPoint;
-    [Range(0, 2 * Mathf.PI)] public float rightTurnPoint;
-    [Range(0, 2 * Mathf.PI)] public float rotationHoldVariation = 0.6f;
-    public bool canSnap = false;
+    public bool isWobbling = true;
 
     MeshRenderer meshRender;
 
     private float wobbleWaveLength;
+    public float curWobbleWaveTime = 0;
     private float curWobbleFreq;
     private float curWobbleDist;
     private Vector3 curWobbleTime;
@@ -39,11 +29,8 @@ public class ShaderScript : MonoBehaviour
     private float minWobbleFreqAchieved;
     private float minWobbleDistAchieved;
     private Vector3 minWobbleTimeAchieved;
-    private float wobbleWavePosBeforeRotation;
     private float startAccelerationOrDeccelerationTime = 0;
-    private float startRotationTime = 0;
     private bool moving = false;
-    private int rotating = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -72,10 +59,7 @@ public class ShaderScript : MonoBehaviour
         meshRender.material.SetFloat("_wobbleFreq", curWobbleFreq);
         meshRender.material.SetFloat("_wobbleDistance", curWobbleDist);
         meshRender.material.SetVector("_wobTime", curWobbleTime);
-        if (rotating != 0)
-        {
-            Rotate(rotating);
-        }
+
         if (moving)
         {
             Accelerate(true);
@@ -84,41 +68,6 @@ public class ShaderScript : MonoBehaviour
         {
             Accelerate(false);
         }
-    }
-
-    public void StopRotating()
-    {
-        isWobbling = true;
-        rotating = 0;
-    }
-
-    public void StartRotating(int dir)
-    {
-        if (rotating != dir)
-        {
-            wobbleWavePosBeforeRotation = curWobbleWaveTime;
-            rotating = dir;
-            startRotationTime = Time.time;
-        }
-    }
-
-    private void Rotate(int dir)
-    {
-        isWobbling = false;
-        float target = (dir > 0 ? rightTurnPoint : leftTurnPoint) / wobbleSpeed;
-        if (Mathf.Abs(wobbleWavePosBeforeRotation - target) < rotationHoldVariation)
-        {
-            if (canSnap)
-            {
-                curWobbleWaveTime = target;
-            }
-            return;
-        }
-        if (wobbleWavePosBeforeRotation > target)
-        {
-            target += Mathf.PI;
-        }
-        curWobbleWaveTime = Mathf.Lerp(wobbleWavePosBeforeRotation, target, (Time.time - startRotationTime) * rotationSpeed);
     }
 
     public void StartMoving()

@@ -19,10 +19,8 @@ public class GameManager : MonoBehaviour
     public Instantiating init;
     private State state;
     private static bool IsPaused = false;
-    
     public GameObject player1;
     public GameObject player2;
-    
     public float delayUntilReplayAvailable = 2;
     private float distanceBetween;
     private GameGui myGui;
@@ -69,18 +67,35 @@ public class GameManager : MonoBehaviour
 
                 if (player1.GetComponent<PlayerScript>().playerLife <= 0)
                 {
-                    // should be true if player one should die
-                    shouldPlayerDie(true);
+                    if (!PlayerOneDead)
+                    {
+                        TimeToDo = Time.time;
+                    }
+                    player1.GetComponent<PlayerScript>().die();
+                    PlayerOneDead = true;
+                    if (Time.time - TimeToDo >= diseaseTime)
+                    {
+                        TimeToDo = Time.time;
+                        player2.GetComponent<PlayerScript>().loseLife(disease);
+                    }
 
                 }
 
                 if (player2.GetComponent<PlayerScript>().playerLife <= 0)
                 {
-                    // should be false if player two should die
-                    shouldPlayerDie(false);
+                    if (!PlayerTwoDead)
+                    {
+                        TimeToDo = Time.time;
+                    }
+                    player2.GetComponent<PlayerScript>().die();
+                    PlayerTwoDead = true;
+                    if (Time.time - TimeToDo >= diseaseTime)
+                    {
+                        TimeToDo = Time.time;
+                        player1.GetComponent<PlayerScript>().loseLife(disease);
+                    }
 
                 }
-
                 if (PlayerOneDead && PlayerTwoDead)
                 {
                     StartCoroutine(LoseGame());
@@ -94,13 +109,11 @@ public class GameManager : MonoBehaviour
                     player1.layer = 0;
                     player2.layer = 0;
                 }
-
                 else
                 {
                     player1.layer = 14; //P1CAM
                     player2.layer = 15; //P2CAM
                 }
-
                 if (distanceBetween < 1f)
                 {
                     state = State.Win;
@@ -109,28 +122,30 @@ public class GameManager : MonoBehaviour
 
             case State.Win:
                 myGui.win();
-                Restarter();
+                clearPieces();
+                player1.GetComponent<PlayerScript>().restart();
                 myGui.showStart();
                 state = State.Start;
                 break;
 
             case State.Lose:
-
                 // playes the animation for the press to restart
                 player1.GetComponent<PlayerScript>().pressToPlayAgain();
                 player2.GetComponent<PlayerScript>().pressToPlayAgain();
-                
                 // todo change the M botton
                 bool keyBoardPress = Input.GetKeyDown(KeyCode.M) || Input.GetKeyDown(KeyCode.Space);
                 bool joyStickPress = Input.GetButton("Fire1") || Input.GetButton("Fire2");
 
                 if (keyBoardPress || joyStickPress)
                 {
-                    Restarter();
+                    clearPieces();
+                    player1.GetComponent<PlayerScript>().restart();
+                    player2.GetComponent<PlayerScript>().restart();
                     player1.SetActive(false);
                     player2.SetActive(false);
                     PlayerOneDead = false;
                     PlayerTwoDead = false;
+
                     state = State.Start;
 
                 }
@@ -222,41 +237,8 @@ public class GameManager : MonoBehaviour
     public bool getIsPlayer2Dead()
     {
         return PlayerTwoDead;
-    } 
-    
-    public void shouldPlayerDie(bool ShouldPlayerOneDie)
-    {
-        bool isDead = ShouldPlayerOneDie ? PlayerOneDead : PlayerTwoDead;
-        if (!isDead)
-        {
-            TimeToDo = Time.time;
-        }
-
-        if(ShouldPlayerOneDie)
-        {
-            player1.GetComponent<PlayerScript>().die();
-            PlayerOneDead = true;
-        }
-        else
-        {
-            player2.GetComponent<PlayerScript>().die();
-            PlayerTwoDead = true;
-        }
-
-        PlayerScript StillLivingPlayer = ShouldPlayerOneDie ? player2.GetComponent<PlayerScript>() : player1.GetComponent<PlayerScript>();
-
-        if (Time.time - TimeToDo >= diseaseTime)
-        {
-            TimeToDo = Time.time;
-            StillLivingPlayer.loseLife(disease);
-        }
     }
-
-    public void Restarter()
-    {
-        clearPieces();
-        player1.GetComponent<PlayerScript>().restart();
-        player2.GetComponent<PlayerScript>().restart();
-        return;
-    }
+    public void ShowStartMenu()
+    { }
+  
 }
