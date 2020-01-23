@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PlaceHolderShaderMat
+  m_Name: InvertLogoTextShader
   m_Shader: {fileID: -6465566751694194690, guid: e9cf21586178c514e8311535136b5c63,
     type: 3}
   m_ShaderKeywords: 
@@ -62,7 +62,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_4B580B27: 0.4
+    - Vector1_4B580B27: 1.5
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
