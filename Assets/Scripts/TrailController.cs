@@ -14,17 +14,12 @@ public class TrailController : MonoBehaviour
 
     private bool startedTrail = false;
 
-    // use for changinf trail shader 
-    public Material Black;
-    public Material White;
-    private bool didHit = false;
-
     void Update()
     {
         if (!bank)
             return;
-
-        if (Input.GetKey(KeyCode.Space) || Input.GetButton("Fire2"))
+        bool ShouldTrail = (tag == "Player1") ? (Input.GetKey(KeyCode.C)) : (Input.GetKey(KeyCode.M));
+        if (ShouldTrail || Input.GetButton("Fire2"))
         {
             if (!startedTrail)
             {
@@ -52,42 +47,7 @@ public class TrailController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        // if we find a pulse 
-        if (other.tag == "pulse" && !didHit)
-        {
-            // bool to only work for the first pulse we use
-            didHit = true;
-
-            //find the trail pices container
-            GameObject Trail = GameObject.Find("TrailPieces");
-
-            if (Trail)
-            {
-                // loop over all children and change the render
-                MeshRenderer[] TrailChildren = Trail.GetComponentsInChildren<MeshRenderer>() as MeshRenderer[];
-                foreach (MeshRenderer child in TrailChildren)
-                {
-                    string matName = child.material.name;
-
-                    if (matName.Contains(Black.name))
-                    {
-                        child.material = White;
-                    } 
-                    else
-                    {
-                        child.material = Black;
-                    }
-                }
-
-            }
-
-            return;
-        }
-        didHit = false;
-        return;
-    }
+    
 
 
 

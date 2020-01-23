@@ -78,7 +78,7 @@ public class PlayerScript : MonoBehaviour
 
     private IEnumerator waitTillPulseIsOver()
     {
-        yield return new WaitForSeconds(Waiting4Pulse);
+        yield return new WaitForSeconds(2.5f);
         GameObject otherPlayer = (tag == "Player1") ? GameObject.FindGameObjectWithTag("Player2") : GameObject.FindGameObjectWithTag("Player1");
         otherPlayer.GetComponent<PlayerScript>().playerLife += 10;
 

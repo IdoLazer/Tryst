@@ -150,7 +150,7 @@ Transform:
   - {fileID: 1847187721}
   - {fileID: 1296716336}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &133574975
 GameObject:
@@ -1562,7 +1562,7 @@ GameObject:
   - component: {fileID: 624225991}
   - component: {fileID: 624225990}
   m_Layer: 0
-  m_Name: TrailPiecesBank
+  m_Name: TrailPiecesBankPlayer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2647,7 +2647,7 @@ Transform:
   - {fileID: 986657137}
   - {fileID: 618361233}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1026822390 stripped
 GameObject:
@@ -2717,7 +2717,7 @@ Transform:
   - {fileID: 1615397840}
   - {fileID: 1651616981}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1117314670
 PrefabInstance:
@@ -2916,7 +2916,7 @@ Transform:
   - {fileID: 2036151155}
   - {fileID: 1867209099}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1138823156
 GameObject:
@@ -4052,13 +4052,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1636527332}
-  m_Layer: 15
+  m_Layer: 14
   m_Name: PulseCreator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1636527332
 Transform:
   m_ObjectHideFlags: 0
@@ -4426,8 +4426,6 @@ MonoBehaviour:
   waitingTimeBetweenTrailPieces: 0.01
   player: {fileID: 1651616983}
   removeLife: 0.25
-  Black: {fileID: 2100000, guid: e3ae06a3979f53046aa05330d69de1fa, type: 3}
-  White: {fileID: 2100000, guid: d6f3e9c82d0b7884ab4aa3038f11a8fe, type: 2}
 --- !u!54 &1651616986
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4451,7 +4449,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1651616982}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4700e5566fc019949b52043f725965a5, type: 3}
   m_Name: 
@@ -4460,8 +4458,9 @@ MonoBehaviour:
     type: 3}
   echoPulseWhitePrefab: {fileID: 21842104575255619, guid: 0f1cba9bd622c8a4eae23320074d5e4f,
     type: 3}
-  pulseContainerPrefab: {fileID: 0}
-  pulseCreatorLocation: {fileID: 0}
+  pulseContainerPrefab: {fileID: 1630641753619211584, guid: 06578684389b0f74dbb302810e0df458,
+    type: 3}
+  pulseCreatorLocation: {fileID: 1636527332}
   timeBetweenPulses: 0.5
   removeLife: 10
 --- !u!1 &1657735384 stripped
@@ -4491,6 +4490,35 @@ MonoBehaviour:
   pulseCreatorLocation: {fileID: 422112519}
   timeBetweenPulses: 0.5
   removeLife: 10
+--- !u!114 &1657735388 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -7652109072398903514, guid: 176c3e11dc31569429e02c260169860f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1867209098}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657735384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 452609181fcfae3408d0655b55e1e6dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1657735393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657735384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 505ea841b68b84942bd7a9015ff60879, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bank: {fileID: 2098283375}
+  trailCreatorLocation: {fileID: 1543879238}
+  waitingTimeBetweenTrailPieces: 0.01
+  player: {fileID: 1657735388}
+  removeLife: 0.25
 --- !u!4 &1714380834 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: b9db4ff252f52434d816eb56de899ec1,
@@ -4578,8 +4606,6 @@ MonoBehaviour:
   waitingTimeBetweenTrailPieces: 0.1
   player: {fileID: 1737751297}
   removeLife: 1.5
-  Black: {fileID: 0}
-  White: {fileID: 0}
 --- !u!114 &1737751296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5348,7 +5374,7 @@ PrefabInstance:
     - target: {fileID: -7652109072398903514, guid: 176c3e11dc31569429e02c260169860f,
         type: 3}
       propertyPath: playerLife
-      value: 200
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 828245915756244538, guid: 176c3e11dc31569429e02c260169860f,
         type: 3}
@@ -6785,6 +6811,51 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: -6860895033569716450, guid: 7ace645f2d7784cffb60d1f21cf6eff1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7ace645f2d7784cffb60d1f21cf6eff1, type: 3}
+--- !u!1 &2098283374
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2098283376}
+  - component: {fileID: 2098283375}
+  m_Layer: 0
+  m_Name: TrailPiecesBankPlayer2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2098283375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098283374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 381e283b96c43984991f913f0a2bd9f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trailPiecePrefab: {fileID: 70585142610015124, guid: 5ad90e690d898924fbf97fe76ae07777,
+    type: 3}
+--- !u!4 &2098283376
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098283374}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.16427636, y: 0.17014861, z: -0.24900961}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2139113224
 GameObject:
   m_ObjectHideFlags: 0
@@ -6903,7 +6974,7 @@ PrefabInstance:
     - target: {fileID: 7794634572535495524, guid: 3538648dc7a60264eb453442699f73bd,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7794634572535495524, guid: 3538648dc7a60264eb453442699f73bd,
         type: 3}
