@@ -17,7 +17,7 @@ public class EchoController : MonoBehaviour
     private bool canSendPulse = true;
 
     //removing life when using pulse
-    public float removeLife = 10;
+    public float removeLife = 5;
     private PlayerScript player;
 
 
@@ -47,6 +47,7 @@ public class EchoController : MonoBehaviour
                 player.playerLife -= removeLife;
                 StartCoroutine(SendPulse());
             }
+
         }
     }
 
@@ -58,5 +59,8 @@ public class EchoController : MonoBehaviour
         Instantiate(echoPulseWhitePrefab, pulseCreatorLocation.position, transform.rotation, pulseContainer.transform);
         yield return new WaitForSeconds(timeBetweenPulses);
         canSendPulse = true;
+
     }
+
+
 }

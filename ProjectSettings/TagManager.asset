@@ -15,6 +15,7 @@ TagManager:
   - Piece
   - DisplayCamera1
   - DisplayCamera2
+  - pulse
   layers:
   - Default
   - TransparentFX
