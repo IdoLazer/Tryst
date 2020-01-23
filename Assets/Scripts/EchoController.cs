@@ -40,7 +40,9 @@ public class EchoController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M) || Input.GetButtonDown("Fire1"))
+        bool ShouldFire = (tag == "Player1") ? (Input.GetKeyDown(KeyCode.X)) : (Input.GetKeyDown(KeyCode.N));
+
+        if (ShouldFire || Input.GetButtonDown("Fire1"))
         {
             if (canSendPulse && player.playerLife > 0)
             {

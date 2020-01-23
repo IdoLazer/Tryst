@@ -14,14 +14,12 @@ public class TrailController : MonoBehaviour
 
     private bool startedTrail = false;
 
-    // Update is called once per frame
-
     void Update()
     {
         if (!bank)
             return;
-
-        if (Input.GetKey(KeyCode.Space) || Input.GetButton("Fire2"))
+        bool ShouldTrail = (tag == "Player1") ? (Input.GetKey(KeyCode.C)) : (Input.GetKey(KeyCode.M));
+        if (ShouldTrail || Input.GetButton("Fire2"))
         {
             if (!startedTrail)
             {
