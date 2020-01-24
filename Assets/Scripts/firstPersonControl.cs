@@ -32,11 +32,14 @@ public class firstPersonControl : MonoBehaviour
 
     void Update()
     {
+        // ================== Player1 =========================
+
         if (tag == "Player1")
         {
             if (!Gm.getIsPlayer1Dead())
             {
-                float axis = Input.GetAxis("Player1X");
+                //---- Player 1 Rotating ---
+                float axis = KeyJoyController.getXAxis_Player1();
 
                 if (Mathf.Abs(axis) <= controllerSensitivityX)
                 {
@@ -48,7 +51,9 @@ public class firstPersonControl : MonoBehaviour
                     shaderScript.StartRotating((int)Mathf.Sign(axis));
                 }
                 transform.Rotate(rotatSpeen * Vector3.up * axis);
-                axis = Input.GetAxis("Player1Y");
+
+                //---- Player 1 Forward/Backward ---
+                axis = KeyJoyController.getYAxis_player1();
 
                 if (Mathf.Abs(axis) <= controllerSensitivityY)
                 {
@@ -66,11 +71,12 @@ public class firstPersonControl : MonoBehaviour
                         if (Mathf.Abs(axis) > Mathf.Epsilon)
                         {
                             shaderScript.StartMoving();
+                            SoundManger.PlaySound("walk");
                         }
                         else
                         {
                             shaderScript.StopMoving();
-
+                           SoundManger.StopPlaying();
                         }
                     }
                 }
@@ -84,12 +90,14 @@ public class firstPersonControl : MonoBehaviour
 
         }
 
+        // ================== Player2 =========================
+
         if (tag == "Player2")
         {
             if (!Gm.getIsPlayer2Dead())
             {
-                float axis = Input.GetAxis("Player2X");
-
+                //---- Player 2 Rotating ---
+                float axis = KeyJoyController.getXAxis_Player2();
                 if (Mathf.Abs(axis) <= controllerSensitivityX)
                 {
                     axis = 0f;
@@ -101,9 +109,9 @@ public class firstPersonControl : MonoBehaviour
                 }
 
                 transform.Rotate(rotatSpeen * Vector3.up * axis);
-                axis = Input.GetAxis("Player2Y");
 
-
+                //---- Player 2 Forward/Backward ---
+                axis = KeyJoyController.getYAxis_Player2();
                 if (axis <= 1)
                 {
                     Vector3 moveDir = new Vector3(0, 0, axis).normalized;
@@ -120,14 +128,18 @@ public class firstPersonControl : MonoBehaviour
                         if (Mathf.Abs(axis) > Mathf.Epsilon)
                         {
                             shaderScript.StartMoving();
+                            //SoundManger.PlaySound("walk");
                         }
                         else
                         {
                             shaderScript.StopMoving();
+                            //SoundManger.StopPlaying();
                         }
                     }
                 }
             }
+
+            // ============ Player is dead ============
             else
             {
                 moveAmount = new Vector3(0, 0, 0);
@@ -136,33 +148,13 @@ public class firstPersonControl : MonoBehaviour
             }
 
         }
-
-        playWhenMove("Player2X");
-        playWhenMove("Player1X");
-        playWhenMove("Player2Y");
-        playWhenMove("Player1Y");
     }
 
 
     void FixedUpdate()
     {
+        //Player Movment
         GetComponent<Rigidbody>().MovePosition(GetComponent<Rigidbody>().position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
-
-    }
-
-    private void playWhenMove(string axsisName)
-    {
-        if (Input.GetButtonDown(axsisName))
-        {
-
-            SoundManger.PlaySound("walk");
-        }
-
-        if (Input.GetButtonUp(axsisName))
-        {
-
-            SoundManger.StopPlaying();
-        }
 
     }
 }

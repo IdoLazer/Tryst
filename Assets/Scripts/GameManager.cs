@@ -32,13 +32,11 @@ public class GameManager : MonoBehaviour
     private float disease = 1f;
     public float diseaseTime = 10; // how often to remove one life
     private float TimeToDo = 0f;
-    private KeyJoyController keyJoyController;
 
     void Start()
     {
         state = State.Start;
         display = GetComponent<DisplayScript>();
-        keyJoyController = new KeyJoyController() ;
         display.StartDisplay(); //this connects display cameras to 2 monitors
         myGui = GetComponent<GameGui>();
         myGui.showStart();
@@ -135,7 +133,7 @@ public class GameManager : MonoBehaviour
                 player2.GetComponent<PlayerScript>().pressToPlayAgain();
                 // todo change the M botton
 
-                if (keyJoyController.GetPlayer1TrailPress() && keyJoyController.GetPlayer2TrailPress())
+                if (KeyJoyController.getTrailPressed_Player1() && KeyJoyController.getTrailPressed_Player2())
                 {
                     clearPieces();
                     player1.GetComponent<PlayerScript>().restart();
@@ -162,7 +160,7 @@ public class GameManager : MonoBehaviour
 
     public void PressToStartGame()
     {
-        bool BothPress = keyJoyController.GetPlayer1TrailPress() && keyJoyController.GetPlayer2TrailPress();
+        bool BothPress = KeyJoyController.getTrailPressed_Player1() && KeyJoyController.getTrailPressed_Player2();
 
         if (BothPress)
         {

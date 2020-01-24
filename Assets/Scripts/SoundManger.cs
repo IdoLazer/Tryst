@@ -7,8 +7,10 @@ public class SoundManger : MonoBehaviour
     private static AudioClip walk1, walk2, walk3, walk4, walk5, walk6;
     static AudioSource src;
     private int chosen;
+    public static float startVolume;
+    
     void Start()
-    {
+    {    
         walk1 = Resources.Load<AudioClip>("player-a-walks-01");
         walk2 = Resources.Load<AudioClip>("player-a-walks-02");
         walk3 = Resources.Load<AudioClip>("player-a-walks-03"); 
@@ -18,9 +20,11 @@ public class SoundManger : MonoBehaviour
 
 
         src = GetComponent<AudioSource>();
+        startVolume = src.volume;
     }
     public static void PlaySound(string clip)
     {
+        src.volume = startVolume;
         switch (clip)
         {
 
@@ -67,7 +71,10 @@ public class SoundManger : MonoBehaviour
 
     public static void StopPlaying()
     {
-        src.Stop();
+        if (src.volume > 0) {
+            src.volume -= startVolume * Time.deltaTime;
+        }
+
     }
 
 }

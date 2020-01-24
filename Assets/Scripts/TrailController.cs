@@ -13,17 +13,13 @@ public class TrailController : MonoBehaviour
     public float removeLife = 10f;
 
     private bool startedTrail = false;
-    private KeyJoyController keyJoyController;
-    void Start()
-    {
-        keyJoyController = new KeyJoyController() ;
-    }
+
     void Update()
     {
         if (!bank)
             return;
-        bool p1Trail = keyJoyController.GetPlayer1TrailPress();
-        bool p2Trail = keyJoyController.GetPlayer2TrailPress();
+        bool p1Trail = KeyJoyController.getTrailPressed_Player1();
+        bool p2Trail = KeyJoyController.getTrailPressed_Player2();
         bool ShouldTrail = (tag == "Player1") ?  p1Trail : p2Trail ;
         if (ShouldTrail)
         {
