@@ -5,9 +5,12 @@ using UnityEngine;
 public class SoundManger : MonoBehaviour
 {
     private static AudioClip walk1, walk2, walk3, walk4, walk5, walk6;
-    static AudioSource src;
+    private static AudioSource[] src;
+    private static AudioSource srcPlayer1;
+    private static AudioSource srcPlayer2;
     private int chosen;
-    public static float startVolume;
+    private static float startVolume1;
+    private static float startVolume2;
     
     void Start()
     {    
@@ -18,21 +21,29 @@ public class SoundManger : MonoBehaviour
         walk5 = Resources.Load<AudioClip>("player-a-walks-05");
         walk6 = Resources.Load<AudioClip>("player-a-walks-06");
 
-
-        src = GetComponent<AudioSource>();
-        startVolume = src.volume;
+        src = GetComponents<AudioSource>();
+        srcPlayer1 = src[0];
+        srcPlayer2 = src[1];     
+        startVolume1 = srcPlayer1.volume;
+        startVolume2 = srcPlayer2.volume;
     }
-    public static void PlaySound(string clip)
+    public static void PlaySound_Player1(string clip){
+        PlaySound(clip, srcPlayer1, startVolume1);
+    }
+    public static void PlaySound_Player2(string clip){
+        PlaySound(clip, srcPlayer2 , startVolume2);
+    }
+    private static void PlaySound(string clip, AudioSource srcPlayer , float startVolume)
     {
-        src.volume = startVolume;
+        srcPlayer.volume = startVolume;
         switch (clip)
         {
 
             case "walk":
-                if (!src.isPlaying)
+                if (!srcPlayer.isPlaying)
                 {
                     int chosen = Random.Range(0, 7);
-                    SoundManger.playWalk(chosen);
+                    SoundManger.playWalk(chosen , srcPlayer);
                 }
 
                 break;
@@ -41,40 +52,48 @@ public class SoundManger : MonoBehaviour
                 //break;
         }
     }
-    private static void playWalk(int val)
+    private static void playWalk(int val, AudioSource srcPlayer)
     {
         if(val==1)
         {
-            src.PlayOneShot(walk1);
+            srcPlayer.PlayOneShot(walk1);
         }
         if (val == 2)
         {
-            src.PlayOneShot(walk2);
+            srcPlayer.PlayOneShot(walk2);
         }
         if (val == 3)
         {
-            src.PlayOneShot(walk3);
+            srcPlayer.PlayOneShot(walk3);
         }
         if (val == 4)
         {
-            src.PlayOneShot(walk4);
+            srcPlayer.PlayOneShot(walk4);
         }
         if (val == 5)
         {
-            src.PlayOneShot(walk5);
+            srcPlayer.PlayOneShot(walk5);
         }
         if (val == 6)
         {
-            src.PlayOneShot(walk6);
+            srcPlayer.PlayOneShot(walk6);
         }
     }
 
-    public static void StopPlaying()
+    private static void StopPlaying(AudioSource srcPlayer , float startVolume)
     {
-        if (src.volume > 0) {
-            src.volume -= startVolume * Time.deltaTime;
+        if (srcPlayer.volume > 0) {
+            srcPlayer.volume -= startVolume * Time.deltaTime;
         }
 
+    }
+    public static void StopPlaying_Player1()
+    {
+        StopPlaying(srcPlayer1 , startVolume1); 
+    }
+    public static void StopPlaying_Player2()
+    {
+        StopPlaying(srcPlayer2 , startVolume2); 
     }
 
 }

@@ -71,12 +71,12 @@ public class firstPersonControl : MonoBehaviour
                         if (Mathf.Abs(axis) > Mathf.Epsilon)
                         {
                             shaderScript.StartMoving();
-                            SoundManger.PlaySound("walk");
+                            SoundManger.PlaySound_Player1("walk");
                         }
                         else
                         {
                             shaderScript.StopMoving();
-                           SoundManger.StopPlaying();
+                           SoundManger.StopPlaying_Player1();
                         }
                     }
                 }
@@ -128,12 +128,12 @@ public class firstPersonControl : MonoBehaviour
                         if (Mathf.Abs(axis) > Mathf.Epsilon)
                         {
                             shaderScript.StartMoving();
-                            //SoundManger.PlaySound("walk");
+                            SoundManger.PlaySound_Player2("walk");
                         }
                         else
                         {
                             shaderScript.StopMoving();
-                            //SoundManger.StopPlaying();
+                            SoundManger.StopPlaying_Player2();
                         }
                     }
                 }
