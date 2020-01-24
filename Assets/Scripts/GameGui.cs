@@ -6,30 +6,37 @@ using UnityEngine.UI;
 public class GameGui : MonoBehaviour
 {  
 
-    public GameObject Win;
-    public GameObject Lose;
-    public GameObject StartMenu;
+    public GameObject Win1;
+    public GameObject Win2;
+    //private GameObject Lose;
+    public GameObject StartMenu1;
+    public GameObject StartMenu2;
     
 
 
 
     public void showStart()
     {
-
-        StartMenu.SetActive(true);
+        StartMenu1.SetActive(true);
+        StartMenu2.SetActive(true);
     }
 
     public void GamePlayCloseGui()
         // this function should be called once we start the game 
     {
-        StartMenu.SetActive(false);
-        Win.SetActive(false);
-        Lose.SetActive(false);
+        StartMenu1.SetActive(false);
+        StartMenu2.SetActive(false);
+        Win1.SetActive(false);
+        Win2.SetActive(false);
+        //Lose.SetActive(false);
     }
 
     public void win()
     {
-        Win.SetActive(true);
+        Win1.SetActive(true);
+        Win2.SetActive(true);
+        StartMenu1.SetActive(false);
+        StartMenu2.SetActive(false);
         Debug.Log("win");
     }
 

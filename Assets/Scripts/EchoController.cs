@@ -19,13 +19,15 @@ public class EchoController : MonoBehaviour
     //removing life when using pulse
     public float removeLife = 10;
     private PlayerScript player;
-
+    private KeyJoyController keyJoyController;
+    
 
 
     void Start()
     {
         CreateEchoesParent();
         player = GameObject.FindObjectOfType<PlayerScript>();
+        keyJoyController = new KeyJoyController() ;
     }
 
     private void CreateEchoesParent()
@@ -40,9 +42,11 @@ public class EchoController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool ShouldFire = (tag == "Player1") ? (Input.GetKeyDown(KeyCode.X)) : (Input.GetKeyDown(KeyCode.N));
+        bool p1Pulse = keyJoyController.GetPlayer1PulsePress() ;
+        bool p2Pulse = keyJoyController.GetPlayer2PulsePress() ;
+        bool ShouldPulse = (tag == "Player1") ?  p1Pulse : p2Pulse ;
 
-        if (ShouldFire || Input.GetButtonDown("Fire1"))
+        if (ShouldPulse)
         {
             if (canSendPulse && player.playerLife > 0)
             {

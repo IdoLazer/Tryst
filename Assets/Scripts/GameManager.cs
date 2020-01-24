@@ -32,13 +32,14 @@ public class GameManager : MonoBehaviour
     private float disease = 1f;
     public float diseaseTime = 10; // how often to remove one life
     private float TimeToDo = 0f;
-
+    private KeyJoyController keyJoyController;
 
     void Start()
     {
         state = State.Start;
         display = GetComponent<DisplayScript>();
-        display.StartDisplay(); //this is camera
+        keyJoyController = new KeyJoyController() ;
+        display.StartDisplay(); //this connects display cameras to 2 monitors
         myGui = GetComponent<GameGui>();
         myGui.showStart();
     }
@@ -123,9 +124,9 @@ public class GameManager : MonoBehaviour
             case State.Win:
                 myGui.win();
                 clearPieces();
-                player1.GetComponent<PlayerScript>().restart();
-                myGui.showStart();
-                state = State.Start;
+                player1.SetActive(false);
+                player2.SetActive(false);
+                PressToStartGame();
                 break;
 
             case State.Lose:
@@ -133,10 +134,8 @@ public class GameManager : MonoBehaviour
                 player1.GetComponent<PlayerScript>().pressToPlayAgain();
                 player2.GetComponent<PlayerScript>().pressToPlayAgain();
                 // todo change the M botton
-                bool keyBoardPress = Input.GetKeyDown(KeyCode.M) || Input.GetKeyDown(KeyCode.Space);
-                bool joyStickPress = Input.GetButton("Fire1") || Input.GetButton("Fire2");
 
-                if (keyBoardPress || joyStickPress)
+                if (keyJoyController.GetPlayer1TrailPress() && keyJoyController.GetPlayer2TrailPress())
                 {
                     clearPieces();
                     player1.GetComponent<PlayerScript>().restart();
@@ -163,10 +162,9 @@ public class GameManager : MonoBehaviour
 
     public void PressToStartGame()
     {
-        bool keyBoardPress = Input.GetKey(KeyCode.M) && Input.GetKey(KeyCode.Space);
-        bool joyStickPress = Input.GetButton("Fire1") && Input.GetButton("Fire2");
+        bool BothPress = keyJoyController.GetPlayer1TrailPress() && keyJoyController.GetPlayer2TrailPress();
 
-        if (keyBoardPress || joyStickPress)
+        if (BothPress)
         {
             init.loadPlayers();
             StartCoroutine(FindPlayersAndStartGame());
