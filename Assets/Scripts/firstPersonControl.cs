@@ -41,8 +41,12 @@ public class firstPersonControl : MonoBehaviour
                 if (Mathf.Abs(axis) <= controllerSensitivityX)
                 {
                     axis = 0f;
+                    shaderScript.StopRotating();
                 }
-
+                else
+                {
+                    shaderScript.StartRotating((int)Mathf.Sign(axis));
+                }
                 transform.Rotate(rotatSpeen * Vector3.up * axis);
                 axis = Input.GetAxis("Player1Y");
 
@@ -85,10 +89,15 @@ public class firstPersonControl : MonoBehaviour
             if (!Gm.getIsPlayer2Dead())
             {
                 float axis = Input.GetAxis("Player2X");
-                Debug.Log(axis);
+
                 if (Mathf.Abs(axis) <= controllerSensitivityX)
                 {
                     axis = 0f;
+                    shaderScript.StopRotating();
+                }
+                else
+                {
+                    shaderScript.StartRotating((int)Mathf.Sign(axis));
                 }
 
                 transform.Rotate(rotatSpeen * Vector3.up * axis);
