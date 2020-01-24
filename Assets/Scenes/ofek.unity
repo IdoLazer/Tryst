@@ -4309,6 +4309,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bce0ce66c079cdc45a4965868a508b40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ManagerWalkSounds:
+  - {fileID: 8300000, guid: 025627c256ce41a488f05cb2e653d328, type: 3}
+  - {fileID: 8300000, guid: 3470c3c2e0dbe9549abbce00d265dcf4, type: 3}
+  - {fileID: 8300000, guid: 3a4b5611f8d3a0340b8be8509cc8065f, type: 3}
+  - {fileID: 8300000, guid: af798a46b867a8640a9efa265a15bd95, type: 3}
+  - {fileID: 8300000, guid: 8731791966a675e4cbd1a1b63bc17dfc, type: 3}
+  - {fileID: 8300000, guid: dc1f761ab43c23849a230f2e2457f378, type: 3}
 --- !u!82 &951592294
 AudioSource:
   m_ObjectHideFlags: 0

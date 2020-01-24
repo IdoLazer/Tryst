@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class SoundManger : MonoBehaviour
 {
-    private static AudioClip walk1, walk2, walk3, walk4, walk5, walk6;
-    private static AudioSource[] src;
+    private static AudioClip[] walkSounds;
+    public AudioClip[] ManagerWalkSounds;
+    private AudioSource[] audioSrc;
     private static AudioSource srcPlayer1;
     private static AudioSource srcPlayer2;
     private int chosen;
@@ -13,17 +14,11 @@ public class SoundManger : MonoBehaviour
     private static float startVolume2;
     
     void Start()
-    {    
-        walk1 = Resources.Load<AudioClip>("player-a-walks-01");
-        walk2 = Resources.Load<AudioClip>("player-a-walks-02");
-        walk3 = Resources.Load<AudioClip>("player-a-walks-03"); 
-        walk4 = Resources.Load<AudioClip>("player-a-walks-04");
-        walk5 = Resources.Load<AudioClip>("player-a-walks-05");
-        walk6 = Resources.Load<AudioClip>("player-a-walks-06");
-
-        src = GetComponents<AudioSource>();
-        srcPlayer1 = src[0];
-        srcPlayer2 = src[1];     
+    {   
+        walkSounds = ManagerWalkSounds;
+        audioSrc = GetComponents<AudioSource>();
+        srcPlayer1 = audioSrc[0];
+        srcPlayer2 = audioSrc[1];     
         startVolume1 = srcPlayer1.volume;
         startVolume2 = srcPlayer2.volume;
     }
@@ -42,7 +37,7 @@ public class SoundManger : MonoBehaviour
             case "walk":
                 if (!srcPlayer.isPlaying)
                 {
-                    int chosen = Random.Range(0, 7);
+                    int chosen = Random.Range(0, (int) walkSounds.Length);
                     SoundManger.playWalk(chosen , srcPlayer);
                 }
 
@@ -54,30 +49,7 @@ public class SoundManger : MonoBehaviour
     }
     private static void playWalk(int val, AudioSource srcPlayer)
     {
-        if(val==1)
-        {
-            srcPlayer.PlayOneShot(walk1);
-        }
-        if (val == 2)
-        {
-            srcPlayer.PlayOneShot(walk2);
-        }
-        if (val == 3)
-        {
-            srcPlayer.PlayOneShot(walk3);
-        }
-        if (val == 4)
-        {
-            srcPlayer.PlayOneShot(walk4);
-        }
-        if (val == 5)
-        {
-            srcPlayer.PlayOneShot(walk5);
-        }
-        if (val == 6)
-        {
-            srcPlayer.PlayOneShot(walk6);
-        }
+            srcPlayer.PlayOneShot(walkSounds[val]);
     }
 
     private static void StopPlaying(AudioSource srcPlayer , float startVolume)
