@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     private static bool IsPaused = false;
     public GameObject player1;
     public GameObject player2;
+    public MenuPlayerController menuPlayer1;
+    public MenuPlayerController menuPlayer2;
     public float delayUntilReplayAvailable = 2;
     private float distanceBetween;
     private GameGui myGui;
@@ -53,7 +55,7 @@ public class GameManager : MonoBehaviour
                 myGui.showStart();
 
                 // when pressed will load the actual game 
-                PressToStartGame();
+                MeetToStartGame();
                 break;
 
             case State.Game:
@@ -133,7 +135,7 @@ public class GameManager : MonoBehaviour
                 player2.GetComponent<PlayerScript>().pressToPlayAgain();
                 // todo change the M botton
 
-                if (KeyJoyController.getTrailPressed_Player1() && KeyJoyController.getTrailPressed_Player2())
+                if (KeyJoyController.getTrailPressed_Player1() || KeyJoyController.getTrailPressed_Player2())
                 {
                     clearPieces();
                     player1.GetComponent<PlayerScript>().restart();
@@ -160,14 +162,21 @@ public class GameManager : MonoBehaviour
 
     public void PressToStartGame()
     {
-        bool BothPress = KeyJoyController.getTrailPressed_Player1() && KeyJoyController.getTrailPressed_Player2();
+        bool BothPress = KeyJoyController.getTrailPressed_Player1() || KeyJoyController.getTrailPressed_Player2();
 
         if (BothPress)
         {
+           state = State.Start;
+        }
+    }
+    public void MeetToStartGame(){
+        if (menuPlayer1.meet || menuPlayer2.meet){
+            menuPlayer1.reset();
+            menuPlayer2.reset();
             init.loadPlayers();
             StartCoroutine(FindPlayersAndStartGame());
-
         }
+
     }
 
     private IEnumerator FindPlayersAndStartGame()
@@ -234,7 +243,5 @@ public class GameManager : MonoBehaviour
     {
         return PlayerTwoDead;
     }
-    public void ShowStartMenu()
-    { }
   
 }

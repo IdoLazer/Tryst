@@ -18,14 +18,13 @@ public class EchoController : MonoBehaviour
 
     //removing life when using pulse
     public float removeLife = 10;
-    private PlayerScript player;
+    public PlayerScript player;
     
 
 
     void Start()
     {
         CreateEchoesParent();
-        player = GameObject.FindObjectOfType<PlayerScript>();
     }
 
     private void CreateEchoesParent()
