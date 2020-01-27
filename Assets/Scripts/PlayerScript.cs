@@ -13,9 +13,6 @@ public class PlayerScript : MonoBehaviour
     public GameObject pressToReplay;
     private bool DidHit = false;
 
-    //how long to wait b4get life
-    private float Waiting4Pulse = 2.5f;
-
     //counter for the win screnn
     public int sizeOfTrail;
     public int numOfPulses;

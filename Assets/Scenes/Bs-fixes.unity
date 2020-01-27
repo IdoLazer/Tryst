@@ -600,6 +600,12 @@ Transform:
   m_Father: {fileID: 1194126865}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &164838857 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -1504981713932161579, guid: 7ace645f2d7784cffb60d1f21cf6eff1,
+    type: 3}
+  m_PrefabInstance: {fileID: 142769876}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &189778823
 GameObject:
   m_ObjectHideFlags: 0
@@ -8186,6 +8192,11 @@ PrefabInstance:
       propertyPath: movingWobbleTime.x
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8750496076804574230, guid: 0d9a1b36c1a3d1741bca3fed1997fc66,
+        type: 3}
+      propertyPath: aura
+      value: 
+      objectReference: {fileID: 164838857}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d9a1b36c1a3d1741bca3fed1997fc66, type: 3}
 --- !u!4 &1651616981 stripped
@@ -8890,6 +8901,11 @@ PrefabInstance:
       propertyPath: movingWobbleTime.x
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 828245915756244539, guid: 176c3e11dc31569429e02c260169860f,
+        type: 3}
+      propertyPath: aura
+      value: 
+      objectReference: {fileID: 1991221440}
     - target: {fileID: 828245915756244538, guid: 176c3e11dc31569429e02c260169860f,
         type: 3}
       propertyPath: m_Radius
@@ -10030,6 +10046,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973251093}
   m_CullTransparentMesh: 0
+--- !u!23 &1991221440 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -1504981713932161579, guid: 7ace645f2d7784cffb60d1f21cf6eff1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1919666153}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1999084922
 GameObject:
   m_ObjectHideFlags: 0

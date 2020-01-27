@@ -5748,6 +5748,13 @@ MonoBehaviour:
   menuPlayer2: {fileID: 815885871}
   delayUntilReplayAvailable: 2
   diseaseTime: 0.2
+  ShouldSlowMo: 0
+  winTitle:
+  - you win
+  - you won
+  - you wan
+  - you won
+  TrailSize: 6
 --- !u!114 &951592292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10537,6 +10544,8 @@ MonoBehaviour:
   playerLife: 100
   playerLose: {fileID: 497253863}
   pressToReplay: {fileID: 497253862}
+  sizeOfTrail: 0
+  numOfPulses: 0
 --- !u!114 &1651616984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10970,6 +10979,8 @@ MonoBehaviour:
   playerLife: 100
   playerLose: {fileID: 0}
   pressToReplay: {fileID: 0}
+  sizeOfTrail: 0
+  numOfPulses: 0
 --- !u!54 &1737751298
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11648,6 +11659,11 @@ PrefabInstance:
       propertyPath: playerLife
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 828245915756244539, guid: 176c3e11dc31569429e02c260169860f,
+        type: 3}
+      propertyPath: movingWobbleTime.x
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 828245915756244538, guid: 176c3e11dc31569429e02c260169860f,
         type: 3}
       propertyPath: m_Radius
@@ -11657,11 +11673,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.y
       value: -1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 828245915756244539, guid: 176c3e11dc31569429e02c260169860f,
-        type: 3}
-      propertyPath: movingWobbleTime.x
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 176c3e11dc31569429e02c260169860f, type: 3}

@@ -121,7 +121,11 @@ public class GameManager : MonoBehaviour
                 {
                     player1.layer = 0;
                     player2.layer = 0;
+                    Debug.Log("hello");
                     Time.timeScale = 0.2f;
+                    transform.position = Vector3.MoveTowards(player1.transform.position, player2.transform.position, 10 * Time.deltaTime);
+                    transform.position = Vector3.MoveTowards(player2.transform.position, player1.transform.position, 10 * Time.deltaTime);
+
                 }
 
                 else
