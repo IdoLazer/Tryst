@@ -80,7 +80,11 @@ public class PlayerScript : MonoBehaviour
     {
         yield return new WaitForSeconds(2.5f);
         GameObject otherPlayer = (tag == "Player1") ? GameObject.FindGameObjectWithTag("Player2") : GameObject.FindGameObjectWithTag("Player1");
-        otherPlayer.GetComponent<PlayerScript>().playerLife += 10;
+        if(otherPlayer.GetComponent<PlayerScript>().playerLife < 90)
+        {
+            otherPlayer.GetComponent<PlayerScript>().playerLife += 10;
+
+        }
 
 
     }

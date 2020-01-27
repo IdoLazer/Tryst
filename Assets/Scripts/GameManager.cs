@@ -35,6 +35,9 @@ public class GameManager : MonoBehaviour
     public float diseaseTime = 10; // how often to remove one life
     private float TimeToDo = 0f;
 
+    //if we are close to wining 
+    public bool ShouldSlowMo = false;
+
     void Start()
     {
         state = State.Start;
@@ -103,13 +106,15 @@ public class GameManager : MonoBehaviour
                 }
 
                 distanceBetween = Vector3.Distance(player1.transform.position, player2.transform.position);
-                //Debug.Log(distanceBetween);
+                Debug.Log(distanceBetween);
 
                 if (distanceBetween < 3f)
                 {
                     player1.layer = 0;
                     player2.layer = 0;
+                    ShouldSlowMo = true;
                 }
+
                 else
                 {
                     player1.layer = 14; //P1CAM
