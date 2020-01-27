@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerUIScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    GameObject TextBox;
     void Start()
     {
     }
