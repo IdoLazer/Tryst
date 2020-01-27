@@ -32,13 +32,18 @@ public class GameManager : MonoBehaviour
     private bool PlayerOneDead = false;
     private bool PlayerTwoDead = false;
     private float disease = 1f;
-    public float diseaseTime = 10; // how often to remove one life
+    public float diseaseTime = 10; // how often to remove one life  
     private float TimeToDo = 0f;
 
     //if we are close to wining 
     public bool ShouldSlowMo = false;
-    //counter for the win screnn
+    
+    //counter for the win screen
     float GameTime;
+    public String[] winTitle = { "you win", "you won", "you wan", "you won" };
+
+    //public size for Trail display at win
+    public float TrailSize = 6;
 
 
     void Start()
@@ -110,15 +115,13 @@ public class GameManager : MonoBehaviour
                 }
 
                 distanceBetween = Vector3.Distance(player1.transform.position, player2.transform.position);
-                //Debug.Log(distanceBetween);
+                Debug.Log(distanceBetween);
 
                 if (distanceBetween < 3f)
                 {
                     player1.layer = 0;
                     player2.layer = 0;
-                    Debug.Log(Time.timeScale);
                     Time.timeScale = 0.2f;
-                    Debug.Log(Time.timeScale);
                 }
 
                 else
@@ -129,13 +132,14 @@ public class GameManager : MonoBehaviour
                 if (distanceBetween < 1f)
                 {
                     GameTime = Time.time - GameTime;
+                    updateGuiStats();
                     state = State.Win;
                 }
                 break;
 
             case State.Win:
-                
-                updateGuiStats();
+
+                //enlargeTrail();
                 myGui.win();
                 Time.timeScale = 1.0f;
                 player1.SetActive(false);
@@ -282,8 +286,43 @@ public class GameManager : MonoBehaviour
         TrailsNumPlayerTwo.text = player2.GetComponent<PlayerScript>().sizeOfTrail.ToString() + " light years";
         PulseNumPlayerTwo.text = player2.GetComponent<PlayerScript>().numOfPulses.ToString() + " pulses";
 
+        getWinningStatment();
+    }
 
+    private void enlargeTrail()
+    {
+        GameObject TrailHolder = GameObject.Find("TrailPieces");
+        Transform[] TrailFamily = TrailHolder.GetComponentsInChildren<Transform>();
+        //foreach (Transform var in TrailFamily)
+        //{
+            //var.transform.localScale = new Vector3(TrailSize, TrailSize, TrailSize);
+        //}
+    }
 
+    private void getWinningStatment()
+    {
+        Transform titleOne = myGui.getWinningTitleOne();
+        Transform titleTwo = myGui.getWinningTitleTwo();
+
+        TextMesh text1 = titleOne.GetComponent<TextMesh>();
+        TextMesh text2 = titleTwo.GetComponent<TextMesh>();
+
+        int randChosenOne = UnityEngine.Random.Range(0, (int)winTitle.Length);
+        int randChosenTwo = UnityEngine.Random.Range(0, (int)winTitle.Length);
+        if(randChosenTwo == randChosenOne)
+        {
+            if(randChosenTwo != 0)
+            {
+                randChosenTwo = 0;
+            }
+            else
+            {
+                randChosenTwo = 1;
+            }
+        }
+
+        text1.text = winTitle[randChosenOne];
+        text2.text = winTitle[randChosenTwo];
     }
 
 }

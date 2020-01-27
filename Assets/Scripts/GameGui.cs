@@ -50,6 +50,16 @@ public class GameGui : MonoBehaviour
         return Win2.transform.Find("StatsContainer");
     }
 
+    public Transform getWinningTitleOne()
+    {
+        return Win1.transform.Find("WinTitle");
+    }
+
+    public Transform getWinningTitleTwo()
+    {
+        return Win2.transform.Find("WinTitle");
+    }
+
     // public void lose()
     // {
     //     Lose.SetActive(true);

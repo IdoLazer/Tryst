@@ -49,7 +49,8 @@ public class PlayerScript : MonoBehaviour
     {
         playerLose.SetActive(true);
     }
-    public void pressToPlayAgain(){
+    public void pressToPlayAgain()
+    {
         pressToReplay.SetActive(true);
 
     }
@@ -68,7 +69,7 @@ public class PlayerScript : MonoBehaviour
     {
         return (playerLife / 100);
     }
-
+}
     //private void OnTriggerEnter(Collider other)
     //{
      //   if (other.tag == "pulse" && !DidHit)
@@ -94,4 +95,5 @@ public class PlayerScript : MonoBehaviour
 
 
   //  }
-}
+
+
