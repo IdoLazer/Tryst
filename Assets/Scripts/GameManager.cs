@@ -55,8 +55,8 @@ public class GameManager : MonoBehaviour
         display.StartDisplay(); //this connects display cameras to 2 monitors
         myGui = GetComponent<GameGui>();
         myGui.showStart();
-        planetBlack = GameObject.Find("PlanetBlack");
-        planetWhite = GameObject.Find("PlanetWhite");
+        //planetBlack = GameObject.Find("PlanetBlack");
+        //planetWhite = GameObject.Find("PlanetWhite");
 
     }
 
@@ -153,8 +153,8 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 1.0f;
                 player1.SetActive(false);
                 player2.SetActive(false);
-                planetBlack.GetComponent<PlanetRotateScript>().rotatePlanet(player1);
-                planetWhite.GetComponent<PlanetRotateScript>().rotatePlanet(player2);
+                //planetBlack.GetComponent<PlanetRotateScript>().rotatePlanet(player1);
+                //planetWhite.GetComponent<PlanetRotateScript>().rotatePlanet(player2);
 
                 PressToStartGame();
 
