@@ -7,6 +7,7 @@ public class ShaderScript : MonoBehaviour
 {
     public bool isWobbling = true;
     public float curWobbleWaveTime = 0;
+    public MeshRenderer aura;
 
     [Header("Default Settings")]
     public Vector3 baseWobbleTime = new Vector3(1f, 1f, 0f);
@@ -21,11 +22,15 @@ public class ShaderScript : MonoBehaviour
     public float accelerationTime = 1f;
 
     [Header("Rotation Settings")]
+    public float rotationWobbleSpeed = 0.1f;
     public float rotationSpeed = 6f;
+    public float rotatingWobbleDistanceMin = 0.3f;
+    public float rotatingWobbleDistanceMax = 0.5f;
     [Range(0, 2 * Mathf.PI)] public float leftTurnPoint = 0;
     [Range(0, 2 * Mathf.PI)] public float rightTurnPoint = Mathf.PI;
     [Range(0, 2 * Mathf.PI)] public float rotationHoldVariation = 0.6f;
     public bool canSnap = false;
+    public bool rotationWobbleBackwards = false;
 
     MeshRenderer meshRender;
 
@@ -42,12 +47,18 @@ public class ShaderScript : MonoBehaviour
     private float wobbleWavePosBeforeRotation;
     private float startAccelerationOrDeccelerationTime = 0;
     private float startRotationTime = 0;
+    private float startRotationWobbleTime = 0;
     private bool moving = false;
     private int rotating = 0;
+    private bool rotatingFloatingAway = true;
+    private PlayerScript playerScript;
+    private float startingFresnelPower;
+    private float startingFresnelPowerAura;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerScript = GetComponent<PlayerScript>();
         curWobbleTime = baseWobbleTime;
         curWobbleDist = baseWobbleDistance;
         curWobbleFreq = baseWobbleFreq;
@@ -59,6 +70,8 @@ public class ShaderScript : MonoBehaviour
         minWobbleFreqAchieved = curWobbleFreq;
         minWobbleDistAchieved = curWobbleDist;
         minWobbleTimeAchieved = curWobbleTime;
+        startingFresnelPower = meshRender.material.GetFloat("_FresnelPower");
+        startingFresnelPowerAura = aura.material.GetFloat("_FresnelPower");
     }
 
     // Update is called once per frame
@@ -68,6 +81,8 @@ public class ShaderScript : MonoBehaviour
         curWobbleWaveTime = isWobbling ? (curWobbleWaveTime + Time.deltaTime) % wobbleWaveLength : curWobbleWaveTime;
         meshRender.material.SetFloat("_wobControl", curWobbleWaveTime);
 
+        meshRender.material.SetFloat("_FresnelPower", ((playerScript.ValForShader() + 0.2f) / 2) * startingFresnelPower);
+        aura.material.SetFloat("_FresnelPower", ((playerScript.ValForShader() + 0.5f) / 2) * startingFresnelPowerAura);
         meshRender.material.SetFloat("_wobbleSpeed", wobbleSpeed);
         meshRender.material.SetFloat("_wobbleFreq", curWobbleFreq);
         meshRender.material.SetFloat("_wobbleDistance", curWobbleDist);
@@ -76,11 +91,11 @@ public class ShaderScript : MonoBehaviour
         {
             Rotate(rotating);
         }
-        if (moving)
+        if (moving && isWobbling)
         {
             Accelerate(true);
         }
-        else
+        else if (isWobbling)
         {
             Accelerate(false);
         }
@@ -96,15 +111,34 @@ public class ShaderScript : MonoBehaviour
     {
         if (rotating != dir)
         {
+            rotatingFloatingAway = true;
             wobbleWavePosBeforeRotation = curWobbleWaveTime;
             rotating = dir;
             startRotationTime = Time.time;
+            startRotationWobbleTime = Time.time;
         }
     }
 
     private void Rotate(int dir)
     {
         isWobbling = false;
+        if (rotatingFloatingAway && curWobbleDist >= rotatingWobbleDistanceMax && rotationWobbleBackwards)
+        {
+            startRotationWobbleTime = Time.time;
+            rotatingFloatingAway = false;
+        }
+        else if (!rotatingFloatingAway && curWobbleDist <= rotatingWobbleDistanceMin && rotationWobbleBackwards) {
+            startRotationWobbleTime = Time.time;
+            rotatingFloatingAway = true;
+        }
+        if (rotatingFloatingAway)
+        {
+            curWobbleDist = Mathf.Lerp(rotatingWobbleDistanceMin, rotatingWobbleDistanceMax, (Time.time - startRotationWobbleTime) * rotationWobbleSpeed);
+        }
+        else
+        {
+            curWobbleDist = Mathf.Lerp(rotatingWobbleDistanceMax, rotatingWobbleDistanceMin, (Time.time - startRotationWobbleTime) * rotationWobbleSpeed);
+        }
         float target = (dir > 0 ? rightTurnPoint : leftTurnPoint) / wobbleSpeed;
         if (Mathf.Abs(wobbleWavePosBeforeRotation - target) < rotationHoldVariation)
         {

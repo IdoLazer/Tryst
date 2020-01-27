@@ -178,6 +178,12 @@ MonoBehaviour:
     FarClipPlane: 5000
     Dutch: 0
   m_ComponentOwner: {fileID: 1163423759}
+--- !u!23 &47006065 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -1504981713932161579, guid: 7ace645f2d7784cffb60d1f21cf6eff1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1919666153}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &64398569
 GameObject:
   m_ObjectHideFlags: 0
@@ -3712,7 +3718,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: -0.3}
 --- !u!23 &815885869
 MeshRenderer:
@@ -4519,6 +4525,7 @@ MonoBehaviour:
   menuPlayer2: {fileID: 815885871}
   delayUntilReplayAvailable: 2
   diseaseTime: 0.2
+  ShouldSlowMo: 0
 --- !u!114 &951592292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4746,6 +4753,12 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!23 &980212619 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -1504981713932161579, guid: 7ace645f2d7784cffb60d1f21cf6eff1,
+    type: 3}
+  m_PrefabInstance: {fileID: 142769876}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &986657136
 GameObject:
   m_ObjectHideFlags: 0
@@ -5951,7 +5964,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1168785309}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalPosition: {x: 0, y: -2, z: 0.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1651616981}
@@ -6923,7 +6936,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: -0.3}
 --- !u!23 &1456024212
 MeshRenderer:
@@ -7402,8 +7415,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1543879237}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2, z: 0.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1867209099}
@@ -8177,8 +8190,63 @@ PrefabInstance:
     - target: {fileID: 8750496076804574230, guid: 0d9a1b36c1a3d1741bca3fed1997fc66,
         type: 3}
       propertyPath: movingWobbleTime.x
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8750496076804574230, guid: 0d9a1b36c1a3d1741bca3fed1997fc66,
+        type: 3}
+      propertyPath: curWobbleWaveTime
+      value: 1.8374752
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750496076804574230, guid: 0d9a1b36c1a3d1741bca3fed1997fc66,
+        type: 3}
+      propertyPath: rotationWobbleSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750496076804574230, guid: 0d9a1b36c1a3d1741bca3fed1997fc66,
+        type: 3}
+      propertyPath: rotatingWobbleDistanceMin
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750496076804574230, guid: 0d9a1b36c1a3d1741bca3fed1997fc66,
+        type: 3}
+      propertyPath: rotatingWobbleDistanceMax
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750496076804574230, guid: 0d9a1b36c1a3d1741bca3fed1997fc66,
+        type: 3}
+      propertyPath: canSnap
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750496076804574230, guid: 0d9a1b36c1a3d1741bca3fed1997fc66,
+        type: 3}
+      propertyPath: movingWobbleFreq
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750496076804574230, guid: 0d9a1b36c1a3d1741bca3fed1997fc66,
+        type: 3}
+      propertyPath: movingWobbleDistance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750496076804574230, guid: 0d9a1b36c1a3d1741bca3fed1997fc66,
+        type: 3}
+      propertyPath: leftTurnPoint
+      value: 3.141593
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750496076804574230, guid: 0d9a1b36c1a3d1741bca3fed1997fc66,
+        type: 3}
+      propertyPath: rightTurnPoint
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750496076804574230, guid: 0d9a1b36c1a3d1741bca3fed1997fc66,
+        type: 3}
+      propertyPath: baseWobbleDistance
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750496076804574230, guid: 0d9a1b36c1a3d1741bca3fed1997fc66,
+        type: 3}
+      propertyPath: aura
+      value: 
+      objectReference: {fileID: 980212619}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d9a1b36c1a3d1741bca3fed1997fc66, type: 3}
 --- !u!4 &1651616981 stripped
@@ -8887,8 +8955,58 @@ PrefabInstance:
     - target: {fileID: 828245915756244539, guid: 176c3e11dc31569429e02c260169860f,
         type: 3}
       propertyPath: movingWobbleTime.x
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 828245915756244539, guid: 176c3e11dc31569429e02c260169860f,
+        type: 3}
+      propertyPath: curWobbleWaveTime
+      value: 1.8374752
+      objectReference: {fileID: 0}
+    - target: {fileID: 828245915756244539, guid: 176c3e11dc31569429e02c260169860f,
+        type: 3}
+      propertyPath: baseWobbleDistance
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 828245915756244539, guid: 176c3e11dc31569429e02c260169860f,
+        type: 3}
+      propertyPath: movingWobbleFreq
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 828245915756244539, guid: 176c3e11dc31569429e02c260169860f,
+        type: 3}
+      propertyPath: movingWobbleDistance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 828245915756244539, guid: 176c3e11dc31569429e02c260169860f,
+        type: 3}
+      propertyPath: rotationWobbleSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 828245915756244539, guid: 176c3e11dc31569429e02c260169860f,
+        type: 3}
+      propertyPath: rotatingWobbleDistanceMin
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 828245915756244539, guid: 176c3e11dc31569429e02c260169860f,
+        type: 3}
+      propertyPath: leftTurnPoint
+      value: 3.141593
+      objectReference: {fileID: 0}
+    - target: {fileID: 828245915756244539, guid: 176c3e11dc31569429e02c260169860f,
+        type: 3}
+      propertyPath: rightTurnPoint
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 828245915756244539, guid: 176c3e11dc31569429e02c260169860f,
+        type: 3}
+      propertyPath: canSnap
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 828245915756244539, guid: 176c3e11dc31569429e02c260169860f,
+        type: 3}
+      propertyPath: aura
+      value: 
+      objectReference: {fileID: 47006065}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 176c3e11dc31569429e02c260169860f, type: 3}
 --- !u!4 &1867209099 stripped
