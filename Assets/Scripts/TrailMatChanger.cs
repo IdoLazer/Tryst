@@ -12,7 +12,6 @@ public class TrailMatChanger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // if we find a pulse 
-        Debug.Log(other.tag);
 
         if (other.tag == "pulse" && !didHit)
         {

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -7412764404392887096}
   m_Layer: 0
   m_Name: PulseBlack
-  m_TagString: Untagged
+  m_TagString: pulse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,7 +113,7 @@ MeshCollider:
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4711208715938537054, guid: 50232e1ff283f429b8168bd9048ed5ce, type: 3}
 --- !u!114 &-7412764404392887096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,5 +126,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e18eca135a714f2498969083af3af252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxScale: 100
-  speed: 10

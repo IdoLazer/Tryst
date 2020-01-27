@@ -48,4 +48,6 @@ public class TrailController : MonoBehaviour
             yield return new WaitForSeconds(waitingTimeBetweenTrailPieces);
         }
     }
+
+
 }
