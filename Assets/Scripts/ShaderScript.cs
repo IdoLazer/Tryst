@@ -83,6 +83,7 @@ public class ShaderScript : MonoBehaviour
 
         meshRender.material.SetFloat("_FresnelPower", Math.Min(((playerScript.ValForShader() + 0.2f) / 2) * startingFresnelPower, startingFresnelPower));
         aura.material.SetFloat("_FresnelPower", Mathf.Min(((playerScript.ValForShader() + 0.5f) / 2) * startingFresnelPowerAura, startingFresnelPowerAura));
+        aura.material.SetFloat("_wobbleControl", curWobbleWaveTime);
         meshRender.material.SetFloat("_wobbleSpeed", wobbleSpeed);
         meshRender.material.SetFloat("_wobbleFreq", curWobbleFreq);
         meshRender.material.SetFloat("_wobbleDistance", curWobbleDist);
