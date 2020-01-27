@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     private float distanceBetween;
     private GameGui myGui;
     private DisplayScript display;
+    private GameObject planetBlack;
+    private GameObject planetWhite;
 
     //all things to do when we are dead
     private bool PlayerOneDead = false;
@@ -53,6 +55,9 @@ public class GameManager : MonoBehaviour
         display.StartDisplay(); //this connects display cameras to 2 monitors
         myGui = GetComponent<GameGui>();
         myGui.showStart();
+        planetBlack = GameObject.Find("PlanetBlack");
+        planetWhite = GameObject.Find("PlanetWhite");
+
     }
 
     // Update is called once per frame
@@ -148,7 +153,11 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 1.0f;
                 player1.SetActive(false);
                 player2.SetActive(false);
+                planetBlack.GetComponent<PlanetRotateScript>().rotatePlanet(player1);
+                planetWhite.GetComponent<PlanetRotateScript>().rotatePlanet(player2);
+
                 PressToStartGame();
+
                 break;
 
             case State.Lose:
