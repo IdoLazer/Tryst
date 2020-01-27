@@ -37,6 +37,9 @@ public class GameManager : MonoBehaviour
 
     //if we are close to wining 
     public bool ShouldSlowMo = false;
+    //counter for the win screnn
+    float GameTime;
+
 
     void Start()
     {
@@ -55,6 +58,7 @@ public class GameManager : MonoBehaviour
             case State.Start:
 
                 // this function shows the start menue:
+                GameTime = Time.time;
                 myGui.showStart();
 
                 // when pressed will load the actual game 
@@ -106,13 +110,15 @@ public class GameManager : MonoBehaviour
                 }
 
                 distanceBetween = Vector3.Distance(player1.transform.position, player2.transform.position);
-                Debug.Log(distanceBetween);
+                //Debug.Log(distanceBetween);
 
                 if (distanceBetween < 3f)
                 {
                     player1.layer = 0;
                     player2.layer = 0;
-                    ShouldSlowMo = true;
+                    Debug.Log(Time.timeScale);
+                    Time.timeScale = 0.2f;
+                    Debug.Log(Time.timeScale);
                 }
 
                 else
@@ -122,13 +128,16 @@ public class GameManager : MonoBehaviour
                 }
                 if (distanceBetween < 1f)
                 {
+                    GameTime = Time.time - GameTime;
                     state = State.Win;
                 }
                 break;
 
             case State.Win:
+                
+                updateGuiStats();
                 myGui.win();
-                clearPieces();
+                Time.timeScale = 1.0f;
                 player1.SetActive(false);
                 player2.SetActive(false);
                 PressToStartGame();
@@ -171,7 +180,9 @@ public class GameManager : MonoBehaviour
 
         if (BothPress)
         {
-           state = State.Start;
+            clearPieces();
+            state = State.Start;
+
         }
     }
     public void MeetToStartGame(){
@@ -248,5 +259,31 @@ public class GameManager : MonoBehaviour
     {
         return PlayerTwoDead;
     }
-  
+
+    public void updateGuiStats()
+    {
+
+        Transform win1Contain = myGui.getWinOne();
+        Transform win2Contain = myGui.getWinTwo();
+
+        TextMesh momentsPlayerOne = win1Contain.transform.GetChild(0).GetComponent<TextMesh>();
+        TextMesh TrailsNumPlayerOne = win1Contain.transform.GetChild(1).GetComponent<TextMesh>();
+        TextMesh PulseNumPlayerOne = win1Contain.transform.GetChild(2).GetComponent<TextMesh>();
+
+        momentsPlayerOne.text = Mathf.Round(GameTime).ToString() + " moments";
+        TrailsNumPlayerOne.text = player1.GetComponent<PlayerScript>().sizeOfTrail.ToString() + " light years";
+        PulseNumPlayerOne.text = player1.GetComponent<PlayerScript>().numOfPulses.ToString() + " pulses";
+
+        TextMesh momentsPlayerTwo = win2Contain.transform.GetChild(0).GetComponent<TextMesh>();
+        TextMesh TrailsNumPlayerTwo = win2Contain.transform.GetChild(1).GetComponent<TextMesh>();
+        TextMesh PulseNumPlayerTwo = win2Contain.transform.GetChild(2).GetComponent<TextMesh>();
+
+        momentsPlayerTwo.text = Mathf.Round(GameTime).ToString() + " moments";
+        TrailsNumPlayerTwo.text = player2.GetComponent<PlayerScript>().sizeOfTrail.ToString() + " light years";
+        PulseNumPlayerTwo.text = player2.GetComponent<PlayerScript>().numOfPulses.ToString() + " pulses";
+
+
+
+    }
+
 }

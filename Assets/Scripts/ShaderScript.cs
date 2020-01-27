@@ -81,8 +81,8 @@ public class ShaderScript : MonoBehaviour
         curWobbleWaveTime = isWobbling ? (curWobbleWaveTime + Time.deltaTime) % wobbleWaveLength : curWobbleWaveTime;
         meshRender.material.SetFloat("_wobControl", curWobbleWaveTime);
 
-        meshRender.material.SetFloat("_FresnelPower", ((playerScript.ValForShader() + 0.2f) / 2) * startingFresnelPower);
-        aura.material.SetFloat("_FresnelPower", ((playerScript.ValForShader() + 0.5f) / 2) * startingFresnelPowerAura);
+        meshRender.material.SetFloat("_FresnelPower", Math.Min(((playerScript.ValForShader() + 0.2f) / 2) * startingFresnelPower, startingFresnelPower));
+        aura.material.SetFloat("_FresnelPower", Mathf.Min(((playerScript.ValForShader() + 0.5f) / 2) * startingFresnelPowerAura, startingFresnelPowerAura));
         meshRender.material.SetFloat("_wobbleSpeed", wobbleSpeed);
         meshRender.material.SetFloat("_wobbleFreq", curWobbleFreq);
         meshRender.material.SetFloat("_wobbleDistance", curWobbleDist);

@@ -40,6 +40,16 @@ public class GameGui : MonoBehaviour
         Debug.Log("win");
     }
 
+    public Transform getWinOne()
+    {
+        return Win1.transform.Find("StatsContainer");
+    }
+
+    public Transform getWinTwo()
+    {
+        return Win2.transform.Find("StatsContainer");
+    }
+
     // public void lose()
     // {
     //     Lose.SetActive(true);

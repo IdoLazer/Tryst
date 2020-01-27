@@ -12,6 +12,7 @@ public class TrailMatChanger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // if we find a pulse 
+        Debug.Log(other.tag);
 
         if (other.tag == "pulse" && !didHit)
         {
@@ -19,7 +20,6 @@ public class TrailMatChanger : MonoBehaviour
             didHit = true;
             MeshRenderer rend = GetComponent<MeshRenderer>() as MeshRenderer;
             string matName = rend.material.name;
-            Debug.Log(matName);
 
             if (matName.Contains(Black.name))
             {
