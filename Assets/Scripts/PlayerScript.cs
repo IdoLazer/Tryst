@@ -16,8 +16,14 @@ public class PlayerScript : MonoBehaviour
     //how long to wait b4get life
     private float Waiting4Pulse = 2.5f;
 
+    //counter for the win screnn
+    public int sizeOfTrail;
+    public int numOfPulses;
+
     void Start()
     {
+        sizeOfTrail = 0;
+        numOfPulses = 0;
         initialLife = playerLife;
         GetComponent<Rigidbody>().useGravity = false;
         planet = GameObject.FindGameObjectWithTag("Planet");
@@ -63,29 +69,29 @@ public class PlayerScript : MonoBehaviour
         return (playerLife / 100);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "pulse" && !DidHit)
-        {
-            StartCoroutine(waitTillPulseIsOver());
-            DidHit = true;
-            return;
-        }
-        DidHit = false;
-        return;
+    //private void OnTriggerEnter(Collider other)
+    //{
+     //   if (other.tag == "pulse" && !DidHit)
+       // {
+         //   StartCoroutine(waitTillPulseIsOver());
+           // DidHit = true;
+            //return;
+        //}
+        //DidHit = false;
+        //return;
 
-    }
+    //}
     
-    private IEnumerator waitTillPulseIsOver()
-    {
-        yield return new WaitForSeconds(2.5f);
-        GameObject otherPlayer = (tag == "Player1") ? GameObject.FindGameObjectWithTag("Player2") : GameObject.FindGameObjectWithTag("Player1");
-        if(otherPlayer.GetComponent<PlayerScript>().playerLife < 90)
-        {
-            otherPlayer.GetComponent<PlayerScript>().playerLife += 10;
+    //private IEnumerator waitTillPulseIsOver()
+   // {
+     //   yield return new WaitForSeconds(2.5f);
+       // GameObject otherPlayer = (tag == "Player1") ? GameObject.FindGameObjectWithTag("Player2") : GameObject.FindGameObjectWithTag("Player1");
+        //if(otherPlayer.GetComponent<PlayerScript>().playerLife < 90)
+        //{
+          //  otherPlayer.GetComponent<PlayerScript>().playerLife += 10;
 
-        }
+//        }
 
 
-    }
-}
+  //  }
+//}

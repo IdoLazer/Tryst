@@ -17,6 +17,7 @@ TagManager:
   - DisplayCamera2
   - MenuPlayer1
   - MenuPlayer2
+  - pulse
   layers:
   - Default
   - TransparentFX

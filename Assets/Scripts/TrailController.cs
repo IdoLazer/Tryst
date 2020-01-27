@@ -21,7 +21,7 @@ public class TrailController : MonoBehaviour
         bool p1Trail = KeyJoyController.getTrailPressed_Player1();
         bool p2Trail = KeyJoyController.getTrailPressed_Player2();
         bool ShouldTrail = (tag == "Player1") ?  p1Trail : p2Trail ;
-        if (ShouldTrail)
+        if (ShouldTrail  && GetComponent<PlayerScript>().playerLife > 0)
         {
             if (!startedTrail)
             {
@@ -45,6 +45,7 @@ public class TrailController : MonoBehaviour
         {
             bank.InstantiateTrailPiece(trailCreatorLocation.position);
             player.playerLife -= removeLife;
+            player.sizeOfTrail += 1;
             yield return new WaitForSeconds(waitingTimeBetweenTrailPieces);
         }
     }

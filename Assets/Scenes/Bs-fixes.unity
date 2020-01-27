@@ -4519,6 +4519,7 @@ MonoBehaviour:
   menuPlayer2: {fileID: 815885871}
   delayUntilReplayAvailable: 2
   diseaseTime: 0.2
+  ShouldSlowMo: 0
 --- !u!114 &951592292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8208,6 +8209,8 @@ MonoBehaviour:
   playerLife: 100
   playerLose: {fileID: 497253863}
   pressToReplay: {fileID: 497253862}
+  sizeOfTrail: 0
+  numOfPulses: 0
 --- !u!114 &1651616984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8242,7 +8245,7 @@ MonoBehaviour:
   trailCreatorLocation: {fileID: 1168785310}
   waitingTimeBetweenTrailPieces: 0.01
   player: {fileID: 1651616983}
-  removeLife: 0.01
+  removeLife: 0.05
 --- !u!54 &1651616986
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8337,7 +8340,7 @@ MonoBehaviour:
   trailCreatorLocation: {fileID: 1543879238}
   waitingTimeBetweenTrailPieces: 0.01
   player: {fileID: 1657735388}
-  removeLife: 0.01
+  removeLife: 0.05
 --- !u!1 &1696705966
 GameObject:
   m_ObjectHideFlags: 0
@@ -8536,6 +8539,8 @@ MonoBehaviour:
   playerLife: 100
   playerLose: {fileID: 0}
   pressToReplay: {fileID: 0}
+  sizeOfTrail: 0
+  numOfPulses: 0
 --- !u!54 &1737751298
 Rigidbody:
   m_ObjectHideFlags: 0

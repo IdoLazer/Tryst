@@ -43,11 +43,12 @@ public class EchoController : MonoBehaviour
         bool p2Pulse = KeyJoyController.getPulsePressed_Player2() ;
         bool ShouldPulse = (tag == "Player1") ?  p1Pulse : p2Pulse ;
 
-        if (ShouldPulse)
+        if (ShouldPulse && GetComponent<PlayerScript>().playerLife > 0)
         {
             if (canSendPulse && player.playerLife > 0)
             {
                 player.playerLife -= removeLife;
+                player.numOfPulses += 1;
                 StartCoroutine(SendPulse());
             }
         }
