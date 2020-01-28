@@ -40,15 +40,20 @@ public class GameManager : MonoBehaviour
     
     //counter for the win screen
     float GameTime;
-    public String[] winTitle = { "you win", "you won", "you wan", "you won" };
-    public float SlowMo = 0.1f;
-    public float slowMoRadius = 3f;
-    public float winRadius = 2f;
-    public float winSpeed = 3f;
+    public String[] winTitle = { "never gonna give you up",
+        "and so we meet", "just the 2 of us", "now we’re found", "how does it make you feel?" };
+    public float SlowMo = 0.5f;
+    public float slowMoRadius = 1.5f;
+    public float winRadius = 0.1f;
+    public float winSpeed = 1f;
     Scene Currscene;
     String sceneName;
     //public size for Trail display at win
     public float TrailSize = 6;
+    public float whenToSee = 7;
+    //for instructions :
+    GameObject inst1;
+    GameObject inst2;
 
 
     void Start()
@@ -60,6 +65,9 @@ public class GameManager : MonoBehaviour
         myGui.showStart();
         Currscene = SceneManager.GetActiveScene();
         sceneName = Currscene.name;
+        inst1 = player1.transform.GetChild(7).gameObject;
+        inst2 = player2.transform.GetChild(7).gameObject;
+
 
     }
 
@@ -79,6 +87,9 @@ public class GameManager : MonoBehaviour
                 break;
 
             case State.Game:
+
+                StartCoroutine(waitForint());
+
 
                 if (Input.GetKeyDown(KeyCode.P))
                 {
@@ -127,13 +138,25 @@ public class GameManager : MonoBehaviour
                 distanceBetween = Vector3.Distance(player1.transform.position, player2.transform.position);
                 Debug.Log(distanceBetween);
 
-                if (distanceBetween < slowMoRadius)
+                if(distanceBetween < whenToSee)
                 {
+                    player1.GetComponent<PlayerScript>().IsgonnaWin = true;
+                    player2.GetComponent<PlayerScript>().IsgonnaWin = true;
+
                     player1.layer = 0;
                     player2.layer = 0;
+
+
                     //to make able to see everything
                     player1.GetComponent<PlayerScript>().restart();
                     player1.GetComponent<PlayerScript>().restart();
+                }
+                
+                
+                if (distanceBetween < slowMoRadius)
+                {
+
+
                     Time.timeScale = SlowMo;
                     player1.transform.position = Vector3.MoveTowards(player1.transform.position, player2.transform.position, winSpeed * Time.deltaTime);
                     player2.transform.position = Vector3.MoveTowards(player2.transform.position, player1.transform.position, winSpeed * Time.deltaTime);
@@ -149,7 +172,7 @@ public class GameManager : MonoBehaviour
                 {
                     GameTime = Time.time - GameTime;
                     updateGuiStats();
-                    state = State.Win;
+                    StartCoroutine(waitForWin());
                 }
                 break;
 
@@ -330,6 +353,23 @@ public class GameManager : MonoBehaviour
             child.gameObject.SetActive(false);
         }
 
+
+    }
+
+    private IEnumerator waitForWin()
+    {
+        yield return new WaitForSeconds(3f);
+        state = State.Win;
+
+
+    }
+
+    private IEnumerator waitForint()
+    {
+        yield return new WaitForSeconds(4f);
+        inst1.SetActive(false);
+
+        inst2.SetActive(false);
 
     }
 

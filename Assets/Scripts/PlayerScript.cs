@@ -24,7 +24,8 @@ public class PlayerScript : MonoBehaviour
     private float currTimeTrail;
     //lightour reminder
     private bool FirstWarning = true;
-    public float randValInput = 0.3f; 
+    public float randValInput = 0.4f;
+    public bool IsgonnaWin  = false;
 
 
 
@@ -131,6 +132,7 @@ public class PlayerScript : MonoBehaviour
 
         if (other.tag == "piece")
         {
+
             if(other.name == "InvertedTrailPiece(Clone)")
             {
                 if (tag == "Player1")
@@ -166,7 +168,7 @@ public class PlayerScript : MonoBehaviour
     private void ShouldActiveStatment(string name)
     {
         float randVal = Random.value;
-        if(randVal < randValInput)
+        if(randVal < randValInput && IsgonnaWin)
         {
             GetComponent<PlayerUIScript>().ActivateUI(name);
         }
