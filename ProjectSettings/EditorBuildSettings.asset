@@ -17,7 +17,13 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Ido Integration.unity
     guid: e3d60dfb9880c9a4dbfeb057ab6f03b3
+  - enabled: 0
+    path: Assets/Scenes/ofek copy for tests.unity
+    guid: 783dc13cc82984e01b9c7a6687396c07
+  - enabled: 1
+    path: Assets/Scenes/Tryst Beta.unity
+    guid: 46c7a5393b1afd041bf15889b080090a
   m_configObjects: {}
