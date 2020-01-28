@@ -27,8 +27,6 @@ public class GameManager : MonoBehaviour
     private float distanceBetween;
     private GameGui myGui;
     private DisplayScript display;
-    private GameObject planetBlack;
-    private GameObject planetWhite;
 
     //all things to do when we are dead
     private bool PlayerOneDead = false;
@@ -43,9 +41,10 @@ public class GameManager : MonoBehaviour
     //counter for the win screen
     float GameTime;
     public String[] winTitle = { "you win", "you won", "you wan", "you won" };
-    public float SlowMo = 0.2f;
+    public float SlowMo = 0.1f;
     public float slowMoRadius = 3f;
     public float winRadius = 2f;
+    public float winSpeed = 3f;
     Scene Currscene;
     String sceneName;
     //public size for Trail display at win
@@ -132,10 +131,12 @@ public class GameManager : MonoBehaviour
                 {
                     player1.layer = 0;
                     player2.layer = 0;
+                    //to make able to see everything
+                    player1.GetComponent<PlayerScript>().restart();
+                    player1.GetComponent<PlayerScript>().restart();
                     Time.timeScale = SlowMo;
-                    
-                    //transform.position = Vector3.MoveTowards(player1.transform.position, player2.transform.position, 10 * Time.deltaTime);
-                    //transform.position = Vector3.MoveTowards(player2.transform.position, player1.transform.position, 10 * Time.deltaTime);
+                    player1.transform.position = Vector3.MoveTowards(player1.transform.position, player2.transform.position, winSpeed * Time.deltaTime);
+                    player2.transform.position = Vector3.MoveTowards(player2.transform.position, player1.transform.position, winSpeed * Time.deltaTime);
 
                 }
 
