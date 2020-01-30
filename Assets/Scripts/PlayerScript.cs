@@ -13,28 +13,15 @@ public class PlayerScript : MonoBehaviour
     public GameObject pressToReplay;
     private bool DidHit = false;
 
+    //how long to wait b4get life
+    private float Waiting4Pulse = 2.5f;
+
     //counter for the win screnn
     public int sizeOfTrail;
     public int numOfPulses;
-    //pulse reminder
-    private float HowLongTillPulse = 10f;
-    private float currTimePulse;
-    //trail reminder
-    private float HowLongTillTrail = 20f;
-    private float currTimeTrail;
-    //lightour reminder
-    private bool FirstWarning = true;
-    public float randValInput = 0.4f;
-    public bool IsgonnaWin  = false;
-
-
 
     void Start()
     {
-        //get the time we start
-        currTimePulse = Time.time;
-        currTimeTrail = Time.time;
-
         sizeOfTrail = 0;
         numOfPulses = 0;
         initialLife = playerLife;
@@ -57,39 +44,6 @@ public class PlayerScript : MonoBehaviour
         {
             attractorPlanet.Attract(playerTransform);
         }
-
-        //this parts checks if the player didnt send a pulse and if so will activate 
-        // a reminder 
-        if (Time.time - currTimePulse > HowLongTillPulse)
-        {
-            ShouldActiveStatment("didntsendPulse");
-            HowLongTillPulse = HowLongTillPulse * 2;
-            currTimePulse = Time.time;
-        }
-
-        //this parts checks if the player didnt make a trail and if so will activate 
-        // a reminder 
-        if (Time.time - currTimeTrail > HowLongTillTrail)
-        {
-            ShouldActiveStatment("didntMakeTRail");
-            HowLongTillPulse = HowLongTillPulse * 2;
-            currTimeTrail = Time.time;
-        }
-
-        //this parts checks if the player life low
-        if (playerLife <= 15 && FirstWarning)
-        {
-            GetComponent<PlayerUIScript>().ActivateUI("lightout");
-            FirstWarning = false;
-        }
-
-        if(playerLife <= 5 && !FirstWarning)
-        {
-            GetComponent<PlayerUIScript>().ActivateUI("lightout");
-        }
-
-        //basic call
-
     }
     public void die()
     {
@@ -115,67 +69,30 @@ public class PlayerScript : MonoBehaviour
     {
         return (playerLife / 100);
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "pulse" && !DidHit)
-        {
-            currTimePulse = Time.time;
-            DidHit = true;
-        }
-        if (other.tag == "pulse" && DidHit)
-        {
-            DidHit = false;
-            ShouldActiveStatment("recievespulse");
-            return;
-        }
-
-        if (other.tag == "piece")
-        {
-
-            if(other.name == "InvertedTrailPiece(Clone)")
-            {
-                if (tag == "Player1")
-                {
-
-                    ShouldActiveStatment("meetOtherTrail");
-                    return;
-                }
-
-                if (tag == "Player2")
-                {
-                    currTimeTrail = Time.time;
-                }
-            }
-            if(other.name == "Trail Piece(Clone)")
-            {
-                if (tag == "Player2")
-                {
-                    ShouldActiveStatment("meetOtherTrail");
-                    return;
-                }
-                if(tag == "Player1")
-                {
-                    currTimeTrail = Time.time;
-
-                }
-            }
-        }
-
-    }
-
-
-    private void ShouldActiveStatment(string name)
-    {
-        float randVal = Random.value;
-        if(randVal < randValInput && IsgonnaWin)
-        {
-            GetComponent<PlayerUIScript>().ActivateUI(name);
-        }
-        return;
-    }
 }
+    //private void OnTriggerEnter(Collider other)
+    //{
+     //   if (other.tag == "pulse" && !DidHit)
+       // {
+         //   StartCoroutine(waitTillPulseIsOver());
+           // DidHit = true;
+            //return;
+        //}
+        //DidHit = false;
+        //return;
 
+    //}
     
+    //private IEnumerator waitTillPulseIsOver()
+   // {
+     //   yield return new WaitForSeconds(2.5f);
+       // GameObject otherPlayer = (tag == "Player1") ? GameObject.FindGameObjectWithTag("Player2") : GameObject.FindGameObjectWithTag("Player1");
+        //if(otherPlayer.GetComponent<PlayerScript>().playerLife < 90)
+        //{
+          //  otherPlayer.GetComponent<PlayerScript>().playerLife += 10;
+
+//        }
 
 
+  //  }
+//}
