@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     
     //counter for the win screen
     float GameTime;
-    public String[] winTitle = { "never gonna give you up",
+    private String[] winTitle = { "never gonna give you up",
         "and so we meet", "just the 2 of us", "now we’re found", "how does it make you feel?" };
     public float SlowMo = 0.5f;
     public float slowMoRadius = 1.5f;
@@ -157,7 +157,7 @@ public class GameManager : MonoBehaviour
                 {
 
 
-                    Time.timeScale = SlowMo;
+                    //Time.timeScale = SlowMo;
                     player1.transform.position = Vector3.MoveTowards(player1.transform.position, player2.transform.position, winSpeed * Time.deltaTime);
                     player2.transform.position = Vector3.MoveTowards(player2.transform.position, player1.transform.position, winSpeed * Time.deltaTime);
 
