@@ -19,7 +19,6 @@ public class EchoController : MonoBehaviour
     //removing life when using pulse
     public float removeLife = 10;
     public PlayerScript player;
-    private bool isFirstTime = true;
     
 
 
@@ -46,11 +45,6 @@ public class EchoController : MonoBehaviour
 
         if (ShouldPulse && GetComponent<PlayerScript>().playerLife > 0)
         {
-            if(isFirstTime)
-            {
-                isFirstTime = false;
-                
-            }
             if (canSendPulse && player.playerLife > 0)
             {
                 player.playerLife -= removeLife;

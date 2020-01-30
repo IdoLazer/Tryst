@@ -32,28 +32,13 @@ public class GameManager : MonoBehaviour
     private bool PlayerOneDead = false;
     private bool PlayerTwoDead = false;
     private float disease = 1f;
-    public float diseaseTime = 10; // how often to remove one life  
+    public float diseaseTime = 10; // how often to remove one life
     private float TimeToDo = 0f;
 
     //if we are close to wining 
     public bool ShouldSlowMo = false;
-    
-    //counter for the win screen
+    //counter for the win screnn
     float GameTime;
-    private String[] winTitle = { "never gonna give you up",
-        "and so we meet", "just the 2 of us", "now we’re found", "how does it make you feel?" };
-    public float SlowMo = 0.5f;
-    public float slowMoRadius = 1.5f;
-    public float winRadius = 0.1f;
-    public float winSpeed = 1f;
-    Scene Currscene;
-    String sceneName;
-    //public size for Trail display at win
-    public float TrailSize = 6;
-    public float whenToSee = 7;
-    //for instructions :
-    GameObject inst1;
-    GameObject inst2;
 
 
     void Start()
@@ -63,12 +48,6 @@ public class GameManager : MonoBehaviour
         display.StartDisplay(); //this connects display cameras to 2 monitors
         myGui = GetComponent<GameGui>();
         myGui.showStart();
-        Currscene = SceneManager.GetActiveScene();
-        sceneName = Currscene.name;
-        inst1 = player1.transform.GetChild(7).gameObject;
-        inst2 = player2.transform.GetChild(7).gameObject;
-
-
     }
 
     // Update is called once per frame
@@ -88,9 +67,6 @@ public class GameManager : MonoBehaviour
 
             case State.Game:
 
-                StartCoroutine(waitForint());
-
-
                 if (Input.GetKeyDown(KeyCode.P))
                 {
                     shouldPaue();
@@ -103,10 +79,8 @@ public class GameManager : MonoBehaviour
                     {
                         TimeToDo = Time.time;
                     }
-
                     player1.GetComponent<PlayerScript>().die();
                     PlayerOneDead = true;
-
                     if (Time.time - TimeToDo >= diseaseTime)
                     {
                         TimeToDo = Time.time;
@@ -136,31 +110,15 @@ public class GameManager : MonoBehaviour
                 }
 
                 distanceBetween = Vector3.Distance(player1.transform.position, player2.transform.position);
-                Debug.Log(distanceBetween);
+                //Debug.Log(distanceBetween);
 
-                if(distanceBetween < whenToSee)
+                if (distanceBetween < 3f)
                 {
-                    player1.GetComponent<PlayerScript>().IsgonnaWin = true;
-                    player2.GetComponent<PlayerScript>().IsgonnaWin = true;
-
                     player1.layer = 0;
                     player2.layer = 0;
-
-
-                    //to make able to see everything
-                    player1.GetComponent<PlayerScript>().restart();
-                    player1.GetComponent<PlayerScript>().restart();
-                }
-                
-                
-                if (distanceBetween < slowMoRadius)
-                {
-
-
-                    //Time.timeScale = SlowMo;
-                    player1.transform.position = Vector3.MoveTowards(player1.transform.position, player2.transform.position, winSpeed * Time.deltaTime);
-                    player2.transform.position = Vector3.MoveTowards(player2.transform.position, player1.transform.position, winSpeed * Time.deltaTime);
-
+                    Debug.Log(Time.timeScale);
+                    Time.timeScale = 0.2f;
+                    Debug.Log(Time.timeScale);
                 }
 
                 else
@@ -168,29 +126,43 @@ public class GameManager : MonoBehaviour
                     player1.layer = 14; //P1CAM
                     player2.layer = 15; //P2CAM
                 }
-                if (distanceBetween < winRadius)
+                if (distanceBetween < 1f)
                 {
                     GameTime = Time.time - GameTime;
-                    updateGuiStats();
-                    StartCoroutine(waitForWin());
+                    state = State.Win;
                 }
                 break;
 
             case State.Win:
-
+                
+                updateGuiStats();
                 myGui.win();
                 Time.timeScale = 1.0f;
-                DeActiveChildren(player1);
-                DeActiveChildren(player2);
+                player1.SetActive(false);
+                player2.SetActive(false);
                 PressToStartGame();
-
                 break;
 
             case State.Lose:
                 // playes the animation for the press to restart
                 player1.GetComponent<PlayerScript>().pressToPlayAgain();
                 player2.GetComponent<PlayerScript>().pressToPlayAgain();
-                PressToStartGame();
+                // todo change the M botton
+
+                if (KeyJoyController.getTrailPressed_Player1() || KeyJoyController.getTrailPressed_Player2())
+                {
+                    clearPieces();
+                    player1.GetComponent<PlayerScript>().restart();
+                    player2.GetComponent<PlayerScript>().restart();
+                    player1.SetActive(false);
+                    player2.SetActive(false);
+                    PlayerOneDead = false;
+                    PlayerTwoDead = false;
+
+                    state = State.Start;
+
+                }
+
                 break;
 
         }
@@ -204,11 +176,13 @@ public class GameManager : MonoBehaviour
 
     public void PressToStartGame()
     {
-        bool BothPress = KeyJoyController.getTrailPressed_Player1() && KeyJoyController.getTrailPressed_Player2();
+        bool BothPress = KeyJoyController.getTrailPressed_Player1() || KeyJoyController.getTrailPressed_Player2();
 
         if (BothPress)
         {
-            SceneManager.LoadScene(sceneName);
+            clearPieces();
+            state = State.Start;
+
         }
     }
     public void MeetToStartGame(){
@@ -308,68 +282,7 @@ public class GameManager : MonoBehaviour
         TrailsNumPlayerTwo.text = player2.GetComponent<PlayerScript>().sizeOfTrail.ToString() + " light years";
         PulseNumPlayerTwo.text = player2.GetComponent<PlayerScript>().numOfPulses.ToString() + " pulses";
 
-        getWinningStatment();
-    }
 
-    private void enlargeTrail()
-    {
-        GameObject TrailHolder = GameObject.Find("TrailPieces");
-        Transform[] TrailFamily = TrailHolder.GetComponentsInChildren<Transform>();
-
-    }
-
-    private void getWinningStatment()
-    {
-        Transform titleOne = myGui.getWinningTitleOne();
-        Transform titleTwo = myGui.getWinningTitleTwo();
-
-        TextMesh text1 = titleOne.GetComponent<TextMesh>();
-        TextMesh text2 = titleTwo.GetComponent<TextMesh>();
-
-        int randChosenOne = UnityEngine.Random.Range(0, (int)winTitle.Length);
-        int randChosenTwo = UnityEngine.Random.Range(0, (int)winTitle.Length);
-        if(randChosenTwo == randChosenOne)
-        {
-            if(randChosenTwo != 0)
-            {
-                randChosenTwo = 0;
-            }
-            else
-            {
-                randChosenTwo = 1;
-            }
-        }
-
-        text1.text = winTitle[randChosenOne];
-        text2.text = winTitle[randChosenTwo];
-    }
-
-    private void DeActiveChildren(GameObject Player)
-    {
-        //to be able to activate win scene we set all children to false
-        Transform[] allChildren = Player.GetComponentsInChildren<Transform>();
-        foreach (Transform child in allChildren)
-        {
-            child.gameObject.SetActive(false);
-        }
-
-
-    }
-
-    private IEnumerator waitForWin()
-    {
-        yield return new WaitForSeconds(3f);
-        state = State.Win;
-
-
-    }
-
-    private IEnumerator waitForint()
-    {
-        yield return new WaitForSeconds(4f);
-        inst1.SetActive(false);
-
-        inst2.SetActive(false);
 
     }
 
