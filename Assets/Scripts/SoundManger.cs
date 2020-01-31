@@ -4,68 +4,67 @@ using UnityEngine;
 
 public class SoundManger : MonoBehaviour
 {
-    private static AudioClip[] walkSounds;
-    public AudioClip[] ManagerWalkSounds;
-    private AudioSource[] audioSrc;
-    private static AudioSource srcPlayer1;
-    private static AudioSource srcPlayer2;
-    private int chosen;
-    private static float startVolume1;
-    private static float startVolume2;
-    
+    private AudioSource audioSrc;
+    public AudioClip walkSound;
+    public AudioClip trailSound;
+    private const string WALK_CLIP_NAME = "walk";
+    private const string TRAIL_CLIP_NAME = "trail";
+    public float volumeWalk = 100;
+    public float volumeTrail = 100;
+    public float fadeOutFactor = 0.01f;
+    public float fadeInFactor = 0.01f;
+
+
     void Start()
-    {   
-        walkSounds = ManagerWalkSounds;
-        audioSrc = GetComponents<AudioSource>();
-        srcPlayer1 = audioSrc[0];
-        srcPlayer2 = audioSrc[1];     
-        startVolume1 = srcPlayer1.volume;
-        startVolume2 = srcPlayer2.volume;
-    }
-    public static void PlaySound_Player1(string clip){
-        PlaySound(clip, srcPlayer1, startVolume1);
-    }
-    public static void PlaySound_Player2(string clip){
-        PlaySound(clip, srcPlayer2 , startVolume2);
-    }
-    private static void PlaySound(string clip, AudioSource srcPlayer , float startVolume)
     {
-        srcPlayer.volume = startVolume;
+        audioSrc = GetComponents<AudioSource>()[0];
+        if (tag == "Player1"){
+            audioSrc.panStereo = -1; // left ear
+        }else{
+             audioSrc.panStereo = 1; // right ear
+        }
+        
+    }
+    public void PlaySound(string clip)
+    {
+        float maxVolume = 100;
+        AudioClip playSound = null;
         switch (clip)
         {
-
-            case "walk":
-                if (!srcPlayer.isPlaying)
-                {
-                    int chosen = Random.Range(0, (int) walkSounds.Length);
-                    SoundManger.playWalk(chosen , srcPlayer);
-                }
-
+            case WALK_CLIP_NAME:
+                maxVolume = volumeWalk;
+                playSound = walkSound;
                 break;
-                //case "cheer":
-                //  src.PlayOneShot(YaySound);
-                //break;
+
+            case TRAIL_CLIP_NAME:
+                maxVolume = volumeTrail;
+                playSound = trailSound;
+                break;
+        }    
+        if (audioSrc.volume < maxVolume)
+        {
+            audioSrc.volume += 0.01f;
+        }
+        if (!audioSrc.isPlaying)
+        {    
+            audioSrc.clip = playSound;
+            audioSrc.volume = fadeInFactor;
+            audioSrc.Play();
+            
         }
     }
-    private static void playWalk(int val, AudioSource srcPlayer)
-    {
-            srcPlayer.PlayOneShot(walkSounds[val]);
-    }
 
-    private static void StopPlaying(AudioSource srcPlayer , float startVolume)
+    public void StopPlaying()
     {
-        if (srcPlayer.volume > 0) {
-            srcPlayer.volume -= startVolume * Time.deltaTime;
+        float startVolume = audioSrc.volume;
+        //Fade sound 
+        if (audioSrc.volume > 0)
+        {
+            audioSrc.volume -= fadeOutFactor;
+        }else{
+           audioSrc.Stop(); 
         }
 
-    }
-    public static void StopPlaying_Player1()
-    {
-        StopPlaying(srcPlayer1 , startVolume1); 
-    }
-    public static void StopPlaying_Player2()
-    {
-        StopPlaying(srcPlayer2 , startVolume2); 
     }
 
 }

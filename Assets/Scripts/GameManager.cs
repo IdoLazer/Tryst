@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     public bool ShouldSlowMo = false;
     //counter for the win screnn
     float GameTime;
+    public float findRadius = 3f;
 
 
     void Start()
@@ -112,7 +113,7 @@ public class GameManager : MonoBehaviour
                 distanceBetween = Vector3.Distance(player1.transform.position, player2.transform.position);
                 //Debug.Log(distanceBetween);
 
-                if (distanceBetween < 3f)
+                if (distanceBetween < findRadius)
                 {
                     player1.layer = 0;
                     player2.layer = 0;

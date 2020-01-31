@@ -20,6 +20,7 @@ public class firstPersonControl : MonoBehaviour
     Vector3 moveAmount;
     Vector3 smoothMoveVel;
     ShaderScript shaderScript;
+    SoundManger soundManger;
 
     //needed to check if the player is dead
     private GameManager Gm;
@@ -27,6 +28,7 @@ public class firstPersonControl : MonoBehaviour
     void Start()
     {
         shaderScript = GetComponent<ShaderScript>();
+        soundManger = GetComponent<SoundManger>();
         Gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
@@ -71,12 +73,12 @@ public class firstPersonControl : MonoBehaviour
                         if (Mathf.Abs(axis) > Mathf.Epsilon)
                         {
                             shaderScript.StartMoving();
-                            SoundManger.PlaySound_Player1("walk");
+                            soundManger.PlaySound("walk");
                         }
                         else
                         {
                             shaderScript.StopMoving();
-                           SoundManger.StopPlaying_Player1();
+                           soundManger.StopPlaying();
                         }
                     }
                 }
@@ -128,12 +130,12 @@ public class firstPersonControl : MonoBehaviour
                         if (Mathf.Abs(axis) > Mathf.Epsilon)
                         {
                             shaderScript.StartMoving();
-                            SoundManger.PlaySound_Player2("walk");
+                            soundManger.PlaySound("walk");
                         }
                         else
                         {
                             shaderScript.StopMoving();
-                            SoundManger.StopPlaying_Player2();
+                            soundManger.StopPlaying();
                         }
                     }
                 }
