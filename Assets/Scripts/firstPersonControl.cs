@@ -52,6 +52,18 @@ public class firstPersonControl : MonoBehaviour
                 {
                     shaderScript.StartRotating((int)Mathf.Sign(axis));
                 }
+
+                //pitch sound
+                if (KeyJoyController.getTrailPressed_Player1())
+                {
+                    soundManger.PitchSound("trail", axis);
+                }
+                else
+                {
+                    soundManger.PitchSound("walk", axis);
+                }
+
+                transform.Rotate(rotatSpeen * Vector3.up * axis);
                 transform.Rotate(rotatSpeen * Vector3.up * axis);
 
                 //---- Player 1 Forward/Backward ---
@@ -73,12 +85,19 @@ public class firstPersonControl : MonoBehaviour
                         if (Mathf.Abs(axis) > Mathf.Epsilon)
                         {
                             shaderScript.StartMoving();
-                            soundManger.PlaySound("walk");
+                            if (!KeyJoyController.getTrailPressed_Player1())
+                            {
+                                soundManger.PlaySound("walk");
+                            }
+
                         }
                         else
                         {
                             shaderScript.StopMoving();
-                           soundManger.StopPlaying();
+                            if (!KeyJoyController.getTrailPressed_Player1())
+                            {
+                                soundManger.StopPlaying();
+                            }
                         }
                     }
                 }
@@ -109,6 +128,15 @@ public class firstPersonControl : MonoBehaviour
                 {
                     shaderScript.StartRotating((int)Mathf.Sign(axis));
                 }
+                //pitch sound
+                if (KeyJoyController.getTrailPressed_Player2())
+                {
+                    soundManger.PitchSound("trail", axis);
+                }
+                else
+                {
+                    soundManger.PitchSound("walk", axis);
+                }
 
                 transform.Rotate(rotatSpeen * Vector3.up * axis);
 
@@ -130,12 +158,20 @@ public class firstPersonControl : MonoBehaviour
                         if (Mathf.Abs(axis) > Mathf.Epsilon)
                         {
                             shaderScript.StartMoving();
-                            soundManger.PlaySound("walk");
+                            if (!KeyJoyController.getTrailPressed_Player2())
+                            {
+                                soundManger.PlaySound("walk");
+                            }
+
                         }
                         else
                         {
                             shaderScript.StopMoving();
-                            soundManger.StopPlaying();
+                            if (!KeyJoyController.getTrailPressed_Player2())
+                            {
+                                soundManger.StopPlaying();
+                            }
+
                         }
                     }
                 }

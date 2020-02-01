@@ -10,9 +10,13 @@ public class TrailController : MonoBehaviour
     public float waitingTimeBetweenTrailPieces = 0.3f;
     Coroutine leaveTrailCoroutine;
     public PlayerScript player;
-    public float removeLife = 10f;
+    public float removeLife = 0f;
 
     private bool startedTrail = false;
+    private SoundManger soundManger;
+    void Start(){   
+        soundManger = GetComponent<SoundManger>(); 
+    }
 
     void Update()
     {
@@ -27,7 +31,9 @@ public class TrailController : MonoBehaviour
             {
                 startedTrail = true;
                 leaveTrailCoroutine = StartCoroutine(LeaveTrail());
+       
             }
+            soundManger.PlaySound("trail");
         }
         else
         {
