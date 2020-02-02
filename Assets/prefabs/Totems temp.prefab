@@ -4894,7 +4894,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   usedTotemPartical: {fileID: 847012021150578385}
   totemCombo: 3
-  speedBoost: 10
+  speedBoost: 3
 --- !u!1 &8363666126533742205
 GameObject:
   m_ObjectHideFlags: 0
@@ -9757,4 +9757,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   usedTotemPartical: {fileID: 8144810781596927929}
   totemCombo: 3
-  speedBoost: 10
+  speedBoost: 3
