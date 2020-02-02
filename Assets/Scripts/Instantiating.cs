@@ -9,7 +9,13 @@ public class Instantiating : MonoBehaviour
 
     public int numObjects = 2;
 
-    public void loadPlayers()
+    public void LoadLevel()
+    {
+        GetComponent<TotemCreatorScript>().LoadTotems();
+        LoadPlayers();
+    }
+
+    public void LoadPlayers()
     {
         player1.SetActive(true);
         player2.SetActive(true);
@@ -29,7 +35,5 @@ public class Instantiating : MonoBehaviour
 
         player1.SetActive(true);
         player2.SetActive(true);
-
     }
-
 }

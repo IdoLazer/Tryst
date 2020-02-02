@@ -190,7 +190,7 @@ public class GameManager : MonoBehaviour
         if (menuPlayer1.meet || menuPlayer2.meet){
             menuPlayer1.reset();
             menuPlayer2.reset();
-            init.loadPlayers();
+            init.LoadLevel();
             StartCoroutine(FindPlayersAndStartGame());
         }
 
