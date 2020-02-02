@@ -64,9 +64,10 @@ public class SoundManger : MonoBehaviour
             audioSrc.pitch += pitchFadeSpeed / 100;
             audioSrc.pitch = audioSrc.pitch > pitch ? pitch : audioSrc.pitch; //normalize pitch
         }
-        else
+        else if (audioSrc.pitch > pitch)
         {
             audioSrc.pitch -= pitchFadeSpeed / 100;
+            audioSrc.pitch = audioSrc.pitch < pitch ? pitch : audioSrc.pitch; //normalize pitch
         }
 
     }

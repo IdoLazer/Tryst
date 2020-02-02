@@ -18,6 +18,8 @@ TagManager:
   - MenuPlayer1
   - MenuPlayer2
   - pulse
+  - totem black
+  - totem white
   layers:
   - Default
   - TransparentFX

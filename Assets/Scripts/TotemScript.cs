@@ -4,20 +4,27 @@ using UnityEngine;
 
 public class TotemScript : MonoBehaviour
 {
-    private bool player1Active = true;
-    private bool player2Active = true;
+    public ParticleSystem usedTotemPartical;
+    public int totemCombo = 3;
+    public float speedBoost = 2;
+    private bool isUsed;
 
-    
-    // Start is called before the first frame update
     void Start()
     {
-            
-        
+        isUsed = false;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    
+    // Returns true if totem was activated
+    public bool useTotem(){
+        if(!isUsed){
+            isUsed = true;
+            usedTotemPartical.Play();
+            return true;
+        }
+        return false;
+    }
+    public void resetTotem(){
+        isUsed = false;
+        usedTotemPartical.Stop();
     }
 }

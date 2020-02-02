@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    private LinkedList<TotemScript> usedTotems;
+    private int totemsCount;
+    private string totemTag;
+    private const string TOTEM_TAG_PLAYER_1 = "totem white";
+    private const string TOTEM_TAG_PLAYER_2 = "totem white";
+    private const string TAG_PLAYER_1 = "Player1";
+    private const string TAG_PLAYER_2 = "Player2";
+
     private PlanetScript attractorPlanet;
     private GameObject planet;
     private Transform playerTransform;
@@ -12,6 +20,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject playerLose;
     public GameObject pressToReplay;
     private bool DidHit = false;
+    private firstPersonControl playerControl;
 
     //how long to wait b4get life
     private float Waiting4Pulse = 2.5f;
@@ -22,6 +31,10 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
+        playerControl = GetComponent<firstPersonControl>();
+        totemsCount = 0;
+        usedTotems = new LinkedList<TotemScript>();
+        totemTag = tag == TAG_PLAYER_1 ? TOTEM_TAG_PLAYER_1 : TOTEM_TAG_PLAYER_2;
         sizeOfTrail = 0;
         numOfPulses = 0;
         initialLife = playerLife;
@@ -29,7 +42,7 @@ public class PlayerScript : MonoBehaviour
         planet = GameObject.FindGameObjectWithTag("Planet");
         if (planet == null)
         {
-            Debug.Log("OH WHYYYY");
+            Debug.Log("Planet not found! Whyyy?");
         }
         attractorPlanet = planet.GetComponent<PlanetScript>();
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
@@ -69,7 +82,27 @@ public class PlayerScript : MonoBehaviour
     {
         return (playerLife / 100);
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == totemTag){
+            TotemScript totem = other.GetComponent<TotemScript>();
+            bool usedTotem = totem.useTotem();
+            if (usedTotem){
+                playerControl.walkSpeed = playerControl.walkSpeed + totem.speedBoost;
+            }
+        }
+        
+    }
 }
+    
+    
+    
+    
+    
+    
+    
+    // ------ OLD stuff ---------
+    
     //private void OnTriggerEnter(Collider other)
     //{
      //   if (other.tag == "pulse" && !DidHit)

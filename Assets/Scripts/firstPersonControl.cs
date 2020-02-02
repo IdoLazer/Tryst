@@ -7,7 +7,10 @@ public class firstPersonControl : MonoBehaviour
     public float mouseSenX = 250f;
     public float mouseSenY = 250f;
     public float rotatSpeen = 5;
+    public float fadeBoostSpeed = 1;
     public float walkSpeed;
+    public float maxWalkSpeed = 10;
+    private float initialWalkSpeed;
 
     [Range(0f, 1f)]
     public float controllerSensitivityY = 0.2f;
@@ -27,6 +30,7 @@ public class firstPersonControl : MonoBehaviour
 
     void Start()
     {
+        initialWalkSpeed = walkSpeed;
         shaderScript = GetComponent<ShaderScript>();
         soundManger = GetComponent<SoundManger>();
         Gm = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -34,6 +38,18 @@ public class firstPersonControl : MonoBehaviour
 
     void Update()
     {
+        // ============ Fade Boost Speed =========
+        walkSpeed = walkSpeed > maxWalkSpeed ? maxWalkSpeed : walkSpeed;
+
+        if (walkSpeed > initialWalkSpeed)
+        {
+            walkSpeed -= fadeBoostSpeed / 100;
+        }
+        else
+        {
+            walkSpeed = initialWalkSpeed;
+        }
+
         // ================== Player1 =========================
 
         if (tag == "Player1")
@@ -98,6 +114,7 @@ public class firstPersonControl : MonoBehaviour
                             {
                                 soundManger.StopPlaying();
                             }
+                            walkSpeed = initialWalkSpeed;
                         }
                     }
                 }
@@ -106,6 +123,7 @@ public class firstPersonControl : MonoBehaviour
             {
                 moveAmount = new Vector3(0, 0, 0);
                 shaderScript.StopMoving();
+                walkSpeed = initialWalkSpeed;
 
             }
 
@@ -171,6 +189,7 @@ public class firstPersonControl : MonoBehaviour
                             {
                                 soundManger.StopPlaying();
                             }
+                            walkSpeed = initialWalkSpeed;
 
                         }
                     }
@@ -178,13 +197,14 @@ public class firstPersonControl : MonoBehaviour
             }
 
             // ============ Player is dead ============
+
             else
             {
                 moveAmount = new Vector3(0, 0, 0);
                 shaderScript.StopMoving();
+                soundManger.StopPlaying();
 
             }
-
         }
     }
 
@@ -194,5 +214,10 @@ public class firstPersonControl : MonoBehaviour
         //Player Movment
         GetComponent<Rigidbody>().MovePosition(GetComponent<Rigidbody>().position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
 
+    }
+
+    public float getInitialWalkSpeed()
+    {
+        return initialWalkSpeed;
     }
 }
