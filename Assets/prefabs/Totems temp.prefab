@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &752012665261276679
 Transform:
   m_ObjectHideFlags: 0
@@ -4764,7 +4764,7 @@ GameObject:
   - component: {fileID: 3978701746701246851}
   m_Layer: 0
   m_Name: Totems temp
-  m_TagString: Player1
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4912,7 +4912,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9025250394323357992
 Transform:
   m_ObjectHideFlags: 0
