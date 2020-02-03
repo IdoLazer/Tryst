@@ -5,6 +5,7 @@ using UnityEngine;
 public class TotemScript : MonoBehaviour
 {
     public ParticleSystem usedTotemPartical;
+    public float resetTime = 6f;
     public int totemCombo = 3;
     public float speedBoost = 2;
     public float lifeBoost = 50;

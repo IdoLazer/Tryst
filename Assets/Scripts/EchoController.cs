@@ -48,7 +48,6 @@ public class EchoController : MonoBehaviour
         //    if (canSendPulse && player.playerLife > 0)
         //    {
         //        player.playerLife -= removeLife;
-        //        player.numOfPulses += 1;
         //        StartCoroutine(SendPulse());
         //    }
         //}
@@ -56,6 +55,7 @@ public class EchoController : MonoBehaviour
 
     public IEnumerator SendPulse()
     {
+        player.numOfPulses += 1;
         GameObject pulseContainer = Instantiate(pulseContainerPrefab, pulseCreatorLocation.position, transform.rotation, echoPulsesParent.transform);
         Instantiate(echoPulseBlackPrefab, pulseCreatorLocation.position, transform.rotation, pulseContainer.transform);
         yield return new WaitForSeconds(0.2f);
