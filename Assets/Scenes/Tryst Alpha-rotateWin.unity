@@ -25871,6 +25871,8 @@ MonoBehaviour:
   Win2: {fileID: 1024677787}
   StartMenu1: {fileID: 1484151852}
   StartMenu2: {fileID: 553396608}
+  Father1: {fileID: 1004273009}
+  Father2: {fileID: 324817669}
 --- !u!82 &951592293
 AudioSource:
   m_ObjectHideFlags: 0
@@ -32398,7 +32400,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1163640217}
-  - component: {fileID: 1163640218}
   m_Layer: 15
   m_Name: centerOfPlanetWhite
   m_TagString: Untagged
@@ -32421,19 +32422,6 @@ Transform:
   m_Father: {fileID: 1024677788}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1163640218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1163640216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2c28691dbf3d1d4ab654a4cbf503a2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedRotation: 5
 --- !u!1 &1166396347
 GameObject:
   m_ObjectHideFlags: 0
@@ -32662,7 +32650,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1173543328}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 104.999985, y: 50, z: 210.00005}
+  m_LocalPosition: {x: 105.000015, y: 50, z: 210.0001}
   m_LocalScale: {x: 30, y: 30, z: 30}
   m_Children:
   - {fileID: 2117593618}
@@ -35318,7 +35306,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1582329691}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.000030517578, y: -5, z: 370.00003}
+  m_LocalPosition: {x: -0.000030517578, y: -5, z: 370.0001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 324817670}
@@ -35805,6 +35793,7 @@ MonoBehaviour:
   loseLifeSpeed: 0.1
   playerLose: {fileID: 497253863}
   pressToReplay: {fileID: 497253862}
+  boostPS: {fileID: 0}
   sizeOfTrail: 0
   numOfPulses: 0
 --- !u!114 &1651616984
@@ -36406,6 +36395,7 @@ MonoBehaviour:
   loseLifeSpeed: 0.1
   playerLose: {fileID: 0}
   pressToReplay: {fileID: 0}
+  boostPS: {fileID: 0}
   sizeOfTrail: 0
   numOfPulses: 0
 --- !u!54 &1737751298
@@ -37202,7 +37192,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1904835688}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.000015258789, y: 0, z: 120.000015}
+  m_LocalPosition: {x: -0.000015258789, y: 0, z: 120.000046}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1166396348}
@@ -37875,7 +37865,7 @@ Transform:
   m_GameObject: {fileID: 1959563173}
   m_LocalRotation: {x: -0.3696438, y: 0.09904578, z: 0.23911768, w: 0.8923992}
   m_LocalPosition: {x: -60, y: 60, z: -20}
-  m_LocalScale: {x: 150.00023, y: 150.00002, z: 150.00027}
+  m_LocalScale: {x: 150.00046, y: 150.00012, z: 150.00053}
   m_Children: []
   m_Father: {fileID: 324817670}
   m_RootOrder: 4

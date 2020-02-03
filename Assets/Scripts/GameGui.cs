@@ -11,7 +11,9 @@ public class GameGui : MonoBehaviour
     //private GameObject Lose;
     public GameObject StartMenu1;
     public GameObject StartMenu2;
-    
+    //after moving everything in
+    public GameObject Father1;
+    public GameObject Father2;
 
 
 
@@ -42,20 +44,21 @@ public class GameGui : MonoBehaviour
 
     public Transform getWinOne()
     {
-        return Win1.transform.Find("StatsContainer");
+
+        return Father1.transform.Find("StatsContainer");
     }
 
     public Transform getWinTwo()
     {
-        return Win2.transform.Find("StatsContainer");
+        return Father2.transform.Find("StatsContainer");
     }
     public Transform getWinTextcontainerOne()
     {
-        return Win1.transform.Find("Win1");
+        return Father1.transform.Find("WinTitle");
     }
 
     public Transform getWinTextcontainerTwo()
     {
-        return Win1.transform.Find("Win2");
+        return Father2.transform.Find("WinTitle");
     }
 }

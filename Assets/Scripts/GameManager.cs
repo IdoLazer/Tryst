@@ -284,7 +284,6 @@ public class GameManager : MonoBehaviour
         PulseNumPlayerTwo.text = player2.GetComponent<PlayerScript>().numOfPulses.ToString() + " pulses";
 
 
-
     }
 
 }
