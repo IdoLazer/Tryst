@@ -50,7 +50,7 @@ public class TrailController : MonoBehaviour
         while (true)
         {
             bank.InstantiateTrailPiece(trailCreatorLocation.position);
-            player.playerLife -= removeLife;
+            //player.playerLife -= removeLife;
             player.sizeOfTrail += 1;
             yield return new WaitForSeconds(waitingTimeBetweenTrailPieces);
         }
