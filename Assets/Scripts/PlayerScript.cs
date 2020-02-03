@@ -17,6 +17,7 @@ public class PlayerScript : MonoBehaviour
     private Transform playerTransform;
     public float playerLife;
     private float initialLife;
+    public float loseLifeSpeed = 0.1f;
     public GameObject playerLose;
     public GameObject pressToReplay;
     private bool DidHit = false;
@@ -80,7 +81,7 @@ public class PlayerScript : MonoBehaviour
 
     public float ValForShader()
     {
-        return (playerLife / 100);
+        return (playerControl.walkSpeed / playerControl.getInitialWalkSpeed());
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -89,6 +90,11 @@ public class PlayerScript : MonoBehaviour
             bool usedTotem = totem.useTotem();
             if (usedTotem){
                 playerControl.walkSpeed = playerControl.walkSpeed + totem.speedBoost;
+                if (playerControl.walkSpeed >= playerControl.maxWalkSpeed)
+                {
+                    StartCoroutine(GetComponent<EchoController>().SendPulse());
+                    playerControl.walkSpeed = playerControl.getInitialWalkSpeed();
+                }
             }
         }
         

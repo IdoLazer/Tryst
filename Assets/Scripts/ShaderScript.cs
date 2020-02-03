@@ -7,12 +7,15 @@ public class ShaderScript : MonoBehaviour
 {
     public bool isWobbling = true;
     public float curWobbleWaveTime = 0;
+    public MeshRenderer aura;
 
     [Header("Default Settings")]
     public Vector3 baseWobbleTime = new Vector3(1f, 1f, 0f);
     public float wobbleSpeed = 2f;
     public float baseWobbleFreq = 3f;
     public float baseWobbleDistance = 0.2f;
+    public float maxFresnelPower = 2f;
+    public float minFresnelPower = 0.1f;
 
     [Header("Forward/Backward Movement Settings")]
     public Vector3 movingWobbleTime = new Vector3(3f, 1f, 0f);
@@ -44,10 +47,14 @@ public class ShaderScript : MonoBehaviour
     private float startRotationTime = 0;
     private bool moving = false;
     private int rotating = 0;
+    private PlayerScript playerScript;
+    private float startingFresnelPower;
+    private float startingFresnelPowerAura;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerScript = GetComponent<PlayerScript>();
         curWobbleTime = baseWobbleTime;
         curWobbleDist = baseWobbleDistance;
         curWobbleFreq = baseWobbleFreq;
@@ -59,6 +66,8 @@ public class ShaderScript : MonoBehaviour
         minWobbleFreqAchieved = curWobbleFreq;
         minWobbleDistAchieved = curWobbleDist;
         minWobbleTimeAchieved = curWobbleTime;
+        startingFresnelPower = meshRender.material.GetFloat("_FresnelPower");
+        startingFresnelPowerAura = aura.material.GetFloat("_FresnelPower");
     }
 
     // Update is called once per frame
@@ -67,6 +76,10 @@ public class ShaderScript : MonoBehaviour
         wobbleWaveLength = 2 * Mathf.PI / wobbleSpeed;
         curWobbleWaveTime = isWobbling ? (curWobbleWaveTime + Time.deltaTime) % wobbleWaveLength : curWobbleWaveTime;
         meshRender.material.SetFloat("_wobControl", curWobbleWaveTime);
+
+        float valForShader = Mathf.Clamp(playerScript.ValForShader(), minFresnelPower, maxFresnelPower);
+        meshRender.material.SetFloat("_FresnelPower", valForShader * startingFresnelPower);
+        aura.material.SetFloat("_FresnelPower", valForShader * startingFresnelPowerAura);
 
         meshRender.material.SetFloat("_wobbleSpeed", wobbleSpeed);
         meshRender.material.SetFloat("_wobbleFreq", curWobbleFreq);

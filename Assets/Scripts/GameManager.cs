@@ -118,7 +118,7 @@ public class GameManager : MonoBehaviour
                     player1.layer = 0;
                     player2.layer = 0;
                     Debug.Log(Time.timeScale);
-                    Time.timeScale = 0.2f;
+                    //Time.timeScale = 0.2f;
                     Debug.Log(Time.timeScale);
                 }
 

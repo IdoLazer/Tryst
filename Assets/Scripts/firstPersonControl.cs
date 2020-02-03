@@ -38,6 +38,177 @@ public class firstPersonControl : MonoBehaviour
 
     void Update()
     {
+        FadeBoostSpeed();
+
+        // ================== Player1 =========================
+
+        if (tag == "Player1")
+        {
+            HandlePlayerOne();
+        }
+
+        // ================== Player2 =========================
+
+        if (tag == "Player2")
+        {
+            HandlePlayerTwo();
+        }
+    }
+
+    private void HandlePlayerTwo()
+    {
+        if (!Gm.getIsPlayer2Dead())
+        {
+            //---- Player 2 Rotating ---
+            float axis = KeyJoyController.getXAxis_Player2();
+            if (Mathf.Abs(axis) <= controllerSensitivityX)
+            {
+                axis = 0f;
+                shaderScript.StopRotating();
+            }
+            else
+            {
+                shaderScript.StartRotating((int)Mathf.Sign(axis));
+            }
+            //pitch sound
+            if (KeyJoyController.getTrailPressed_Player2())
+            {
+                soundManger.PitchSound("trail", axis);
+            }
+            else
+            {
+                soundManger.PitchSound("walk", axis);
+            }
+
+            transform.Rotate(rotatSpeen * Vector3.up * axis);
+
+            //---- Player 2 Forward/Backward ---
+            axis = KeyJoyController.getYAxis_Player2();
+            if (axis <= 1)
+            {
+                Vector3 moveDir = new Vector3(0, 0, axis).normalized;
+                Vector3 targetMoveAmount = moveDir * walkSpeed;
+                moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVel, .15f);
+
+                if (Mathf.Abs(axis) <= controllerSensitivityY)
+                {
+                    axis = 0f;
+                }
+
+                if (shaderScript != null)
+                {
+                    if (Mathf.Abs(axis) > Mathf.Epsilon)
+                    {
+                        shaderScript.StartMoving();
+                        if (!KeyJoyController.getTrailPressed_Player2())
+                        {
+                            soundManger.PlaySound("walk");
+                        }
+
+                    }
+                    else
+                    {
+                        shaderScript.StopMoving();
+                        if (!KeyJoyController.getTrailPressed_Player2())
+                        {
+                            soundManger.StopPlaying();
+                        }
+                        //walkSpeed = initialWalkSpeed;
+
+                    }
+                }
+            }
+        }
+
+        // ============ Player is dead ============
+
+        else
+        {
+            moveAmount = new Vector3(0, 0, 0);
+            shaderScript.StopMoving();
+            soundManger.StopPlaying();
+
+        }
+    }
+
+    private void HandlePlayerOne()
+    {
+        if (!Gm.getIsPlayer1Dead())
+        {
+            //---- Player 1 Rotating ---
+            float axis = KeyJoyController.getXAxis_Player1();
+
+            if (Mathf.Abs(axis) <= controllerSensitivityX)
+            {
+                axis = 0f;
+                shaderScript.StopRotating();
+            }
+            else
+            {
+                shaderScript.StartRotating((int)Mathf.Sign(axis));
+            }
+
+            //pitch sound
+            if (KeyJoyController.getTrailPressed_Player1())
+            {
+                soundManger.PitchSound("trail", axis);
+            }
+            else
+            {
+                soundManger.PitchSound("walk", axis);
+            }
+
+            transform.Rotate(rotatSpeen * Vector3.up * axis);
+            transform.Rotate(rotatSpeen * Vector3.up * axis);
+
+            //---- Player 1 Forward/Backward ---
+            axis = KeyJoyController.getYAxis_player1();
+
+            if (Mathf.Abs(axis) <= controllerSensitivityY)
+            {
+                axis = 0f;
+
+            }
+
+            if (axis <= 1)
+            {
+                Vector3 moveDir = new Vector3(0, 0, -axis).normalized;
+                Vector3 targetMoveAmount = moveDir * walkSpeed;
+                moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVel, .15f);
+                if (shaderScript != null)
+                {
+                    if (Mathf.Abs(axis) > Mathf.Epsilon)
+                    {
+                        shaderScript.StartMoving();
+                        if (!KeyJoyController.getTrailPressed_Player1())
+                        {
+                            soundManger.PlaySound("walk");
+                        }
+
+                    }
+                    else
+                    {
+                        shaderScript.StopMoving();
+                        if (!KeyJoyController.getTrailPressed_Player1())
+                        {
+                            soundManger.StopPlaying();
+                        }
+                        //walkSpeed = initialWalkSpeed;
+                    }
+                }
+            }
+        }
+        else
+        {
+            moveAmount = new Vector3(0, 0, 0);
+            shaderScript.StopMoving();
+            walkSpeed = initialWalkSpeed;
+
+        }
+    }
+
+    private void FadeBoostSpeed()
+    {
         // ============ Fade Boost Speed =========
         walkSpeed = walkSpeed > maxWalkSpeed ? maxWalkSpeed : walkSpeed;
 
@@ -49,165 +220,7 @@ public class firstPersonControl : MonoBehaviour
         {
             walkSpeed = initialWalkSpeed;
         }
-
-        // ================== Player1 =========================
-
-        if (tag == "Player1")
-        {
-            if (!Gm.getIsPlayer1Dead())
-            {
-                //---- Player 1 Rotating ---
-                float axis = KeyJoyController.getXAxis_Player1();
-
-                if (Mathf.Abs(axis) <= controllerSensitivityX)
-                {
-                    axis = 0f;
-                    shaderScript.StopRotating();
-                }
-                else
-                {
-                    shaderScript.StartRotating((int)Mathf.Sign(axis));
-                }
-
-                //pitch sound
-                if (KeyJoyController.getTrailPressed_Player1())
-                {
-                    soundManger.PitchSound("trail", axis);
-                }
-                else
-                {
-                    soundManger.PitchSound("walk", axis);
-                }
-
-                transform.Rotate(rotatSpeen * Vector3.up * axis);
-                transform.Rotate(rotatSpeen * Vector3.up * axis);
-
-                //---- Player 1 Forward/Backward ---
-                axis = KeyJoyController.getYAxis_player1();
-
-                if (Mathf.Abs(axis) <= controllerSensitivityY)
-                {
-                    axis = 0f;
-
-                }
-
-                if (axis <= 1)
-                {
-                    Vector3 moveDir = new Vector3(0, 0, -axis).normalized;
-                    Vector3 targetMoveAmount = moveDir * walkSpeed;
-                    moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVel, .15f);
-                    if (shaderScript != null)
-                    {
-                        if (Mathf.Abs(axis) > Mathf.Epsilon)
-                        {
-                            shaderScript.StartMoving();
-                            if (!KeyJoyController.getTrailPressed_Player1())
-                            {
-                                soundManger.PlaySound("walk");
-                            }
-
-                        }
-                        else
-                        {
-                            shaderScript.StopMoving();
-                            if (!KeyJoyController.getTrailPressed_Player1())
-                            {
-                                soundManger.StopPlaying();
-                            }
-                            walkSpeed = initialWalkSpeed;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                moveAmount = new Vector3(0, 0, 0);
-                shaderScript.StopMoving();
-                walkSpeed = initialWalkSpeed;
-
-            }
-
-        }
-
-        // ================== Player2 =========================
-
-        if (tag == "Player2")
-        {
-            if (!Gm.getIsPlayer2Dead())
-            {
-                //---- Player 2 Rotating ---
-                float axis = KeyJoyController.getXAxis_Player2();
-                if (Mathf.Abs(axis) <= controllerSensitivityX)
-                {
-                    axis = 0f;
-                    shaderScript.StopRotating();
-                }
-                else
-                {
-                    shaderScript.StartRotating((int)Mathf.Sign(axis));
-                }
-                //pitch sound
-                if (KeyJoyController.getTrailPressed_Player2())
-                {
-                    soundManger.PitchSound("trail", axis);
-                }
-                else
-                {
-                    soundManger.PitchSound("walk", axis);
-                }
-
-                transform.Rotate(rotatSpeen * Vector3.up * axis);
-
-                //---- Player 2 Forward/Backward ---
-                axis = KeyJoyController.getYAxis_Player2();
-                if (axis <= 1)
-                {
-                    Vector3 moveDir = new Vector3(0, 0, axis).normalized;
-                    Vector3 targetMoveAmount = moveDir * walkSpeed;
-                    moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVel, .15f);
-
-                    if (Mathf.Abs(axis) <= controllerSensitivityY)
-                    {
-                        axis = 0f;
-                    }
-
-                    if (shaderScript != null)
-                    {
-                        if (Mathf.Abs(axis) > Mathf.Epsilon)
-                        {
-                            shaderScript.StartMoving();
-                            if (!KeyJoyController.getTrailPressed_Player2())
-                            {
-                                soundManger.PlaySound("walk");
-                            }
-
-                        }
-                        else
-                        {
-                            shaderScript.StopMoving();
-                            if (!KeyJoyController.getTrailPressed_Player2())
-                            {
-                                soundManger.StopPlaying();
-                            }
-                            walkSpeed = initialWalkSpeed;
-
-                        }
-                    }
-                }
-            }
-
-            // ============ Player is dead ============
-
-            else
-            {
-                moveAmount = new Vector3(0, 0, 0);
-                shaderScript.StopMoving();
-                soundManger.StopPlaying();
-
-            }
-        }
     }
-
 
     void FixedUpdate()
     {

@@ -39,22 +39,22 @@ public class EchoController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool p1Pulse = KeyJoyController.getPulsePressed_Player1() ;
-        bool p2Pulse = KeyJoyController.getPulsePressed_Player2() ;
-        bool ShouldPulse = (tag == "Player1") ?  p1Pulse : p2Pulse ;
+        //bool p1Pulse = KeyJoyController.getPulsePressed_Player1() ;
+        //bool p2Pulse = KeyJoyController.getPulsePressed_Player2() ;
+        //bool ShouldPulse = (tag == "Player1") ?  p1Pulse : p2Pulse ;
 
-        if (ShouldPulse && GetComponent<PlayerScript>().playerLife > 0)
-        {
-            if (canSendPulse && player.playerLife > 0)
-            {
-                player.playerLife -= removeLife;
-                player.numOfPulses += 1;
-                StartCoroutine(SendPulse());
-            }
-        }
+        //if (ShouldPulse && GetComponent<PlayerScript>().playerLife > 0)
+        //{
+        //    if (canSendPulse && player.playerLife > 0)
+        //    {
+        //        player.playerLife -= removeLife;
+        //        player.numOfPulses += 1;
+        //        StartCoroutine(SendPulse());
+        //    }
+        //}
     }
 
-    private IEnumerator SendPulse()
+    public IEnumerator SendPulse()
     {
         GameObject pulseContainer = Instantiate(pulseContainerPrefab, pulseCreatorLocation.position, transform.rotation, echoPulsesParent.transform);
         Instantiate(echoPulseBlackPrefab, pulseCreatorLocation.position, transform.rotation, pulseContainer.transform);
