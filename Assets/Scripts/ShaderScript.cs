@@ -7,7 +7,7 @@ public class ShaderScript : MonoBehaviour
 {
     public bool isWobbling = true;
     public float curWobbleWaveTime = 0;
-    public MeshRenderer aura;
+    public Transform aura;
 
     [Header("Default Settings")]
     public Vector3 baseWobbleTime = new Vector3(1f, 1f, 0f);
@@ -15,6 +15,8 @@ public class ShaderScript : MonoBehaviour
     public float baseWobbleFreq = 3f;
     public float baseWobbleDistance = 0.2f;
     public float maxFresnelPower = 2f;
+    public float minAuraScale = 10f;
+    public float maxAuraScale = 18f;
 
     [Header("Forward/Backward Movement Settings")]
     public Vector3 movingWobbleTime = new Vector3(3f, 1f, 0f);
@@ -48,7 +50,6 @@ public class ShaderScript : MonoBehaviour
     private int rotating = 0;
     private PlayerScript playerScript;
     private float startingFresnelPower;
-    private float startingFresnelPowerAura;
 
     // Start is called before the first frame update
     void Start()
@@ -66,7 +67,6 @@ public class ShaderScript : MonoBehaviour
         minWobbleDistAchieved = curWobbleDist;
         minWobbleTimeAchieved = curWobbleTime;
         startingFresnelPower = meshRender.material.GetFloat("_FresnelPower");
-        startingFresnelPowerAura = aura.material.GetFloat("_FresnelPower");
     }
 
     // Update is called once per frame
@@ -77,7 +77,8 @@ public class ShaderScript : MonoBehaviour
         meshRender.material.SetFloat("_wobControl", curWobbleWaveTime);
 
         meshRender.material.SetFloat("_FresnelPower", Mathf.Lerp(startingFresnelPower, startingFresnelPower * maxFresnelPower, playerScript.ValForShader()));
-        aura.material.SetFloat("_FresnelPower", Mathf.Lerp(startingFresnelPowerAura, startingFresnelPowerAura * maxFresnelPower, playerScript.ValForShader()));
+        float auraScale = Mathf.Lerp(minAuraScale, maxAuraScale, playerScript.ValForShader());
+        aura.localScale = new Vector3(auraScale, aura.localScale.y, auraScale);
 
         meshRender.material.SetFloat("_wobbleSpeed", wobbleSpeed);
         meshRender.material.SetFloat("_wobbleFreq", curWobbleFreq);

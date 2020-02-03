@@ -111,7 +111,7 @@ public class PlayerScript : MonoBehaviour
         }
         else
         {
-            closeToWinPS.Pause();
+            closeToWinPS.Stop();
         }
     }
 

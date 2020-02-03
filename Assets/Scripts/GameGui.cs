@@ -56,13 +56,13 @@ public class GameGui : MonoBehaviour
     {
         return Father2.transform.Find("StatsContainer");
     }
-    public Transform getWinTextcontainerOne()
+    public TextMesh getWinTextcontainerOne()
     {
-        return Father1.transform.Find("WinTitle");
+        return Father1.transform.Find("WinTitle").GetComponent<TextMesh>();
     }
 
-    public Transform getWinTextcontainerTwo()
+    public TextMesh getWinTextcontainerTwo()
     {
-        return Father2.transform.Find("WinTitle");
+        return Father2.transform.Find("WinTitle").GetComponent<TextMesh>();
     }
 }

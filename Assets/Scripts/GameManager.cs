@@ -7,20 +7,21 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    string[] win_text ={"nevergonnagiveyouup","andsowemeet","justtheofus",
-                        "nowwe’refound","howdoesitmakeyoufeel?",
-                        "ionlyhaveeyesforyou", "i’vebeenherewaitingallmylife",
-                        "thesearchisover", "youwerewithmeallthewhile", "it’sjustyouandme",
-                        "you'llneverhavetobealone","justthewayyouare","allyourperfectimperfections",
-                        "i’vebeenwaitingsolong","thinkI'maddictedtoyourlight","hitmelikearayofsun",
-                        "nothingcomparestoyou","icouldwatchyouforalifetime","iseeyourtruecolors",
-                        "you’remyendandmybeginning" ,"i'llfollowyouwherever"};
+    private string[] win_text ={"never gonna give you up","and so we meet","just the two of us",
+                        "now we're found","how does it make you feel?",
+                        "i only have eyes for you", "i've been here waiting all my life",
+                        "the search is over", "you were with me all the time", "it's just you and me",
+                        "you'll never have to be alone","just the way you are","all your perfect imperfections",
+                        "i’ve been waiting for so long","think I'm addicted to your light","hit me like a ray of sun",
+                        "nothing compares to you","i could watch you for a lifetime","i see your true colors",
+                        "you’re my end and my beginning" ,"i'll follow you wherever"};
     public enum State
     {
         Start,
         Game,
         Win,
         Lose,
+        Nothing,
     }
 
     public Instantiating init;
@@ -28,6 +29,8 @@ public class GameManager : MonoBehaviour
     private static bool IsPaused = false;
     public GameObject player1;
     public GameObject player2;
+    public GameObject winAudioClip;
+    public GameObject inRangeAudioClip;
     public MenuPlayerController menuPlayer1;
     public MenuPlayerController menuPlayer2;
     public float delayUntilReplayAvailable = 2;
@@ -38,6 +41,8 @@ public class GameManager : MonoBehaviour
     //all things to do when we are dead
     private bool PlayerOneDead = false;
     private bool PlayerTwoDead = false;
+    private bool inRange = false;
+    private bool hasWon = false;
     private float disease = 1f;
     public float diseaseTime = 10; // how often to remove one life
     private float TimeToDo = 0f;
@@ -122,37 +127,39 @@ public class GameManager : MonoBehaviour
                 distanceBetween = Vector3.Distance(player1.transform.position, player2.transform.position);
                 //Debug.Log(distanceBetween);
 
-                if (distanceBetween < findRadius)
+                if ((distanceBetween < findRadius) && !inRange)
                 {
+                    inRange = true;
                     player1.layer = 0;
                     player2.layer = 0;
                     player1.GetComponent<PlayerScript>().CloseToWin(true);
                     player2.GetComponent<PlayerScript>().CloseToWin(true);
+                    Vector3 target = Vector3.Lerp(player1.transform.position, player2.transform.position, 0.5f);
+                    inRangeAudioClip.GetComponent<AudioSource>().Play();
                 }
-                else
+
+                else if (distanceBetween >= findRadius)
                 {
+                    inRange = false;
                     player1.GetComponent<PlayerScript>().CloseToWin(false);
                     player2.GetComponent<PlayerScript>().CloseToWin(false);
                     player1.layer = 14; //P1CAM
                     player2.layer = 15; //P2CAM
                 }
-                if (distanceBetween < winRadius)
+                if ((distanceBetween < winRadius) && !hasWon)
                 {
+                    hasWon = true;
                     GameTime = Time.time - GameTime;
                     Vector3 target = Vector3.Lerp(player1.transform.position, player2.transform.position, 0.5f);
                     player1.GetComponent<PlayerScript>().Win(target);
                     player2.GetComponent<PlayerScript>().Win(target);
+                    winAudioClip.GetComponent<AudioSource>().Play();
                     StartCoroutine(WinGame());
                 }
                 break;
 
             case State.Win:
-                
-                updateGuiStats();
-                myGui.win();
-                Time.timeScale = 1.0f;
-                player1.SetActive(false);
-                player2.SetActive(false);
+    
                 PressToStartGame();
                 break;
 
@@ -184,6 +191,11 @@ public class GameManager : MonoBehaviour
     private IEnumerator WinGame()
     {
         yield return new WaitForSeconds(secondsBeforeWin);
+        updateGuiStats();
+        myGui.win();
+        Time.timeScale = 1.0f;
+        player1.SetActive(false);
+        player2.SetActive(false);
         state = State.Win;
     }
 
@@ -310,11 +322,8 @@ public class GameManager : MonoBehaviour
         int rand1 = Random.Range(0, win_text.Length);
         int rand2 = Random.Range(0, win_text.Length);
 
-        Transform win1TextContain = myGui.getWinTextcontainerOne();
-        Transform win2TextContain = myGui.getWinTextcontainerTwo();
-
-        TextMesh WinTextOne = win1TextContain.transform.GetChild(1).GetComponent<TextMesh>();
-        TextMesh WinTextTwo = win2TextContain.transform.GetChild(1).GetComponent<TextMesh>();
+        TextMesh WinTextOne = myGui.getWinTextcontainerOne();
+        TextMesh WinTextTwo = myGui.getWinTextcontainerTwo();
 
         WinTextOne.text = win_text[rand1];
         WinTextTwo.text = win_text[rand2];
