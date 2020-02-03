@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TotemScript : MonoBehaviour
 {
-    //public ParticleSystem usedTotemPartical;
     public float speedBoost = 2;
     public float goDownSpeed = 3;
     public float goDownAmount = 10;
@@ -14,7 +13,11 @@ public class TotemScript : MonoBehaviour
     public MeshRenderer whiteColumn;
     public Material blackTurnedOffMaterial;
     public Material whiteTurnedOffMaterial;
-
+    [Range(-3, 3)]
+    public float minPulsePitch = 1.5f; 
+    [Range(-3, 3)]
+    public float maxPulsePitch = 0.5f; 
+    private AudioSource totemSound;
 
     private bool isUsed;
     private bool goingDown;
@@ -24,6 +27,7 @@ public class TotemScript : MonoBehaviour
 
     void Start()
     {
+        totemSound = gameObject.GetComponent<AudioSource>();
         isUsed = false;
     }
 
@@ -41,7 +45,8 @@ public class TotemScript : MonoBehaviour
             isUsed = true;
             blackColumn.material = blackTurnedOffMaterial;
             whiteColumn.material = whiteTurnedOffMaterial;
-            //usedTotemPartical.Play();
+            totemSound.pitch =  Random.Range(minPulsePitch, maxPulsePitch);
+            totemSound.Play();
             goingDown = true;
             goingDownStartTime = Time.time;
             target = transform.position - transform.up * goDownAmount;
@@ -50,8 +55,5 @@ public class TotemScript : MonoBehaviour
         }
         return false;
     }
-    //public void resetTotem(){
-    //    isUsed = false;
-    //    //usedTotemPartical.Stop();
-    //}
+
 }

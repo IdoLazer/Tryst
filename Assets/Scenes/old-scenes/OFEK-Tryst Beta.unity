@@ -1867,7 +1867,7 @@ PrefabInstance:
     - target: {fileID: 6395014829622873280, guid: 0a4fd9ab9aeed45c9aa14afa866ad805,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6395014829622873280, guid: 0a4fd9ab9aeed45c9aa14afa866ad805,
         type: 3}
@@ -1884,11 +1884,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6395014829622873280, guid: 0a4fd9ab9aeed45c9aa14afa866ad805,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6395014829622873280, guid: 0a4fd9ab9aeed45c9aa14afa866ad805,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6395014829622873281, guid: 0a4fd9ab9aeed45c9aa14afa866ad805,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c7a21e07afc494e2288e5e6e0a1dc058, type: 2}
+      objectReference: {fileID: 2100000, guid: a5d860f2f543c40bc992e41ea3cb1324, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a4fd9ab9aeed45c9aa14afa866ad805, type: 3}
 --- !u!1 &324817669
@@ -9701,6 +9711,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6395014829622873280, guid: 0a4fd9ab9aeed45c9aa14afa866ad805,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6395014829622873280, guid: 0a4fd9ab9aeed45c9aa14afa866ad805,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6395014829622873281, guid: 0a4fd9ab9aeed45c9aa14afa866ad805,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -10583,7 +10603,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1867209099}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1546310239
 PrefabInstance:
@@ -10650,7 +10670,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 3c73e8bb926e34310ab53cc56865de49,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3c73e8bb926e34310ab53cc56865de49,
         type: 3}
