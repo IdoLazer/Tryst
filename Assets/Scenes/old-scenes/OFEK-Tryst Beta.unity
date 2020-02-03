@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1325,7 +1325,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &243730874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1338,7 +1338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: 3990a0269aca448c08438176b4d37cf0, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 759035ffc588d4a82a06ea2f5d95c0db, type: 2}
   isGlobal: 1
   blendDistance: 0
   weight: 1
@@ -2383,7 +2383,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1867209099}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &427056352
 GameObject:
@@ -2708,7 +2708,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1867209099}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &472734354
 GameObject:
@@ -9489,7 +9489,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1651616981}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1376333571
 GameObject:
@@ -11094,6 +11094,8 @@ GameObject:
   - component: {fileID: 1615397843}
   - component: {fileID: 1615397842}
   - component: {fileID: 1615397841}
+  - component: {fileID: 1615397844}
+  - component: {fileID: 1615397845}
   m_Layer: 0
   m_Name: DisplayCamera1
   m_TagString: DisplayCamera1
@@ -11193,6 +11195,83 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1615397844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615397839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 1615397840}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 1
+  antialiasingMode: 0
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
+--- !u!114 &1615397845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615397839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 759035ffc588d4a82a06ea2f5d95c0db, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
 --- !u!1 &1616305589
 GameObject:
   m_ObjectHideFlags: 0
@@ -11253,7 +11332,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1651616981}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1651616980
 PrefabInstance:
@@ -11469,6 +11548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerLife: 100
+  loseLifeSpeed: 0.1
   playerLose: {fileID: 497253863}
   pressToReplay: {fileID: 497253862}
   sizeOfTrail: 0
@@ -12069,6 +12149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerLife: 100
+  loseLifeSpeed: 0.1
   playerLose: {fileID: 0}
   pressToReplay: {fileID: 0}
   sizeOfTrail: 0
@@ -12427,6 +12508,21 @@ PrefabInstance:
       propertyPath: m_UseGravity
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7652109072398903514, guid: 176c3e11dc31569429e02c260169860f,
+        type: 3}
+      propertyPath: playerLose
+      value: 
+      objectReference: {fileID: 242103882}
+    - target: {fileID: -7652109072398903514, guid: 176c3e11dc31569429e02c260169860f,
+        type: 3}
+      propertyPath: pressToReplay
+      value: 
+      objectReference: {fileID: 242103881}
+    - target: {fileID: -7652109072398903514, guid: 176c3e11dc31569429e02c260169860f,
+        type: 3}
+      propertyPath: playerLife
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 828245915756244538, guid: 176c3e11dc31569429e02c260169860f,
         type: 3}
       propertyPath: m_Radius
@@ -12496,21 +12592,6 @@ PrefabInstance:
         type: 3}
       propertyPath: canSnap
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -7652109072398903514, guid: 176c3e11dc31569429e02c260169860f,
-        type: 3}
-      propertyPath: playerLose
-      value: 
-      objectReference: {fileID: 242103882}
-    - target: {fileID: -7652109072398903514, guid: 176c3e11dc31569429e02c260169860f,
-        type: 3}
-      propertyPath: pressToReplay
-      value: 
-      objectReference: {fileID: 242103881}
-    - target: {fileID: -7652109072398903514, guid: 176c3e11dc31569429e02c260169860f,
-        type: 3}
-      propertyPath: playerLife
-      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 176c3e11dc31569429e02c260169860f, type: 3}
@@ -14801,6 +14882,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numOfTotems: 50
+  randomDistributionFactor: 0.5
   TotemPrefab: {fileID: 672358244656666135, guid: 62a2b5814f794fd4586e205a3747f900,
     type: 3}
 --- !u!1001 &2087354559
