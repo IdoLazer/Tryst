@@ -49,10 +49,13 @@ public class GameGui : MonoBehaviour
     {
         return Win2.transform.Find("StatsContainer");
     }
+    public Transform getWinTextcontainerOne()
+    {
+        return Win1.transform.Find("Win1");
+    }
 
-    // public void lose()
-    // {
-    //     Lose.SetActive(true);
-    //     Debug.Log("Lose");
-    // }
+    public Transform getWinTextcontainerTwo()
+    {
+        return Win1.transform.Find("Win2");
+    }
 }
