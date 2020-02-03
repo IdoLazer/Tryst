@@ -318,7 +318,6 @@ public class GameManager : MonoBehaviour
 
         WinTextOne.text = win_text[rand1];
         WinTextTwo.text = win_text[rand2];
-
     }
 
 }

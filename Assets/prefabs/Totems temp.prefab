@@ -4802,11 +4802,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedBoost: 10
   goDownSpeed: 3
-  goDownAmount: 10
+  goDownAmount: 4
   blackColumn: {fileID: 1557254221013928646}
   whiteColumn: {fileID: 3417220504622361414}
-  blackTurnedOffMaterial: {fileID: 0}
-  whiteTurnedOffMaterial: {fileID: 0}
+  blackTurnedOffMaterial: {fileID: 2100000, guid: 7ef626277000b0d4696fb56feaca7aa0,
+    type: 2}
+  whiteTurnedOffMaterial: {fileID: 2100000, guid: 9897e4da01feacd40ab87a0623f556db,
+    type: 2}
+  minPulsePitch: 1.5
+  maxPulsePitch: 0.5
 --- !u!136 &21217650742804547
 CapsuleCollider:
   m_ObjectHideFlags: 0
