@@ -14,7 +14,10 @@ public class TotemScript : MonoBehaviour
     public MeshRenderer whiteColumn;
     public Material blackTurnedOffMaterial;
     public Material whiteTurnedOffMaterial;
-
+    [Range(-3, 3)]
+    public float minPulsePitch = 1.5f; 
+    [Range(-3, 3)]
+    public float maxPulsePitch = 0.5f; 
 
     private bool isUsed;
     private bool goingDown;
@@ -42,6 +45,7 @@ public class TotemScript : MonoBehaviour
             blackColumn.material = blackTurnedOffMaterial;
             whiteColumn.material = whiteTurnedOffMaterial;
             //usedTotemPartical.Play();
+
             goingDown = true;
             goingDownStartTime = Time.time;
             target = transform.position - transform.up * goDownAmount;
@@ -50,6 +54,7 @@ public class TotemScript : MonoBehaviour
         }
         return false;
     }
+
     //public void resetTotem(){
     //    isUsed = false;
     //    //usedTotemPartical.Stop();
