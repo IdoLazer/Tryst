@@ -35701,6 +35701,7 @@ MonoBehaviour:
   loseLifeSpeed: 0.1
   playerLose: {fileID: 497253863}
   pressToReplay: {fileID: 497253862}
+  boostPS: {fileID: 498008821}
   sizeOfTrail: 0
   numOfPulses: 0
 --- !u!114 &1651616984
@@ -36302,6 +36303,7 @@ MonoBehaviour:
   loseLifeSpeed: 0.1
   playerLose: {fileID: 0}
   pressToReplay: {fileID: 0}
+  boostPS: {fileID: 0}
   sizeOfTrail: 0
   numOfPulses: 0
 --- !u!54 &1737751298

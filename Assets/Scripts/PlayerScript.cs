@@ -6,8 +6,7 @@ public class PlayerScript : MonoBehaviour
 {
     private LinkedList<TotemScript> usedTotems;
     private int totemsCount;
-    private string totemTag;
-    private const string TOTEM_TAG_PLAYER_1 = "totem white";
+    private const string TOTEM_TAG = "totem";
     private const string TOTEM_TAG_PLAYER_2 = "totem white";
     private const string TAG_PLAYER_1 = "Player1";
     private const string TAG_PLAYER_2 = "Player2";
@@ -20,6 +19,7 @@ public class PlayerScript : MonoBehaviour
     public float loseLifeSpeed = 0.1f;
     public GameObject playerLose;
     public GameObject pressToReplay;
+    public ParticleSystem boostPS;
     private bool DidHit = false;
     private firstPersonControl playerControl;
 
@@ -35,7 +35,6 @@ public class PlayerScript : MonoBehaviour
         playerControl = GetComponent<firstPersonControl>();
         totemsCount = 0;
         usedTotems = new LinkedList<TotemScript>();
-        totemTag = tag == TAG_PLAYER_1 ? TOTEM_TAG_PLAYER_1 : TOTEM_TAG_PLAYER_2;
         sizeOfTrail = 0;
         numOfPulses = 0;
         initialLife = playerLife;
@@ -85,10 +84,12 @@ public class PlayerScript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == totemTag){
+        if(other.tag == TOTEM_TAG)
+        {
             TotemScript totem = other.GetComponent<TotemScript>();
             bool usedTotem = totem.useTotem();
             if (usedTotem){
+                boostPS.Play();
                 playerControl.walkSpeed = playerControl.walkSpeed + totem.speedBoost;
                 if (playerControl.walkSpeed >= playerControl.maxWalkSpeed)
                 {
