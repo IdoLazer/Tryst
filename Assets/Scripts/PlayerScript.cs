@@ -20,6 +20,8 @@ public class PlayerScript : MonoBehaviour
     public GameObject playerLose;
     public GameObject pressToReplay;
     public ParticleSystem boostPS;
+    public ParticleSystem closeToWinPS;
+    public ParticleSystem winPS;
     private bool DidHit = false;
     private firstPersonControl playerControl;
 
@@ -99,6 +101,24 @@ public class PlayerScript : MonoBehaviour
             }
         }
         
+    }
+
+    public void CloseToWin(bool isCloseToWin)
+    {
+        if (isCloseToWin)
+        {
+            closeToWinPS.Play();
+        }
+        else
+        {
+            closeToWinPS.Pause();
+        }
+    }
+
+    public void Win(Vector3 meetingPoint)
+    {
+        winPS.Play();
+        playerControl.MoveTowards(meetingPoint);
     }
 }
     

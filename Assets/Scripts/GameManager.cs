@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,6 +7,14 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    string[] win_text ={"nevergonnagiveyouup","andsowemeet","justtheofus",
+                        "nowwe’refound","howdoesitmakeyoufeel?",
+                        "ionlyhaveeyesforyou", "i’vebeenherewaitingallmylife",
+                        "thesearchisover", "youwerewithmeallthewhile", "it’sjustyouandme",
+                        "you'llneverhavetobealone","justthewayyouare","allyourperfectimperfections",
+                        "i’vebeenwaitingsolong","thinkI'maddictedtoyourlight","hitmelikearayofsun",
+                        "nothingcomparestoyou","icouldwatchyouforalifetime","iseeyourtruecolors",
+                        "you’remyendandmybeginning" ,"i'llfollowyouwherever"};
     public enum State
     {
         Start,
@@ -40,6 +47,8 @@ public class GameManager : MonoBehaviour
     //counter for the win screnn
     float GameTime;
     public float findRadius = 3f;
+    public float winRadius = 1f;
+    public float secondsBeforeWin = 3f;
 
 
     void Start()
@@ -117,20 +126,23 @@ public class GameManager : MonoBehaviour
                 {
                     player1.layer = 0;
                     player2.layer = 0;
-                    Debug.Log(Time.timeScale);
-                    //Time.timeScale = 0.2f;
-                    Debug.Log(Time.timeScale);
+                    player1.GetComponent<PlayerScript>().CloseToWin(true);
+                    player2.GetComponent<PlayerScript>().CloseToWin(true);
                 }
-
                 else
                 {
+                    player1.GetComponent<PlayerScript>().CloseToWin(false);
+                    player2.GetComponent<PlayerScript>().CloseToWin(false);
                     player1.layer = 14; //P1CAM
                     player2.layer = 15; //P2CAM
                 }
-                if (distanceBetween < 1f)
+                if (distanceBetween < winRadius)
                 {
                     GameTime = Time.time - GameTime;
-                    state = State.Win;
+                    Vector3 target = Vector3.Lerp(player1.transform.position, player2.transform.position, 0.5f);
+                    player1.GetComponent<PlayerScript>().Win(target);
+                    player2.GetComponent<PlayerScript>().Win(target);
+                    StartCoroutine(WinGame());
                 }
                 break;
 
@@ -167,6 +179,12 @@ public class GameManager : MonoBehaviour
                 break;
 
         }
+    }
+
+    private IEnumerator WinGame()
+    {
+        yield return new WaitForSeconds(secondsBeforeWin);
+        state = State.Win;
     }
 
     private IEnumerator LoseGame()
@@ -282,8 +300,24 @@ public class GameManager : MonoBehaviour
         momentsPlayerTwo.text = Mathf.Round(GameTime).ToString() + " moments";
         TrailsNumPlayerTwo.text = player2.GetComponent<PlayerScript>().sizeOfTrail.ToString() + " light years";
         PulseNumPlayerTwo.text = player2.GetComponent<PlayerScript>().numOfPulses.ToString() + " pulses";
+        updateWinText();
 
 
+    }
+
+    public void updateWinText()
+    {
+        int rand1 = Random.Range(0, win_text.Length);
+        int rand2 = Random.Range(0, win_text.Length);
+
+        Transform win1TextContain = myGui.getWinTextcontainerOne();
+        Transform win2TextContain = myGui.getWinTextcontainerTwo();
+
+        TextMesh WinTextOne = win1TextContain.transform.GetChild(1).GetComponent<TextMesh>();
+        TextMesh WinTextTwo = win2TextContain.transform.GetChild(1).GetComponent<TextMesh>();
+
+        WinTextOne.text = win_text[rand1];
+        WinTextTwo.text = win_text[rand2];
 
     }
 

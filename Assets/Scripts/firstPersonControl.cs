@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,9 +9,15 @@ public class firstPersonControl : MonoBehaviour
     public float mouseSenY = 250f;
     public float rotatSpeen = 5;
     public float fadeBoostSpeed = 1;
+    public float fadeBoostSpeedWhenNotMoving = 10;
     public float walkSpeed;
     public float maxWalkSpeed = 10;
     private float initialWalkSpeed;
+    private bool hasWon;
+    private Vector3 winTarget;
+    private float winTime;
+    private Vector3 winPos;
+    private Quaternion winRotation;
 
     [Range(0f, 1f)]
     public float controllerSensitivityY = 0.2f;
@@ -39,6 +46,11 @@ public class firstPersonControl : MonoBehaviour
     void Update()
     {
         FadeBoostSpeed();
+        if (hasWon)
+        {
+            MoveToPos(winTarget);
+            return;
+        }
 
         // ================== Player1 =========================
 
@@ -53,6 +65,18 @@ public class firstPersonControl : MonoBehaviour
         {
             HandlePlayerTwo();
         }
+    }
+
+    private void MoveToPos(Vector3 winTarget)
+    {
+        // distance between target and the actual rotating object
+        Vector3 D = winTarget - transform.position;
+
+
+        // calculate the Quaternion for the rotation
+        Quaternion rot = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(D), Time.deltaTime);
+
+        transform.Rotate(Vector3.up * Time.deltaTime);
     }
 
     private void HandlePlayerTwo()
@@ -112,8 +136,14 @@ public class firstPersonControl : MonoBehaviour
                         {
                             soundManger.StopPlaying();
                         }
-                        //walkSpeed = initialWalkSpeed;
-
+                        if (walkSpeed > initialWalkSpeed)
+                        {
+                            walkSpeed -= fadeBoostSpeedWhenNotMoving;
+                        }
+                        else
+                        {
+                            walkSpeed = initialWalkSpeed;
+                        }
                     }
                 }
             }
@@ -128,6 +158,16 @@ public class firstPersonControl : MonoBehaviour
             soundManger.StopPlaying();
 
         }
+    }
+
+    public void MoveTowards(Vector3 meetingPoint)
+    {
+        hasWon = true;
+        walkSpeed = maxWalkSpeed;
+        winTime = Time.time;
+        winTarget = meetingPoint;
+        winPos = transform.position;
+        winRotation = transform.rotation;
     }
 
     private void HandlePlayerOne()
@@ -191,7 +231,14 @@ public class firstPersonControl : MonoBehaviour
                         {
                             soundManger.StopPlaying();
                         }
-                        //walkSpeed = initialWalkSpeed;
+                        if (walkSpeed > initialWalkSpeed)
+                        {
+                            walkSpeed -= fadeBoostSpeedWhenNotMoving;
+                        }
+                        else
+                        {
+                            walkSpeed = initialWalkSpeed;
+                        }
                     }
                 }
             }
@@ -223,6 +270,7 @@ public class firstPersonControl : MonoBehaviour
     void FixedUpdate()
     {
         //Player Movment
+        if (hasWon) return;
         GetComponent<Rigidbody>().MovePosition(GetComponent<Rigidbody>().position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
 
     }

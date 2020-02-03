@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 64523412}
   - component: {fileID: 64523411}
   m_Layer: 15
-  m_Name: WinPS1(Collision)
+  m_Name: WinPS2(Collision)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19948,7 +19948,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: -0.3}
 --- !u!23 &815885869
 MeshRenderer:
@@ -25841,6 +25841,8 @@ MonoBehaviour:
   diseaseTime: 0.2
   ShouldSlowMo: 0
   findRadius: 7.5
+  winRadius: 1
+  secondsBeforeWin: 3
 --- !u!114 &951592292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27224,7 +27226,7 @@ GameObject:
   - component: {fileID: 1119521829}
   - component: {fileID: 1119521828}
   m_Layer: 15
-  m_Name: AboutToWinPS1(10yd)
+  m_Name: AboutToWinPS2(10yd)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34328,7 +34330,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: -0.3}
 --- !u!23 &1456024212
 MeshRenderer:
@@ -35702,6 +35704,8 @@ MonoBehaviour:
   playerLose: {fileID: 497253863}
   pressToReplay: {fileID: 497253862}
   boostPS: {fileID: 498008821}
+  closeToWinPS: {fileID: 2004568701}
+  winPS: {fileID: 498008821}
   sizeOfTrail: 0
   numOfPulses: 0
 --- !u!114 &1651616984
@@ -35720,8 +35724,9 @@ MonoBehaviour:
   mouseSenY: 250
   rotatSpeen: 2
   fadeBoostSpeed: 1
+  fadeBoostSpeedWhenNotMoving: 10
   walkSpeed: 5
-  maxWalkSpeed: 15
+  maxWalkSpeed: 40
   controllerSensitivityY: 0.161
   controllerSensitivityX: 0.203
 --- !u!114 &1651616985
@@ -36283,6 +36288,7 @@ MonoBehaviour:
   mouseSenY: 250
   rotatSpeen: 5
   fadeBoostSpeed: 1
+  fadeBoostSpeedWhenNotMoving: 10
   walkSpeed: 10
   maxWalkSpeed: 10
   controllerSensitivityY: 0
@@ -36304,6 +36310,8 @@ MonoBehaviour:
   playerLose: {fileID: 0}
   pressToReplay: {fileID: 0}
   boostPS: {fileID: 0}
+  closeToWinPS: {fileID: 0}
+  winPS: {fileID: 0}
   sizeOfTrail: 0
   numOfPulses: 0
 --- !u!54 &1737751298
@@ -36658,7 +36666,7 @@ PrefabInstance:
     - target: {fileID: -3303067111856926225, guid: 176c3e11dc31569429e02c260169860f,
         type: 3}
       propertyPath: maxWalkSpeed
-      value: 15
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: -3303067111856926225, guid: 176c3e11dc31569429e02c260169860f,
         type: 3}
@@ -36685,6 +36693,21 @@ PrefabInstance:
       propertyPath: playerLife
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: -7652109072398903514, guid: 176c3e11dc31569429e02c260169860f,
+        type: 3}
+      propertyPath: boostPS
+      value: 
+      objectReference: {fileID: 831408965}
+    - target: {fileID: -7652109072398903514, guid: 176c3e11dc31569429e02c260169860f,
+        type: 3}
+      propertyPath: closeToWinPS
+      value: 
+      objectReference: {fileID: 1119521829}
+    - target: {fileID: -7652109072398903514, guid: 176c3e11dc31569429e02c260169860f,
+        type: 3}
+      propertyPath: winPS
+      value: 
+      objectReference: {fileID: 64523412}
     - target: {fileID: 828245915756244539, guid: 176c3e11dc31569429e02c260169860f,
         type: 3}
       propertyPath: movingWobbleTime.x
