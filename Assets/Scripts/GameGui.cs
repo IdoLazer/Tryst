@@ -12,8 +12,8 @@ public class GameGui : MonoBehaviour
     public GameObject StartMenu1;
     public GameObject StartMenu2;
     //after moving everything in
-    public GameObject Father1;
-    public GameObject Father2;
+    public GameObject Father1VCam1;
+    public GameObject Father2VCam2;
     //deactivate planet texture
     public GameObject PlanetTextureWhite;
     public GameObject PlanetTextureBlack;
@@ -49,20 +49,20 @@ public class GameGui : MonoBehaviour
     public Transform getWinOne()
     {
 
-        return Father1.transform.Find("StatsContainer");
+        return Father1VCam1.transform.Find("StatsContainer");
     }
 
     public Transform getWinTwo()
     {
-        return Father2.transform.Find("StatsContainer");
+        return Father2VCam2.transform.Find("StatsContainer");
     }
     public Transform getWinTextcontainerOne()
     {
-        return Father1.transform.Find("WinTitle");
+        return Father1VCam1.transform.Find("WinTitle");
     }
 
     public Transform getWinTextcontainerTwo()
     {
-        return Father2.transform.Find("WinTitle");
+        return Father2VCam2.transform.Find("WinTitle");
     }
 }

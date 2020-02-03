@@ -10,6 +10,11 @@ public class PlayerScript : MonoBehaviour
     private const string TOTEM_TAG_PLAYER_2 = "totem white";
     private const string TAG_PLAYER_1 = "Player1";
     private const string TAG_PLAYER_2 = "Player2";
+    private const string BLACK_TRAIL_TAG = "Trail Piece(Clone)";
+    private const string WHITE_TRAIL_TAG = "InvertedTrailPiece(Clone)";
+    private const string PULSE_TAG = "pulse";
+    private const string TRAIL_TAG = "t";
+
 
     private PlanetScript attractorPlanet;
     private GameObject planet;
@@ -32,6 +37,9 @@ public class PlayerScript : MonoBehaviour
     public int sizeOfTrail;
     public int numOfPulses;
 
+    //bool for only adding ui once
+    private bool playedPulse = false;
+
     void Start()
     {
         playerControl = GetComponent<firstPersonControl>();
@@ -51,6 +59,8 @@ public class PlayerScript : MonoBehaviour
         playerTransform = transform;
         playerLose.SetActive(false);
         pressToReplay.SetActive(false);
+        //check who the other trail is:
+
     }
 
     void FixedUpdate()
@@ -96,11 +106,32 @@ public class PlayerScript : MonoBehaviour
                 if (playerControl.walkSpeed >= playerControl.maxWalkSpeed)
                 {
                     StartCoroutine(GetComponent<EchoController>().SendPulse());
+                    GetComponent<PlayerUIScript>().ActivateUI("sentPulse");
                     playerControl.walkSpeed = playerControl.getInitialWalkSpeed();
                 }
             }
         }
-        
+
+        if(other.name == BLACK_TRAIL_TAG && tag == TAG_PLAYER_2)
+        {
+            GetComponent<PlayerUIScript>().ActivateUI("meetOtherTrail");
+
+        }
+
+        if (other.name == WHITE_TRAIL_TAG && tag == TAG_PLAYER_1)
+        {
+            GetComponent<PlayerUIScript>().ActivateUI("meetOtherTrail");
+
+        }
+
+        if (other.tag == PULSE_TAG && !playedPulse)
+        {
+            playedPulse = true;
+            GetComponent<PlayerUIScript>().ActivateUI("recievespulse");
+
+        }
+        playedPulse = false;
+
     }
 
     public void CloseToWin(bool isCloseToWin)
@@ -117,7 +148,7 @@ public class PlayerScript : MonoBehaviour
 
     public void Win(Vector3 meetingPoint)
     {
-        winPS.Play();
+        //winPS.Play();
         playerControl.MoveTowards(meetingPoint);
     }
 }
@@ -128,31 +159,3 @@ public class PlayerScript : MonoBehaviour
     
     
     
-    // ------ OLD stuff ---------
-    
-    //private void OnTriggerEnter(Collider other)
-    //{
-     //   if (other.tag == "pulse" && !DidHit)
-       // {
-         //   StartCoroutine(waitTillPulseIsOver());
-           // DidHit = true;
-            //return;
-        //}
-        //DidHit = false;
-        //return;
-
-    //}
-    
-    //private IEnumerator waitTillPulseIsOver()
-   // {
-     //   yield return new WaitForSeconds(2.5f);
-       // GameObject otherPlayer = (tag == "Player1") ? GameObject.FindGameObjectWithTag("Player2") : GameObject.FindGameObjectWithTag("Player1");
-        //if(otherPlayer.GetComponent<PlayerScript>().playerLife < 90)
-        //{
-          //  otherPlayer.GetComponent<PlayerScript>().playerLife += 10;
-
-//        }
-
-
-  //  }
-//}
