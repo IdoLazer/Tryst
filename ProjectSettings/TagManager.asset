@@ -20,6 +20,7 @@ TagManager:
   - pulse
   - totem black
   - totem white
+  - totem
   layers:
   - Default
   - TransparentFX

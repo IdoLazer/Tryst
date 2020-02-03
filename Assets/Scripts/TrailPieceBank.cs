@@ -27,7 +27,9 @@ public class TrailPieceBank : MonoBehaviour
         trailPiecesParent = GameObject.Find(TRAIL_PIECES_PARENT_NAME);
         if (!trailPiecesParent)
         {
+            GameObject planet = GameObject.Find("Planet");
             trailPiecesParent = new GameObject(TRAIL_PIECES_PARENT_NAME);
+            trailPiecesParent.transform.parent = planet.transform;
         }
     }
 

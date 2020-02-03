@@ -4762,9 +4762,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3978701746701246851}
+  - component: {fileID: 341546079921958523}
+  - component: {fileID: 21217650742804547}
   m_Layer: 0
   m_Name: Totems temp
-  m_TagString: Untagged
+  m_TagString: totem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4778,13 +4780,48 @@ Transform:
   m_GameObject: {fileID: 672358244656666135}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children:
   - {fileID: 5914932992051481655}
   - {fileID: 5113000954532276523}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &341546079921958523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672358244656666135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ec7182223285264991e1ee9fbe15197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedBoost: 10
+  goDownSpeed: 3
+  goDownAmount: 4
+  blackColumn: {fileID: 1557254221013928646}
+  whiteColumn: {fileID: 3417220504622361414}
+  blackTurnedOffMaterial: {fileID: 2100000, guid: bb1106d740007e740bf2b77e6a3bf6bc,
+    type: 2}
+  whiteTurnedOffMaterial: {fileID: 2100000, guid: 429ad76a6ade291449f386ac5888861a,
+    type: 2}
+--- !u!136 &21217650742804547
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672358244656666135}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &844833379005925200
 GameObject:
   m_ObjectHideFlags: 0
@@ -4796,8 +4833,6 @@ GameObject:
   - component: {fileID: 5113000954532276523}
   - component: {fileID: 9206385818112724912}
   - component: {fileID: 3417220504622361414}
-  - component: {fileID: 8875429524254649594}
-  - component: {fileID: 4799214882301160161}
   m_Layer: 14
   m_Name: Totem White
   m_TagString: totem white
@@ -4866,35 +4901,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &8875429524254649594
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 844833379005925200}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &4799214882301160161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 844833379005925200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ec7182223285264991e1ee9fbe15197, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  usedTotemPartical: {fileID: 847012021150578385}
-  totemCombo: 3
-  speedBoost: 3
 --- !u!1 &8363666126533742205
 GameObject:
   m_ObjectHideFlags: 0
@@ -9659,8 +9665,6 @@ GameObject:
   - component: {fileID: 5914932992051481655}
   - component: {fileID: 4770780677898066692}
   - component: {fileID: 1557254221013928646}
-  - component: {fileID: 8601908438083881653}
-  - component: {fileID: 7617610621147247734}
   m_Layer: 15
   m_Name: Totem Black
   m_TagString: totem black
@@ -9729,32 +9733,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &8601908438083881653
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8390321271136984544}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &7617610621147247734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8390321271136984544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ec7182223285264991e1ee9fbe15197, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  usedTotemPartical: {fileID: 8144810781596927929}
-  totemCombo: 3
-  speedBoost: 3

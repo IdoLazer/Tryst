@@ -4,12 +4,23 @@ using UnityEngine;
 
 public class TotemScript : MonoBehaviour
 {
-    public ParticleSystem usedTotemPartical;
-    public float resetTime = 6f;
-    public int totemCombo = 3;
+    //public ParticleSystem usedTotemPartical;
     public float speedBoost = 2;
-    public float lifeBoost = 50;
+    public float goDownSpeed = 3;
+    public float goDownAmount = 10;
+
+    [Header("Materials and Children")]
+    public MeshRenderer blackColumn;
+    public MeshRenderer whiteColumn;
+    public Material blackTurnedOffMaterial;
+    public Material whiteTurnedOffMaterial;
+
+
     private bool isUsed;
+    private bool goingDown;
+    private float goingDownStartTime;
+    private Vector3 startPos;
+    private Vector3 target;
 
     void Start()
     {
@@ -18,20 +29,29 @@ public class TotemScript : MonoBehaviour
 
     private void Update()
     {
-        
+        if (goingDown)
+        {
+            transform.position = Vector3.Lerp(startPos, target, Time.time - goingDownStartTime);
+        }
     }
 
     // Returns true if totem was activated
     public bool useTotem(){
         if(!isUsed){
             isUsed = true;
-            usedTotemPartical.Play();
+            blackColumn.material = blackTurnedOffMaterial;
+            whiteColumn.material = whiteTurnedOffMaterial;
+            //usedTotemPartical.Play();
+            goingDown = true;
+            goingDownStartTime = Time.time;
+            target = transform.position - transform.up * goDownAmount;
+            startPos = transform.position;
             return true;
         }
         return false;
     }
-    public void resetTotem(){
-        isUsed = false;
-        usedTotemPartical.Stop();
-    }
+    //public void resetTotem(){
+    //    isUsed = false;
+    //    //usedTotemPartical.Stop();
+    //}
 }
