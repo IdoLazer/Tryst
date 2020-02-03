@@ -4,25 +4,34 @@ using UnityEngine;
 
 public class rotateWorldWin : MonoBehaviour
 {
-    private GameObject centerofplanet;
+    private string parentName;
+    private string PLANET_ONE_PARENT = "WinGameA";
+    private string PLANET_TWO_PARENT = "WinGameB";
+    public float speedRotation = 5.0f;
+
 
     void Start()
     {
+        parentName = transform.parent.name;
     }
 
-    void Update()
+void Update()
     {
+        if(PLANET_ONE_PARENT == parentName)
+        {
+            float Xaxsis = KeyJoyController.getXAxis_Player1();
+            float Yaxsis = KeyJoyController.getYAxis_player1();
+            transform.Rotate(Xaxsis, -Yaxsis * speedRotation, 0.0f);
+        }
 
+        if (PLANET_TWO_PARENT == parentName)
+        {
+            float Xaxsis = KeyJoyController.getXAxis_Player2();
+            float Yaxsis = KeyJoyController.getYAxis_Player2();
+            transform.Rotate(Xaxsis, -Yaxsis * speedRotation, 0.0f);
+        }
     }
 
-    public Transform getWinTextcontainerOne()
-    {
-        return Win1.transform.Find("Win1");
-    }
 
-    public Transform getWinTextcontainerTwo()
-    {
-        return Win1.transform.Find("Win2");
-    }
 
 }
