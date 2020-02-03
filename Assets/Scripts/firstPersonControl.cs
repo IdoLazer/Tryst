@@ -84,16 +84,15 @@ public class firstPersonControl : MonoBehaviour
 
             //---- Player 2 Forward/Backward ---
             axis = KeyJoyController.getYAxis_Player2();
+            if (Mathf.Abs(axis) <= controllerSensitivityY)
+            {
+                axis = 0f;
+            }
             if (axis <= 1)
             {
                 Vector3 moveDir = new Vector3(0, 0, axis).normalized;
                 Vector3 targetMoveAmount = moveDir * walkSpeed;
                 moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVel, .15f);
-
-                if (Mathf.Abs(axis) <= controllerSensitivityY)
-                {
-                    axis = 0f;
-                }
 
                 if (shaderScript != null)
                 {
@@ -158,7 +157,6 @@ public class firstPersonControl : MonoBehaviour
                 soundManger.PitchSound("walk", axis);
             }
 
-            transform.Rotate(rotatSpeen * Vector3.up * axis);
             transform.Rotate(rotatSpeen * Vector3.up * axis);
 
             //---- Player 1 Forward/Backward ---

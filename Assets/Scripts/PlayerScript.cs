@@ -81,7 +81,7 @@ public class PlayerScript : MonoBehaviour
 
     public float ValForShader()
     {
-        return (playerControl.walkSpeed / playerControl.getInitialWalkSpeed());
+        return ((playerControl.walkSpeed - playerControl.getInitialWalkSpeed()) / playerControl.maxWalkSpeed);
     }
     private void OnTriggerEnter(Collider other)
     {

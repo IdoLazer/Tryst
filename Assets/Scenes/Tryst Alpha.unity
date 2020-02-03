@@ -35672,11 +35672,6 @@ PrefabInstance:
       propertyPath: canSnap
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8750496076804574230, guid: 0d9a1b36c1a3d1741bca3fed1997fc66,
-        type: 3}
-      propertyPath: maxFresnelPower
-      value: 2.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d9a1b36c1a3d1741bca3fed1997fc66, type: 3}
 --- !u!4 &1651616981 stripped
@@ -36657,7 +36652,7 @@ PrefabInstance:
     - target: {fileID: -3303067111856926225, guid: 176c3e11dc31569429e02c260169860f,
         type: 3}
       propertyPath: controllerSensitivityY
-      value: 0.326
+      value: 0.161
       objectReference: {fileID: 0}
     - target: {fileID: -3303067111856926225, guid: 176c3e11dc31569429e02c260169860f,
         type: 3}
@@ -43828,7 +43823,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numOfTotems: 50
-  randomDistributionFactor: 0.2
+  randomDistributionFactor: 0.5
   TotemPrefab: {fileID: 672358244656666135, guid: 62a2b5814f794fd4586e205a3747f900,
     type: 3}
 --- !u!4 &2084529534 stripped

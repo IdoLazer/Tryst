@@ -15,7 +15,6 @@ public class ShaderScript : MonoBehaviour
     public float baseWobbleFreq = 3f;
     public float baseWobbleDistance = 0.2f;
     public float maxFresnelPower = 2f;
-    public float minFresnelPower = 0.1f;
 
     [Header("Forward/Backward Movement Settings")]
     public Vector3 movingWobbleTime = new Vector3(3f, 1f, 0f);
@@ -77,9 +76,8 @@ public class ShaderScript : MonoBehaviour
         curWobbleWaveTime = isWobbling ? (curWobbleWaveTime + Time.deltaTime) % wobbleWaveLength : curWobbleWaveTime;
         meshRender.material.SetFloat("_wobControl", curWobbleWaveTime);
 
-        float valForShader = Mathf.Clamp(playerScript.ValForShader(), minFresnelPower, maxFresnelPower);
-        meshRender.material.SetFloat("_FresnelPower", valForShader * startingFresnelPower);
-        aura.material.SetFloat("_FresnelPower", valForShader * startingFresnelPowerAura);
+        meshRender.material.SetFloat("_FresnelPower", Mathf.Lerp(startingFresnelPower, startingFresnelPower * maxFresnelPower, playerScript.ValForShader()));
+        aura.material.SetFloat("_FresnelPower", Mathf.Lerp(startingFresnelPowerAura, startingFresnelPowerAura * maxFresnelPower, playerScript.ValForShader()));
 
         meshRender.material.SetFloat("_wobbleSpeed", wobbleSpeed);
         meshRender.material.SetFloat("_wobbleFreq", curWobbleFreq);
