@@ -14,8 +14,9 @@ public class GameGui : MonoBehaviour
     //after moving everything in
     public GameObject Father1;
     public GameObject Father2;
-
-
+    //deactivate planet texture
+    public GameObject PlanetTextureWhite;
+    public GameObject PlanetTextureBlack;
 
     public void showStart()
     {
@@ -39,6 +40,9 @@ public class GameGui : MonoBehaviour
         Win2.SetActive(true);
         StartMenu1.SetActive(false);
         StartMenu2.SetActive(false);
+        PlanetTextureWhite.SetActive(false);
+        PlanetTextureBlack.SetActive(false);
+
         Debug.Log("win");
     }
 

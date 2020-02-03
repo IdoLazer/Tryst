@@ -11904,7 +11904,6 @@ GameObject:
   m_Component:
   - component: {fileID: 324817670}
   - component: {fileID: 324817671}
-  - component: {fileID: 324817672}
   m_Layer: 15
   m_Name: player2Win_vcam
   m_TagString: Untagged
@@ -11957,19 +11956,6 @@ MonoBehaviour:
     FarClipPlane: 5000
     Dutch: 0
   m_ComponentOwner: {fileID: 727851923}
---- !u!114 &324817672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 324817669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2c28691dbf3d1d4ab654a4cbf503a2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedRotation: 5
 --- !u!1 &329633268
 GameObject:
   m_ObjectHideFlags: 3
@@ -25873,6 +25859,8 @@ MonoBehaviour:
   StartMenu2: {fileID: 553396608}
   Father1: {fileID: 1004273009}
   Father2: {fileID: 324817669}
+  PlanetTextureWhite: {fileID: 1609063250}
+  PlanetTextureBlack: {fileID: 1136460189}
 --- !u!82 &951592293
 AudioSource:
   m_ObjectHideFlags: 0
@@ -32071,6 +32059,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1136460189 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6518752655041497463, guid: 3538648dc7a60264eb453442699f73bd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1965561991}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1157016133
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32400,6 +32394,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1163640217}
+  - component: {fileID: 1163640218}
   m_Layer: 15
   m_Name: centerOfPlanetWhite
   m_TagString: Untagged
@@ -32422,6 +32417,19 @@ Transform:
   m_Father: {fileID: 1024677788}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1163640218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163640216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c28691dbf3d1d4ab654a4cbf503a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedRotation: 5
 --- !u!1 &1166396347
 GameObject:
   m_ObjectHideFlags: 0
@@ -35403,6 +35411,12 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &1609063250 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6518752655041497463, guid: 3538648dc7a60264eb453442699f73bd,
+    type: 3}
+  m_PrefabInstance: {fileID: 844555747}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1615397839
 GameObject:
   m_ObjectHideFlags: 0
