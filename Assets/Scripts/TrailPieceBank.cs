@@ -6,7 +6,7 @@ using UnityEngine;
 public class TrailPieceBank : MonoBehaviour
 {
 
-    public const int MAX_TRAIL_PIECES = 16672;
+    public const int MAX_TRAIL_PIECES = 4096;
     public const string TRAIL_PIECES_PARENT_NAME = "TrailPieces";
 
     [SerializeField] GameObject trailPiecePrefab;
