@@ -25835,12 +25835,16 @@ MonoBehaviour:
   init: {fileID: 2084529536}
   player1: {fileID: 1651616982}
   player2: {fileID: 1657735384}
+  winAudioClip: {fileID: 0}
+  inRangeAudioClip: {fileID: 0}
   menuPlayer1: {fileID: 1456024214}
   menuPlayer2: {fileID: 815885871}
   delayUntilReplayAvailable: 2
   diseaseTime: 0.2
   ShouldSlowMo: 0
   findRadius: 7.5
+  winRadius: 1
+  secondsBeforeWin: 3
 --- !u!114 &951592292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35808,6 +35812,8 @@ MonoBehaviour:
   playerLose: {fileID: 497253863}
   pressToReplay: {fileID: 497253862}
   boostPS: {fileID: 0}
+  closeToWinPS: {fileID: 0}
+  winPS: {fileID: 0}
   sizeOfTrail: 0
   numOfPulses: 0
 --- !u!114 &1651616984
@@ -35826,6 +35832,7 @@ MonoBehaviour:
   mouseSenY: 250
   rotatSpeen: 2
   fadeBoostSpeed: 1
+  fadeBoostSpeedWhenNotMoving: 10
   walkSpeed: 5
   maxWalkSpeed: 15
   controllerSensitivityY: 0.161
@@ -35897,6 +35904,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc3537181a55f649b24a9ccc564a809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  betweenTrail: 15
+  TIME_TO_WAIT: 2.5
+  BASIC_TIME: 60
 --- !u!114 &1651616993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36058,6 +36068,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc3537181a55f649b24a9ccc564a809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  betweenTrail: 15
+  TIME_TO_WAIT: 2.5
+  BASIC_TIME: 60
 --- !u!114 &1657735388 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -7652109072398903514, guid: 176c3e11dc31569429e02c260169860f,
@@ -36389,6 +36402,7 @@ MonoBehaviour:
   mouseSenY: 250
   rotatSpeen: 5
   fadeBoostSpeed: 1
+  fadeBoostSpeedWhenNotMoving: 10
   walkSpeed: 10
   maxWalkSpeed: 10
   controllerSensitivityY: 0
@@ -36410,6 +36424,8 @@ MonoBehaviour:
   playerLose: {fileID: 0}
   pressToReplay: {fileID: 0}
   boostPS: {fileID: 0}
+  closeToWinPS: {fileID: 0}
+  winPS: {fileID: 0}
   sizeOfTrail: 0
   numOfPulses: 0
 --- !u!54 &1737751298

@@ -193,6 +193,8 @@ public class PlayerUIScript : MonoBehaviour
             if (Time.time - LastTrailTime > betweenTrail)
             {
                 ActivateUI("didntMakeTRail");
+                StartCoroutine(waitTillAnimationIsOver(UIObj));
+
                 betweenTrail += betweenTrail;
                 LastTrailTime = Time.time;
             }

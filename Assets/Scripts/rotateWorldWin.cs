@@ -21,7 +21,7 @@ void Update()
         {
             float Xaxsis = KeyJoyController.getXAxis_Player1();
             float Yaxsis = KeyJoyController.getYAxis_player1();
-            transform.Rotate(Xaxsis, -Yaxsis * speedRotation, 0.0f);
+            transform.Rotate(0f, Xaxsis * speedRotation, Yaxsis * speedRotation);
         }
 
         if (PLANET_TWO_PARENT == parentName)
