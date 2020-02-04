@@ -24,7 +24,7 @@ public class PlayerScript : MonoBehaviour
     public float loseLifeSpeed = 0.1f;
     public GameObject playerLose;
     public GameObject pressToReplay;
-   /public ParticleSystem boostPS;
+    public ParticleSystem boostPS;
     public ParticleSystem closeToWinPS;
     public ParticleSystem winPS;
     private bool DidHit = false;
