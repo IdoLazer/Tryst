@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GameGui : MonoBehaviour
-{  
+{
 
     public GameObject Win1;
     public GameObject Win2;
@@ -25,7 +25,7 @@ public class GameGui : MonoBehaviour
     }
 
     public void GamePlayCloseGui()
-        // this function should be called once we start the game 
+    // this function should be called once we start the game 
     {
         StartMenu1.SetActive(false);
         StartMenu2.SetActive(false);
