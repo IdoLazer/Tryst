@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -37135,8 +37135,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 15
-  controllerSensitivityY: 0
-  controllerSensitivityX: 0
+  controllerSensitivityY: 0.055
+  controllerSensitivityX: 0.055
   meet: 0
 --- !u!54 &1456024215
 Rigidbody:
@@ -38595,11 +38595,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSenX: 250
   mouseSenY: 250
-  rotatSpeen: 8
-  fadeBoostSpeed: 6
+  rotatSpeen: 6
+  fadeBoostSpeed: 5
   fadeBoostSpeedWhenNotMoving: 10
   walkSpeed: 5
-  maxWalkSpeed: 25
+  maxWalkSpeed: 30
   controllerSensitivityY: 0.101
   controllerSensitivityX: 0.053
 --- !u!114 &1651616985
@@ -39966,7 +39966,7 @@ PrefabInstance:
     - target: {fileID: -3303067111856926225, guid: 176c3e11dc31569429e02c260169860f,
         type: 3}
       propertyPath: rotatSpeen
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -3303067111856926225, guid: 176c3e11dc31569429e02c260169860f,
         type: 3}
@@ -39976,12 +39976,12 @@ PrefabInstance:
     - target: {fileID: -3303067111856926225, guid: 176c3e11dc31569429e02c260169860f,
         type: 3}
       propertyPath: maxWalkSpeed
-      value: 25
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: -3303067111856926225, guid: 176c3e11dc31569429e02c260169860f,
         type: 3}
       propertyPath: fadeBoostSpeed
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4663078520945060563, guid: 176c3e11dc31569429e02c260169860f,
         type: 3}

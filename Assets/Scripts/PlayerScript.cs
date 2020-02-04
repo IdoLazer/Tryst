@@ -102,7 +102,7 @@ public class PlayerScript : MonoBehaviour
             bool usedTotem = totem.useTotem();
             if (usedTotem)
             {
-                boostPS.Play();
+                //boostPS.Play();
                 playerControl.walkSpeed = playerControl.walkSpeed + totem.speedBoost;
                 if (playerControl.walkSpeed >= playerControl.maxWalkSpeed)
                 {

@@ -4800,9 +4800,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ec7182223285264991e1ee9fbe15197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedBoost: 10
+  speedBoost: 20
   goDownSpeed: 3
   goDownAmount: 4
+  resetTime: 60
   blackColumn: {fileID: 1557254221013928646}
   whiteColumn: {fileID: 3417220504622361414}
   blackTurnedOffMaterial: {fileID: 2100000, guid: 7ef626277000b0d4696fb56feaca7aa0,
