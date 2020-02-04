@@ -35,6 +35,10 @@ public class GameManager : MonoBehaviour
     public MenuPlayerController menuPlayer1;
     public MenuPlayerController menuPlayer2;
     public float delayUntilReplayAvailable = 2;
+    public Animator button1White;
+    public Animator button2White;
+    public Animator button1Black;
+    public Animator button2Black;
     private float distanceBetween;
     private GameGui myGui;
     private DisplayScript display;
@@ -208,7 +212,23 @@ public class GameManager : MonoBehaviour
 
     public void PressToStartGame()
     {
-        bool BothPress = KeyJoyController.getTrailPressed_Player1() || KeyJoyController.getTrailPressed_Player2();
+        if (KeyJoyController.getTrailPressed_Player2()) {
+            button1White.SetBool("hold", true);
+            button1Black.SetBool("hold", true);
+        }
+        else {
+            button1White.SetBool("hold", false);
+            button1Black.SetBool("hold", false);
+        }
+        if (KeyJoyController.getTrailPressed_Player1()) {
+            button2White.SetBool("hold", true);
+            button2Black.SetBool("hold", true);
+        }
+        else {
+            button2White.SetBool("hold", false);
+            button2Black.SetBool("hold", false);
+        }
+        bool BothPress = KeyJoyController.getTrailPressed_Player1() && KeyJoyController.getTrailPressed_Player2();
 
         if (BothPress)
         {

@@ -78,7 +78,7 @@ public class ShaderScript : MonoBehaviour
 
         meshRender.material.SetFloat("_FresnelPower", Mathf.Lerp(startingFresnelPower, startingFresnelPower * maxFresnelPower, playerScript.ValForShader()));
         float auraScale = Mathf.Lerp(minAuraScale, maxAuraScale, playerScript.ValForShader());
-        //aura.localScale = new Vector3(auraScale, aura.localScale.y, auraScale);
+        aura.localScale = new Vector3(auraScale, aura.localScale.y, auraScale);
 
         meshRender.material.SetFloat("_wobbleSpeed", wobbleSpeed);
         meshRender.material.SetFloat("_wobbleFreq", curWobbleFreq);
