@@ -35,7 +35,6 @@ public class PlayerUIScript : MonoBehaviour
 
     public void ActivateUI(string name)
     {
-        Debug.Log(name);
         if (!isActive)
         {
             isActive = true;
@@ -47,14 +46,14 @@ public class PlayerUIScript : MonoBehaviour
                     if (!didSeePulse)
                     {
                         didSeePulse = true;
-                        getRandomStatmen2(0, 3);
+                        getRandomStatmen2("comefindme", "hopeyourethere");
                         StartCoroutine(waitTillAnimationIsOver(UIObj));
                     }
                     break;
 
                 case "didntMakeTRail":
                     //placed
-                    getRandomStatmen3(5, 1, 7);
+                    getRandomStatmen3("rememberthisplace", "findmywayback", "searchingforme");
                     StartCoroutine(waitTillAnimationIsOver(UIObj));
 
                     break;
@@ -63,7 +62,7 @@ public class PlayerUIScript : MonoBehaviour
                     if (!didseeTrail)
                     {
                         didseeTrail = true;
-                        getRandomStatmen2(2, 8);
+                        getRandomStatmen2("haveibeenhere", "sendasign");
                         StartCoroutine(waitTillAnimationIsOver(UIObj));
                     }
 
@@ -74,14 +73,14 @@ public class PlayerUIScript : MonoBehaviour
                     if (!didrecievespulse)
                     {
                         didrecievespulse = true;
-                        UIObj = TextBox.transform.GetChild(6).gameObject;
-                        UIObj.SetActive(true);
+                        getRandomStatmen2("searchingforme", "searchingforme");
                         StartCoroutine(waitTillAnimationIsOver(UIObj));
+
                     }
                     break;
 
                 case "basic":
-                    getRandomStatmen3(4, 9, 10);
+                    getRandomStatmen3("hopeyourethere", "itslonely", "whenwillwemeet");
                     StartCoroutine(waitTillAnimationIsOver(UIObj));
 
                     break;
@@ -89,40 +88,79 @@ public class PlayerUIScript : MonoBehaviour
             }
         }
     }
-    private void getRandomStatmen2(int a, int b)
+    private void getRandomStatmen2(string a, string b)
     {
+        GameObject child1 = null;
+        GameObject child2 = null;
+
+        foreach (Transform t in TextBox.transform)
+        {
+            if (t.name == a)// Do something to child one
+            {
+                child1 = t.gameObject;
+            }
+            if (t.name == b)// Do something to child one
+            {
+                child2 = t.gameObject;
+            }
+
+        }
 
         if (Random.value < 0.5f)
         {
-            UIObj = TextBox.transform.GetChild(a).gameObject;
+
+            UIObj = child1;
             UIObj.SetActive(true);
         }
         else
         {
-            UIObj = TextBox.transform.GetChild(b).gameObject;
+            UIObj = child2;
             UIObj.SetActive(true);
         }
     }
 
 
 
-    private void getRandomStatmen3(int a, int b, int c)
+    private void getRandomStatmen3(string a, string b, string c)
     {
+        GameObject child1 = null;
+        GameObject child2 = null;
+        GameObject child3 = null;
+
+
+        foreach (Transform t in TextBox.transform)
+        {
+            if (t.name == a)// Do something to child one
+            {
+                child1 = t.gameObject;
+            }
+            if (t.name == b)// Do something to child one
+            {
+                child2 = t.gameObject;
+            }
+            if (t.name == c)// Do something to child one
+            {
+                child3 = t.gameObject;
+            }
+
+        }
 
         if (Random.value < 0.3f)
         {
-            UIObj = TextBox.transform.GetChild(a).gameObject;
+
+            UIObj = child1;
             UIObj.SetActive(true);
+
         }
 
         if (Random.value > 0.3f && Random.value < 0.7f)
         {
-            UIObj = TextBox.transform.GetChild(a).gameObject;
+            UIObj = child2;
             UIObj.SetActive(true);
         }
         else
         {
-            UIObj = TextBox.transform.GetChild(c).gameObject;
+            UIObj = child3;
             UIObj.SetActive(true);
         }
     }

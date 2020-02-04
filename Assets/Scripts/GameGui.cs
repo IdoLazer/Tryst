@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GameGui : MonoBehaviour
-{  
+{
 
     public GameObject Win1;
     public GameObject Win2;
@@ -12,8 +12,8 @@ public class GameGui : MonoBehaviour
     public GameObject StartMenu1;
     public GameObject StartMenu2;
     //after moving everything in
-    public GameObject Father1VCam1;
-    public GameObject Father2VCam2;
+    public GameObject Father1;
+    public GameObject Father2;
     //deactivate planet texture
     public GameObject PlanetTextureWhite;
     public GameObject PlanetTextureBlack;
@@ -25,7 +25,7 @@ public class GameGui : MonoBehaviour
     }
 
     public void GamePlayCloseGui()
-        // this function should be called once we start the game 
+    // this function should be called once we start the game 
     {
         StartMenu1.SetActive(false);
         StartMenu2.SetActive(false);
@@ -49,20 +49,20 @@ public class GameGui : MonoBehaviour
     public Transform getWinOne()
     {
 
-        return Father1VCam1.transform.Find("StatsContainer");
+        return Father1.transform.Find("StatsContainer");
     }
 
     public Transform getWinTwo()
     {
-        return Father2VCam2.transform.Find("StatsContainer");
+        return Father2.transform.Find("StatsContainer");
     }
-    public Transform getWinTextcontainerOne()
+    public TextMesh getWinTextcontainerOne()
     {
-        return Father1VCam1.transform.Find("WinTitle");
+        return Father1.transform.Find("WinTitle").GetComponent<TextMesh>();
     }
 
-    public Transform getWinTextcontainerTwo()
+    public TextMesh getWinTextcontainerTwo()
     {
-        return Father2VCam2.transform.Find("WinTitle");
+        return Father2.transform.Find("WinTitle").GetComponent<TextMesh>();
     }
 }

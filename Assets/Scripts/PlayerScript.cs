@@ -96,11 +96,12 @@ public class PlayerScript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == TOTEM_TAG)
+        if (other.tag == TOTEM_TAG)
         {
             TotemScript totem = other.GetComponent<TotemScript>();
             bool usedTotem = totem.useTotem();
-            if (usedTotem){
+            if (usedTotem)
+            {
                 boostPS.Play();
                 playerControl.walkSpeed = playerControl.walkSpeed + totem.speedBoost;
                 if (playerControl.walkSpeed >= playerControl.maxWalkSpeed)
@@ -112,7 +113,7 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-        if(other.name == BLACK_TRAIL_TAG && tag == TAG_PLAYER_2)
+        if (other.name == BLACK_TRAIL_TAG && tag == TAG_PLAYER_2)
         {
             GetComponent<PlayerUIScript>().ActivateUI("meetOtherTrail");
 
@@ -148,14 +149,14 @@ public class PlayerScript : MonoBehaviour
 
     public void Win(Vector3 meetingPoint)
     {
-        //winPS.Play();
+        winPS.Play();
         playerControl.MoveTowards(meetingPoint);
     }
 }
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
