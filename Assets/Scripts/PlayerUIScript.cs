@@ -13,10 +13,13 @@ public class PlayerUIScript : MonoBehaviour
     private bool didTrail = false;
     private bool longTimeNoTrail = false;
     private bool isPressed = false;
+    private bool whentIntoBasic = false;
+
+
 
     // val for counting how much time has passed
     private float LastTrailTime;
-    public float betweenTrail = 20;
+    public float betweenTrail = 25;
     public float TIME_TO_WAIT = 2.5f;
     // to check if we only run in function if we are not showing a prev one
     private bool isActive = false;
@@ -29,20 +32,21 @@ public class PlayerUIScript : MonoBehaviour
 
     void Start()
     {
-        TextBox = transform.GetChild(0).gameObject;
+        TextBox = transform.Find("TextBank").gameObject;
         LastTrailTime = Time.time;
         CurrTime = Time.time;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         // if enough time passed in the game
         if (Time.time - CurrTime > BASIC_TIME)
         {
             CurrTime = Time.time;
-            ActivateUI("basic");
+            //ActivateUI("basic");
             return;
-            }
+        }
+
 
         // if we didnt draw a line for a long time    
         if (!longTimeNoTrail)
@@ -68,9 +72,11 @@ public class PlayerUIScript : MonoBehaviour
 
             if (Time.time - LastTrailTime > betweenTrail && !isPressed)
             {
-                ActivateUI("didntMakeTRail");
+                longTimeNoTrail = true;
+                //ActivateUI("didntMakeTRail");
                 LastTrailTime = Time.time;
                 isPressed = true;
+                //UIObj.SetActive(false);
             }
 
         }
@@ -125,13 +131,23 @@ public class PlayerUIScript : MonoBehaviour
                         didrecievespulse = true;
                         getRandomStatmen2("searchingforme", "searchingforme");
                         StartCoroutine(waitTillAnimationIsOver(UIObj));
+                        isActive = false;
 
                     }
+
                     break;
 
                 case "basic":
-                    getRandomStatmen3("hopeyourethere", "itslonely", "whenwillwemeet");
-                    StartCoroutine(waitTillAnimationIsOver(UIObj));
+                    if (!whentIntoBasic)
+                    {
+                        getRandomStatmen3("hopeyourethere", "itslonely", "whenwillwemeet");
+                        StartCoroutine(waitTillAnimationIsOver(UIObj));
+                        whentIntoBasic = true;
+                    }
+                    else
+                    {
+                        whentIntoBasic = false;
+                    }
 
                     break;
 
@@ -224,10 +240,8 @@ public class PlayerUIScript : MonoBehaviour
      private IEnumerator waitTillAnimationIsOver(GameObject obj)
     {
         yield return new WaitForSeconds(TIME_TO_WAIT);
-        UIObj.SetActive(false);
+        obj.SetActive(false);
         isActive = false;
-        
-        
 
     }
 }

@@ -24,9 +24,9 @@ public class PlayerScript : MonoBehaviour
     public float loseLifeSpeed = 0.1f;
     public GameObject playerLose;
     public GameObject pressToReplay;
-    public ParticleSystem boostPS;
-    public ParticleSystem closeToWinPS;
-    public ParticleSystem winPS;
+    //public ParticleSystem boostPS;
+    //public ParticleSystem closeToWinPS;
+    //public ParticleSystem winPS;
     private bool DidHit = false;
     private firstPersonControl playerControl;
 
@@ -139,17 +139,17 @@ public class PlayerScript : MonoBehaviour
     {
         if (isCloseToWin)
         {
-            closeToWinPS.Play();
+            //closeToWinPS.Play();
         }
         else
         {
-            closeToWinPS.Pause();
+            //closeToWinPS.Pause();
         }
     }
 
     public void Win(Vector3 meetingPoint)
     {
-        winPS.Play();
+        //winPS.Play();
         playerControl.MoveTowards(meetingPoint);
     }
 }
