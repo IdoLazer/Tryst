@@ -75,7 +75,6 @@ public class PlayerUIScript : MonoBehaviour
                     //placed
                     if (!didrecievespulse)
                     {
-                        Debug.Log("ONLY ONCE");
                         didrecievespulse = true;
                         getRandomStatmen2("searchingforme", "searchingforme");
                         StartCoroutine(waitTillAnimationIsOver(UIObj));
@@ -99,7 +98,6 @@ public class PlayerUIScript : MonoBehaviour
 
         foreach (Transform t in TextBox.transform)
         {
-            Debug.Log(t.name);
             if (t.name == a)// Do something to child one
             {
                 child1 = t.gameObject;
