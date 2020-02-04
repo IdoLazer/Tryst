@@ -6,19 +6,27 @@ public class PlayerUIScript : MonoBehaviour
 {
     private GameObject TextBox;
     private GameObject UIObj;
-
+    //bbols for only doing everything once
     private bool didSeePulse = false;
     private bool didrecievespulse = false;
     private bool didseeTrail = false;
     private bool didTrail = false;
-    bool isPressed = false;
+    private bool longTimeNoTrail = false;
+    private bool isPressed = false;
 
+    // val for counting how much time has passed
     private float LastTrailTime;
     public float betweenTrail = 20;
     public float TIME_TO_WAIT = 2.5f;
+    // to check if we only run in function if we are not showing a prev one
     private bool isActive = false;
-    public float BASIC_TIME = 5;
+    public float BASIC_TIME = 60;
     private float CurrTime;
+
+    //const
+    private string PLAEY_ONE_TAG = "playerOne";
+    private string PLAEY_TWO_TAG = "playerTwo";
+
     void Start()
     {
         TextBox = transform.GetChild(0).gameObject;
@@ -28,10 +36,43 @@ public class PlayerUIScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        //whenLastMadeTrail();
+        // if enough time passed in the game
         if (Time.time - CurrTime > BASIC_TIME)
         {
             CurrTime = Time.time;
+            ActivateUI("basic");
+            return;
+            }
+
+        // if we didnt draw a line for a long time    
+        if (!longTimeNoTrail)
+        {
+            if (name == PLAEY_ONE_TAG)
+            {
+                isPressed = KeyJoyController.getTrailPressed_Player1();
+                if (isPressed)
+                {
+                    LastTrailTime = Time.time;
+                }
+
+            }
+
+            if (name == PLAEY_TWO_TAG)
+            {
+                isPressed = KeyJoyController.getTrailPressed_Player2();
+                if (isPressed)
+                {
+                    LastTrailTime = Time.time;
+                }
+            }
+
+            if (Time.time - LastTrailTime > betweenTrail && !isPressed)
+            {
+                ActivateUI("didntMakeTRail");
+                LastTrailTime = Time.time;
+                isPressed = true;
+            }
+
         }
     }
 
@@ -180,51 +221,12 @@ public class PlayerUIScript : MonoBehaviour
         }
     }
 
-    private bool whenLastMadeTrail()
-    {
-
-        if (name == "playerOne")
-        {
-            isPressed = KeyJoyController.getTrailPressed_Player1();
-            if (isPressed)
-            {
-                LastTrailTime = Time.time;
-            }
-
-        }
-
-        if (name == "playerTwo")
-        {
-            isPressed = KeyJoyController.getTrailPressed_Player2();
-            if (isPressed)
-            {
-                LastTrailTime = Time.time;
-            }
-        }
-
-        if (!didTrail)
-        {
-            if (Time.time - LastTrailTime > betweenTrail && !isActive)
-            {
-                ActivateUI("didntMakeTRail");
-                betweenTrail += betweenTrail;
-                LastTrailTime = Time.time;
-                isPressed = true;
-            }
-        }
-
-
-        return true;
-    }
-
-    private IEnumerator waitTillAnimationIsOver(GameObject obj)
+     private IEnumerator waitTillAnimationIsOver(GameObject obj)
     {
         yield return new WaitForSeconds(TIME_TO_WAIT);
-        if (UIObj != null)
-        {
-            UIObj.SetActive(false);
-            isActive = false;
-        }
+        UIObj.SetActive(false);
+        isActive = false;
+        
         
 
     }

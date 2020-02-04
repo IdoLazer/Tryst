@@ -24,7 +24,7 @@ public class PlayerScript : MonoBehaviour
     public float loseLifeSpeed = 0.1f;
     public GameObject playerLose;
     public GameObject pressToReplay;
-    public ParticleSystem boostPS;
+   /public ParticleSystem boostPS;
     public ParticleSystem closeToWinPS;
     public ParticleSystem winPS;
     private bool DidHit = false;
@@ -102,7 +102,7 @@ public class PlayerScript : MonoBehaviour
             bool usedTotem = totem.useTotem();
             if (usedTotem)
             {
-                boostPS.Play();
+                //boostPS.Play();
                 playerControl.walkSpeed = playerControl.walkSpeed + totem.speedBoost;
                 if (playerControl.walkSpeed >= playerControl.maxWalkSpeed)
                 {
