@@ -14,10 +14,10 @@ public class PlayerUIScript : MonoBehaviour
     bool isPressed = false;
 
     private float LastTrailTime;
-    public float betweenTrail = 15;
+    public float betweenTrail = 20;
     public float TIME_TO_WAIT = 2.5f;
     private bool isActive = false;
-    public float BASIC_TIME = 60;
+    public float BASIC_TIME = 5;
     private float CurrTime;
     void Start()
     {
@@ -28,7 +28,7 @@ public class PlayerUIScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        whenLastMadeTrail();
+        //whenLastMadeTrail();
         if (Time.time - CurrTime > BASIC_TIME)
         {
             CurrTime = Time.time;
@@ -41,6 +41,8 @@ public class PlayerUIScript : MonoBehaviour
         if (!isActive)
         {
             isActive = true;
+            Debug.Log(name);
+
             switch (name)
             {
                 case "sentPulse":
@@ -56,8 +58,12 @@ public class PlayerUIScript : MonoBehaviour
 
                 case "didntMakeTRail":
                     //placed
-                    getRandomStatmen3("rememberthisplace", "findmywayback", "searchingforme");
-                    StartCoroutine(waitTillAnimationIsOver(UIObj));
+                    if (!didTrail)
+                    {
+                        didTrail = true; 
+                        getRandomStatmen3("rememberthisplace", "findmywayback", "searchingforme");
+                        StartCoroutine(waitTillAnimationIsOver(UIObj));
+                    }
 
                     break;
 
@@ -109,16 +115,19 @@ public class PlayerUIScript : MonoBehaviour
 
         }
 
-        if (Random.value < 0.5f)
+        if (child1 != null && child2 != null)
         {
+            if (Random.value < 0.5f)
+            {
 
-            UIObj = child1;
-            UIObj.SetActive(true);
-        }
-        else
-        {
-            UIObj = child2;
-            UIObj.SetActive(true);
+                UIObj = child1;
+                UIObj.SetActive(true);
+            }
+            else
+            {
+                UIObj = child2;
+                UIObj.SetActive(true);
+            }
         }
     }
 
@@ -148,23 +157,26 @@ public class PlayerUIScript : MonoBehaviour
 
         }
 
-        if (Random.value < 0.3f)
+        if (child1 != null && child2 != null && child3 != null)
         {
+            if (Random.value < 0.3f)
+            {
 
-            UIObj = child1;
-            UIObj.SetActive(true);
+                UIObj = child1;
+                UIObj.SetActive(true);
 
-        }
+            }
 
-        if (Random.value > 0.3f && Random.value < 0.7f)
-        {
-            UIObj = child2;
-            UIObj.SetActive(true);
-        }
-        else
-        {
-            UIObj = child3;
-            UIObj.SetActive(true);
+            if (Random.value > 0.3f && Random.value < 0.7f)
+            {
+                UIObj = child2;
+                UIObj.SetActive(true);
+            }
+            else
+            {
+                UIObj = child3;
+                UIObj.SetActive(true);
+            }
         }
     }
 
@@ -190,13 +202,11 @@ public class PlayerUIScript : MonoBehaviour
             }
         }
 
-        if (!isPressed)
+        if (!didTrail)
         {
-            if (Time.time - LastTrailTime > betweenTrail)
+            if (Time.time - LastTrailTime > betweenTrail && !isActive)
             {
                 ActivateUI("didntMakeTRail");
-                StartCoroutine(waitTillAnimationIsOver(UIObj));
-
                 betweenTrail += betweenTrail;
                 LastTrailTime = Time.time;
                 isPressed = true;
@@ -210,8 +220,12 @@ public class PlayerUIScript : MonoBehaviour
     private IEnumerator waitTillAnimationIsOver(GameObject obj)
     {
         yield return new WaitForSeconds(TIME_TO_WAIT);
-        obj.SetActive(false);
-        isActive = false;
+        if (UIObj != null)
+        {
+            UIObj.SetActive(false);
+            isActive = false;
+        }
+        
 
     }
 }
