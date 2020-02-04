@@ -5,10 +5,13 @@ using UnityEngine;
 public class PlayerUIScript : MonoBehaviour
 {
     private GameObject TextBox;
-    GameObject UIObj;
+    private GameObject UIObj;
+
     private bool didSeePulse = false;
     private bool didrecievespulse = false;
     private bool didseeTrail = false;
+    private bool didTrail = false;
+    bool isPressed = false;
 
     private float LastTrailTime;
     public float betweenTrail = 15;
@@ -72,6 +75,7 @@ public class PlayerUIScript : MonoBehaviour
                     //placed
                     if (!didrecievespulse)
                     {
+                        Debug.Log("ONLY ONCE");
                         didrecievespulse = true;
                         getRandomStatmen2("searchingforme", "searchingforme");
                         StartCoroutine(waitTillAnimationIsOver(UIObj));
@@ -95,6 +99,7 @@ public class PlayerUIScript : MonoBehaviour
 
         foreach (Transform t in TextBox.transform)
         {
+            Debug.Log(t.name);
             if (t.name == a)// Do something to child one
             {
                 child1 = t.gameObject;
@@ -167,7 +172,6 @@ public class PlayerUIScript : MonoBehaviour
 
     private bool whenLastMadeTrail()
     {
-        bool isPressed = false;
 
         if (name == "playerOne")
         {
@@ -197,6 +201,7 @@ public class PlayerUIScript : MonoBehaviour
 
                 betweenTrail += betweenTrail;
                 LastTrailTime = Time.time;
+                isPressed = true;
             }
         }
 
