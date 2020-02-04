@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -12075,7 +12075,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 1e6cf039930e4db4296712bbb0875b3a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 1e6cf039930e4db4296712bbb0875b3a,
         type: 3}
@@ -12296,7 +12296,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: bafb5e79d507fef4892bfbc66821320b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: bafb5e79d507fef4892bfbc66821320b,
         type: 3}
@@ -12407,7 +12407,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 63b710e1da0ae1c48aae3883e3e5fe63,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 63b710e1da0ae1c48aae3883e3e5fe63,
         type: 3}
@@ -13291,7 +13291,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 63b710e1da0ae1c48aae3883e3e5fe63,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 63b710e1da0ae1c48aae3883e3e5fe63,
         type: 3}
@@ -20893,7 +20893,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 1e6cf039930e4db4296712bbb0875b3a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 1e6cf039930e4db4296712bbb0875b3a,
         type: 3}
@@ -21488,7 +21488,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 815885865}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.2
@@ -21567,7 +21567,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -29045,7 +29045,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 8f31bff51d9c6174fafb7ff4de6022de,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8f31bff51d9c6174fafb7ff4de6022de,
         type: 3}
@@ -29124,7 +29124,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: b2576c9fc342b054aaf3d6b5db907cb7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: b2576c9fc342b054aaf3d6b5db907cb7,
         type: 3}
@@ -29234,7 +29234,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 8f31bff51d9c6174fafb7ff4de6022de,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8f31bff51d9c6174fafb7ff4de6022de,
         type: 3}
@@ -34726,7 +34726,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 47ef934771f5fec449bf5e7e1d7950db,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 47ef934771f5fec449bf5e7e1d7950db,
         type: 3}
@@ -35419,7 +35419,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 47ef934771f5fec449bf5e7e1d7950db,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 47ef934771f5fec449bf5e7e1d7950db,
         type: 3}
@@ -35582,7 +35582,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: b2576c9fc342b054aaf3d6b5db907cb7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: b2576c9fc342b054aaf3d6b5db907cb7,
         type: 3}
@@ -36234,7 +36234,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: bafb5e79d507fef4892bfbc66821320b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: bafb5e79d507fef4892bfbc66821320b,
         type: 3}
@@ -36738,7 +36738,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: be5290855b4a94e4797d6d9f0e80c8cb,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: be5290855b4a94e4797d6d9f0e80c8cb,
         type: 3}
@@ -37071,7 +37071,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1456024208}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.2
@@ -37150,7 +37150,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -38596,12 +38596,12 @@ MonoBehaviour:
   mouseSenX: 250
   mouseSenY: 250
   rotatSpeen: 8
-  fadeBoostSpeed: 10
+  fadeBoostSpeed: 6
   fadeBoostSpeedWhenNotMoving: 10
   walkSpeed: 5
   maxWalkSpeed: 25
   controllerSensitivityY: 0.101
-  controllerSensitivityX: 0.07
+  controllerSensitivityX: 0.053
 --- !u!114 &1651616985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38664,7 +38664,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1651616982}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efc3537181a55f649b24a9ccc564a809, type: 3}
   m_Name: 
@@ -38828,7 +38828,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1657735384}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efc3537181a55f649b24a9ccc564a809, type: 3}
   m_Name: 
@@ -39981,7 +39981,7 @@ PrefabInstance:
     - target: {fileID: -3303067111856926225, guid: 176c3e11dc31569429e02c260169860f,
         type: 3}
       propertyPath: fadeBoostSpeed
-      value: 10
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4663078520945060563, guid: 176c3e11dc31569429e02c260169860f,
         type: 3}
@@ -40868,7 +40868,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: be5290855b4a94e4797d6d9f0e80c8cb,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: be5290855b4a94e4797d6d9f0e80c8cb,
         type: 3}

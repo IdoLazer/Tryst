@@ -93,6 +93,11 @@ public class GameManager : MonoBehaviour
 
                 }
 
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                }
+
                 if (player1.GetComponent<PlayerScript>().playerLife <= 0)
                 {
                     if (!PlayerOneDead)

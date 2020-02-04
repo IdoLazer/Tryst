@@ -48,7 +48,7 @@ public class MenuPlayerController : MonoBehaviour
 
 
     }
-    void OnCollisionEnter(Collision other) {
+    void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "MenuPlayer1" || other.gameObject.tag == "MenuPlayer1" ){
             meet = true;
         }
